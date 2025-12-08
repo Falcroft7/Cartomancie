@@ -1,17 +1,17 @@
-/* ===================== CONSTANTES ===================== */
+/* =========== CONSTANTES =========== */
 const csvUrl =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vTjeBMuYH_nr0z9h1GL9FnU_2XzEeNMZQ4dVsCMeQVZfw5tXacWxY9VC_GdbONB2ZCzo4EVsnrGHwtC/pub?output=csv";
 
-/* ===================== DONNÉES ===================== */
+/* =========== DONNÉES =========== */
 let listeMajors = [];
 let listeMinors = [];
 
-/* ===================== UTILITAIRES ===================== */
+/* =========== UTILITAIRES =========== */
 function render(html) {
   document.getElementById("app").innerHTML = html;
 }
 
-/* ===================== FONCTION NOM → IMAGE ===================== */
+/* =========== FONCTION NOM → IMAGE =========== */
 function nomToImagePath(nom, type) {
   if (type === "Majeure") {
     return (
@@ -39,7 +39,7 @@ function nomToImagePath(nom, type) {
   return "Images/placeholder.png";
 }
 
-/* ===================== PAGE ACCUEIL ===================== */
+/* =========== PAGE ACCUEIL =========== */
 function affichHome() {
   render(`
     <div class="home-container">
@@ -64,16 +64,17 @@ function affichHome() {
   `);
 }
 
-/* ===================== LISTES ARCANES ===================== */
-function affichListeMajor() {
+/* =========== AFFICHAGE LISTES ARCANES =========== */
+function affichListeArcane(liste, titre, retourFonction) {
   render(`
-    <a href="#" onclick="affichHome()" class="back-btn">⬅ Retour</a>
-    <h2>Arcanes Majeures</h2>
+    <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
+    <h2>${titre}</h2>
     <div id="cardsContainer" class="cards"></div>
   `);
+
   const container = document.getElementById("cardsContainer");
-  listeMajors.forEach(arcane => {
-    const img = nomToImagePath(arcane.Nom, "Majeure");
+  liste.forEach(arcane => {
+    const img = nomToImagePath(arcane.Nom, arcane.Type);
     const card = document.createElement("div");
     card.className = "card";
     card.dataset.name = arcane.Nom;
@@ -82,11 +83,22 @@ function affichListeMajor() {
     card.addEventListener("click", () => affichArcane(arcane));
     container.appendChild(card);
   });
+
+  // Bouton retour
+  document.getElementById("backBtn").addEventListener("click", (e) => {
+    e.preventDefault();
+    retourFonction();
+  });
+}
+
+/* =========== LISTES SPÉCIFIQUES =========== */
+function affichListeMajor() {
+  affichListeArcane(listeMajors, "Arcanes Majeures", affichHome);
 }
 
 function affichListeMinor() {
   render(`
-    <a href="#" onclick="affichHome()" class="back-btn">⬅ Retour</a>
+    <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
     <h2>Arcanes Mineures</h2>
     <div class="minor-types-buttons">
       <button onclick="affichListeMinorParFamille('Epées')">Epées</button>
@@ -95,33 +107,25 @@ function affichListeMinor() {
       <button onclick="affichListeMinorParFamille('Deniers')">Deniers</button>
     </div>
   `);
-}
 
-function affichListeMinorParFamille(famille) {
-  render(`
-    <a href="#" onclick="affichListeMinor()" class="back-btn">⬅ Retour</a>
-    <h2>Arcanes Mineures - ${famille}</h2>
-    <div id="cardsContainer" class="cards"></div>
-  `);
-  const container = document.getElementById("cardsContainer");
-  const filtered = listeMinors.filter(arcane => arcane.Famille === famille);
-  filtered.forEach(arcane => {
-    const img = nomToImagePath(arcane.Nom, "Mineure");
-    const card = document.createElement("div");
-    card.className = "card";
-    card.dataset.name = arcane.Nom;
-    card.innerHTML = `<img src="${img}" alt="${arcane.Nom}">
-                      <p>${arcane.Numero} - ${arcane.Nom}</p>`;
-    card.addEventListener("click", () => affichArcane(arcane));
-    container.appendChild(card);
+  // Retour vers la home
+  document.getElementById("backBtn").addEventListener("click", (e) => {
+    e.preventDefault();
+    affichHome();
   });
 }
 
-/* ===================== FICHE ARCANE ===================== */
-function affichArcane(arcane) {
+function affichListeMinorParFamille(famille) {
+  const filtered = listeMinors.filter(arcane => arcane.Famille === famille);
+  affichListeArcane(filtered, `Arcanes Mineures - ${famille}`, affichListeMinor);
+}
+
+/* =========== FICHE ARCANE =========== */
+function affichArcane(arcane, retourFonction) {
   const img = nomToImagePath(arcane.Nom, arcane.Type);
 
   render(`
+    <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
     <h1>${arcane.Numero} - ${arcane.Nom}</h1>
     <div class="fiche-arcane">
       <div class="fiche-image">
@@ -144,25 +148,14 @@ function affichArcane(arcane) {
     </div>
   `);
 
-  const backBtn = document.createElement("a");
-  backBtn.href = "#";
-  backBtn.className = "back-btn";
-  backBtn.textContent = "⬅ Retour";
-
-  backBtn.addEventListener("click", (e) => {
+  // Bouton retour
+  document.getElementById("backBtn").addEventListener("click", (e) => {
     e.preventDefault();
-    if (arcane.Type === "Majeure") {
-      affichListeMajor();
-    } else {
-      affichListeMinorParFamille(arcane.Famille);
-    }
+    retourFonction();
   });
-
-  const app = document.getElementById("app");
-  app.prepend(backBtn);
 }
 
-/* ===================== CHARGEMENT CSV ===================== */
+/* =========== CHARGEMENT CSV =========== */
 Papa.parse(csvUrl, {
   download: true,
   header: true,
@@ -174,5 +167,3 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
-
-

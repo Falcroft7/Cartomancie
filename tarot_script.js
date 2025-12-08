@@ -80,7 +80,7 @@ function affichListeArcane(liste, titre, retourFonction) {
     card.dataset.name = arcane.Nom;
     card.innerHTML = `<img src="${img}" alt="${arcane.Nom}">
                       <p>${arcane.Numero} - ${arcane.Nom}</p>`;
-    card.addEventListener("click", () => affichArcane(arcane));
+    card.addEventListener("click", () => affichArcane(arcane, retourFonction));
     container.appendChild(card);
   });
 
@@ -115,9 +115,13 @@ function affichListeMinor() {
   });
 }
 
-function affichListeMinorParFamille(famille) {
+function affichListeMinorParFamille(famille) { 
   const filtered = listeMinors.filter(arcane => arcane.Famille === famille);
-  affichListeArcane(filtered, `Arcanes Mineures - ${famille}`, affichListeMinor);
+  affichListeArcane(
+    filtered,
+    `Arcanes Mineures - ${famille}`,
+    affichListeMinor
+  );
 }
 
 /* =========== FICHE ARCANE =========== */
@@ -167,3 +171,4 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+

@@ -105,7 +105,7 @@ function affichListeArcane(liste, titre, retourFonction) {
 
 /* =========== LISTES SPÉCIFIQUES =========== */
 function affichListeMajor() {
-  affichListeArcane(listeMajors, "Arcanes Majeures", affichHome);
+  affichListeArcane(listeMajors, "Arcanes Majeures", affichListeMajor);
 }
 
 function affichListeMinor() {
@@ -120,20 +120,15 @@ function affichListeMinor() {
     </div>
   `);
 
-  // Retour vers la home
   document.getElementById("backBtn").addEventListener("click", (e) => {
     e.preventDefault();
     affichHome();
   });
 }
 
-function affichListeMinorParFamille(famille) { 
+function affichListeMinorParFamille(famille) {
   const filtered = listeMinors.filter(arcane => arcane.Famille === famille);
-  affichListeArcane(
-    filtered,
-    `Arcanes Mineures - ${famille}`,
-    affichListeMinor
-  );
+  affichListeArcane(filtered, `Arcanes Mineures - ${famille}`, () => affichListeMinorParFamille(famille));
 }
 
 /* =========== FICHE ARCANE =========== */
@@ -183,3 +178,4 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+

@@ -148,14 +148,7 @@ Papa.parse(csvUrl, {
     listeMajors = all.filter(r => r.Type === "Majeure");
     listeMinors = all.filter(r => r.Type === "Mineure");
 
-    // Ajouter Famille si pas renseignée
-    listeMinors.forEach(arcane => {
-      if (!arcane.Famille) {
-        const parts = arcane.Nom.split(' de ');
-        arcane.Famille = parts[1] || "Inconnue";
-      }
-    });
-
     affichHome();
   }
 });
+

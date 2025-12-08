@@ -33,7 +33,7 @@ function affichHome() {
       <img src="../Images/Banner/Tarot_Banner.jpg" class="home-banner">
 
       <h1>Explorez la magie des Arcanes</h1>
-      <p>Parcourez les cartes, découvrez leurs significations et plongez dans l'univers fascinant du Tarot.<br>
+      <p>Parcourez les cartes, découvrez leurs significations et plongez dans l'univers fascinant du Tarot.<br> 
       Chaque arcane vous ouvre un nouveau monde de connaissances et d'intuition.</p>
       <p>Commencez votre voyage parmi les arcanes :</p>
 
@@ -160,6 +160,7 @@ Papa.parse(csvUrl, {
     affichHome(); // On affiche la page d’accueil après chargement
   }
 });
+
 
 
 

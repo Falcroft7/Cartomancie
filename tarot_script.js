@@ -13,17 +13,33 @@ function render(html) {
 }
 
 function nomToImagePath(nom) {
-  return (
-    "Images/Major/" +
-    nom
-      .toLowerCase()
-      .normalize("NFD") // enlève accents
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/'/g, "") // enlève apostrophes
-      .replace(/-/g, "_") // remplace tirets
-      .replace(/ /g, "_") + // remplace espaces
-    ".png"
-  );
+  if (listeMajors.some(a => a.Nom === nom)) {
+    return (
+      "Images/Major/" +
+      nom
+        .toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .replace(/'/g, "")
+        .replace(/-/g, "_")
+        .replace(/ /g, "_") +
+      ".png"
+    );
+  }
+
+  const regex = /^(.+?) d[e']? (.+)$/i;
+  const match = nom.match(regex);
+
+  if (match) {
+    const valeur = match[1].toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const couleur = match[2].toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    return `Images/Minor/${valeur}_${couleur}.png`;
+  }
+
+  console.error("nomToImagePath : nom inconnu →", nom);
+  return "Images/placeholder.png";
 }
 
 /* ===================== PAGE ACCUEIL ===================== */
@@ -40,9 +56,10 @@ function affichHome() {
       </p>
 
       <p>
-        Choisissez votre voie : commencez par la sagesse profonde des Arcanes Majeures,
-        explorez la richesse quotidienne des Arcanes Mineures,
-        ou initiez-vous aux différentes méthodes de tirage pour donner vie à vos lectures.
+        Choisissez votre voie :<br>
+        • commencez par la sagesse profonde des Arcanes Majeures,<br>
+        • explorez la richesse quotidienne des Arcanes Mineures,<br>
+        • ou initiez-vous aux différentes méthodes de tirage pour donner vie à vos lectures.
       </p>
 
       <div class="home-buttons">
@@ -126,7 +143,7 @@ function affichArcane(arcane) {
   const img = nomToImagePath(arcane.Nom);
 
   render(`
-    <a href="#" onclick="affichListeMajor()" class="back-btn">⬅ Retour</a>
+    <a href="#" onclick="arcane.Type === 'Major' ? affichListeMajor() : affichListeMinor()" class="back-btn">⬅ Retour</a>
 
     <h1>${arcane.Numero} - ${arcane.Nom}</h1>
 
@@ -162,12 +179,16 @@ Papa.parse(csvUrl, {
   download: true,
   header: true,
   complete: function (results) {
-    // On garde seulement les lignes qui ont un nom d’arcane
-    listeMajors = results.data.filter(r => r.Nom && r.Nom.trim());
-
-    affichHome(); // On affiche la page d’accueil après chargement
+    const all = results.data.filter(r => r.Nom && r.Nom.trim());
+  
+    listeMajors = all.filter(r => r.Type === "Majeure");
+    listeMinors = all.filter(r => r.Type === "Mineure");
+  
+    affichHome();
   }
+
 });
+
 
 
 

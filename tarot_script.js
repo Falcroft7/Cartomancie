@@ -33,9 +33,18 @@ function affichHome() {
       <img src="Images/Banner/Tarot_Banner.jpg" class="home-banner">
 
       <h1>Explorez la magie des Arcanes</h1>
-      <p>Parcourez les cartes, découvrez leurs significations et plongez dans l'univers fascinant du Tarot.<br> 
-      Chaque arcane vous ouvre un nouveau monde de connaissances et d'intuition.</p>
-      <p>Commencez votre voyage parmi les arcanes :</p>
+
+      <p>
+        Le Tarot est un voyage symbolique à travers les mystères de l’existence.  
+        Que vous soyez débutant ou passionné, découvrez chaque carte, son énergie,
+        sa signification et les messages qu’elle souhaite vous transmettre.
+      </p>
+
+      <p>
+        Choisissez votre voie : commencez par la sagesse profonde des Arcanes Majeures,
+        explorez la richesse quotidienne des Arcanes Mineures,
+        ou initiez-vous aux différentes méthodes de tirage pour donner vie à vos lectures.
+      </p>
 
       <div class="home-buttons">
         <button onclick="affichListeMajor()">Arcanes Majeures</button>
@@ -160,6 +169,7 @@ Papa.parse(csvUrl, {
     affichHome(); // On affiche la page d’accueil après chargement
   }
 });
+
 
 
 

@@ -143,7 +143,7 @@ function affichArcane(arcane) {
   const img = nomToImagePath(arcane.Nom);
 
   render(`
-    <a href="#" onclick="arcane.Type === 'Major' ? affichListeMajor() : affichListeMinor()" class="back-btn">⬅ Retour</a>
+    <a href="#" onclick="arcane.Type === 'Majeure' ? affichListeMajor() : affichListeMinor()" class="back-btn">⬅ Retour</a>
 
     <h1>${arcane.Numero} - ${arcane.Nom}</h1>
 
@@ -188,6 +188,7 @@ Papa.parse(csvUrl, {
   }
 
 });
+
 
 
 

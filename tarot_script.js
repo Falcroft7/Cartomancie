@@ -14,7 +14,7 @@ function render(html) {
 
 function nomToImagePath(nom) {
   return (
-    "../Images/" +
+    "../Images/Major/" +
     nom
       .toLowerCase()
       .normalize("NFD") // enlève accents
@@ -160,4 +160,5 @@ Papa.parse(csvUrl, {
     affichHome(); // On affiche la page d’accueil après chargement
   }
 });
+
 

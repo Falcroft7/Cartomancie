@@ -35,9 +35,8 @@ function affichHome() {
       <h1>Explorez la magie des Arcanes</h1>
 
       <p>
-        Le Tarot est un voyage symbolique à travers les mystères de l’existence.  
-        Que vous soyez débutant ou passionné, découvrez chaque carte, son énergie,
-        sa signification et les messages qu’elle souhaite vous transmettre.
+        Le Tarot est un voyage symbolique à travers les mystères de l’existence.<br>
+        Que vous soyez débutant ou passionné, découvrez chaque carte, son énergie, sa signification et les messages qu’elle souhaite vous transmettre.
       </p>
 
       <p>
@@ -169,6 +168,7 @@ Papa.parse(csvUrl, {
     affichHome(); // On affiche la page d’accueil après chargement
   }
 });
+
 
 
 

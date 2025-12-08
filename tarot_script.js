@@ -108,7 +108,14 @@ function affichListeArcane(liste, titre, retourFonction, retourCarteFactory) {
 
 /* =========== LISTES SPÉCIFIQUES =========== */
 function affichListeMajor() {
-  affichListeArcane(listeMajors, "Arcanes Majeures", affichHome);
+  const retourCarteFactory = () => affichListeMajor();
+
+  affichListeArcane(
+    listeMajors,
+    "Arcanes Majeures",
+    affichHome,
+    retourCarteFactory
+  );
 }
 
 function affichListeMinor() {
@@ -186,6 +193,7 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+
 
 
 

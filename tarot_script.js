@@ -128,7 +128,7 @@ function affichListeMinor() {
 
 function affichListeMinorParFamille(famille) {
   const filtered = listeMinors.filter(arcane => arcane.Famille === famille);
-  affichListeArcane(filtered, `Arcanes Mineures - ${famille}`, affichListeMinor);
+  affichListeArcane(filtered, `Arcanes Mineures - ${famille}`, () => affichListeMinorParFamille(famille));
 }
 
 /* =========== FICHE ARCANE =========== */
@@ -178,6 +178,7 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+
 
 
 

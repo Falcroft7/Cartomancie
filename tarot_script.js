@@ -114,8 +114,8 @@ function affichListeMinorParFamille(famille) {
 /* ===================== FICHE ARCANE ===================== */
 function affichArcane(arcane) {
   const img = nomToImagePath(arcane.Nom, arcane.Type);
+
   render(`
-    <a href="#" onclick="arcane.Type === 'Majeure' ? affichListeMajor() : affichListeMinorParFamille(arcane.Famille)" class="back-btn">⬅ Retour</a>
     <h1>${arcane.Numero} - ${arcane.Nom}</h1>
     <div class="fiche-arcane">
       <div class="fiche-image">
@@ -137,6 +137,23 @@ function affichArcane(arcane) {
       </div>
     </div>
   `);
+
+  const backBtn = document.createElement("a");
+  backBtn.href = "#";
+  backBtn.className = "back-btn";
+  backBtn.textContent = "⬅ Retour";
+
+  backBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (arcane.Type === "Majeure") {
+      affichListeMajor();
+    } else {
+      affichListeMinorParFamille(arcane.Famille);
+    }
+  });
+
+  const app = document.getElementById("app");
+  app.prepend(backBtn);
 }
 
 /* ===================== CHARGEMENT CSV ===================== */
@@ -151,4 +168,3 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
-

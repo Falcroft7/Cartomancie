@@ -49,6 +49,12 @@ function affichHome() {
         Le Tarot est un voyage symbolique à travers les mystères de l’existence.<br>
         Que vous soyez débutant ou passionné, découvrez chaque carte, son énergie, sa signification et les messages qu’elle souhaite vous transmettre.
       </p>
+      <p>
+        Choisissez votre voie :<br>
+        • commencez par la sagesse profonde des Arcanes Majeures,<br>
+        • explorez la richesse quotidienne des Arcanes Mineures,<br>
+        • ou initiez-vous aux différentes méthodes de tirage pour donner vie à vos lectures.
+      </p>
       <div class="home-buttons">
         <button onclick="affichListeMajor()">Arcanes Majeures</button>
         <button onclick="affichListeMinor()">Arcanes Mineures</button>
@@ -168,4 +174,5 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+
 

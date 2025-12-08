@@ -1,0 +1,175 @@
+/* ===================== STYLE GLOBAL ===================== */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background: #1a161f;
+  color: #f3e9ff;
+}
+
+#app {
+  padding: 30px;
+  max-width: 1300px;
+  margin: auto;
+}
+
+h1, h2, h3 {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 1px;
+  color: #e8d5ff;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+/* ===================== BOUTON RETOUR ===================== */
+
+.back-btn {
+  display: inline-block;
+  color: #c1aaff;
+  text-decoration: none;
+  margin-bottom: 20px;
+  font-size: 1.1em;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+
+/* ===================== BOUTONS ACCUEIL ===================== */
+
+.home-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.home-buttons button {
+  background: #34294f;
+  border: 1px solid #816ab0;
+  padding: 12px 20px;
+  color: #eadcff;
+  font-size: 1.1em;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.25s ease;
+}
+
+.home-buttons button:hover {
+  background: #4b3c70;
+  transform: translateY(-3px);
+}
+
+
+/* ===================== BANNIERE ===================== */
+
+.home-banner {
+  display: block;
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border-radius: 12px;
+}
+
+
+/* ===================== LISTE DES ARCANES ===================== */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.card {
+  background: #2c223a;
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #5e4b82;
+  transition: 0.25s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background: #3a2a57;
+  box-shadow: 0 0 10px rgba(183, 146, 255, 0.4);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+
+/* ===================== FICHE ARCANE ===================== */
+
+.fiche-arcane {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.fiche-image {
+  flex: 1 1 250px;
+  text-align: center;
+}
+
+.fiche-arcane-image {
+  width: 100%;
+  max-width: 260px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(117, 89, 153, 0.5);
+}
+
+.fiche-significations {
+  flex: 2 1 300px;
+}
+
+.fiche-left, .fiche-right {
+  margin-bottom: 20px;
+}
+
+.fiche-left h3, .fiche-right h3 {
+  margin-bottom: 10px;
+  color: #d8c2ff;
+  font-size: 1.3em;
+}
+
+p {
+  line-height: 1.5;
+}
+
+
+/* ===================== RESPONSIVE ===================== */
+
+@media (max-width: 700px) {
+  #app {
+    padding: 15px;
+  }
+
+  .fiche-arcane {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home-buttons button {
+    width: 100%;
+    max-width: 250px;
+  }
+}

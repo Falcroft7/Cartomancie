@@ -25,7 +25,9 @@ function nomToImagePath(nom, type) {
         .replace(/ /g, "_") +
       ".png"
     );
-  } else if (type === "Mineure") {
+  }
+
+  else if (type === "Mineure") {
     const regex = /^(.+?) d[e’']? (.+)$/i;
     const match = nom.match(regex);
     if (!match) {
@@ -39,15 +41,16 @@ function nomToImagePath(nom, type) {
       .replace(/[\u0300-\u036f]/g, "")
       .replace(/ /g, "_");
 
-    let couleur = match[2]
-      .toLowerCase()
+    let famille = match[2]
       .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/ /g, "_");
+      .replace(/[\u0300-\u036f]/g, "");
 
-    const chemin = `Images/Minor/${valeur}_${couleur}.png`;
+    let familleFolder = famille.charAt(0).toUpperCase() + famille.slice(1).toLowerCase();
+
+    const chemin = `Images/${familleFolder}/${valeur}_${famille.toLowerCase()}.png`;
     return chemin;
   }
+
   return "Images/placeholder.png";
 }
 
@@ -195,6 +198,7 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+
 
 
 

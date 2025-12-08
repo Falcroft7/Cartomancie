@@ -77,7 +77,7 @@ function affichHome() {
 }
 
 /* =========== AFFICHAGE LISTES ARCANES =========== */
-function affichListeArcane(liste, titre, retourFonction) {
+function affichListeArcane(liste, titre, retourFonction, retourCarteFactory) {
   render(`
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
     <h2>${titre}</h2>
@@ -92,11 +92,14 @@ function affichListeArcane(liste, titre, retourFonction) {
     card.dataset.name = arcane.Nom;
     card.innerHTML = `<img src="${img}" alt="${arcane.Nom}">
                       <p>${arcane.Numero} - ${arcane.Nom}</p>`;
-    card.addEventListener("click", () => affichArcane(arcane, retourFonction));
+
+    const retourPourCetteCarte = retourCarteFactory ? retourCarteFactory(arcane) : retourFonction;
+
+    card.addEventListener("click", () => affichArcane(arcane, retourPourCetteCarte));
     container.appendChild(card);
   });
 
-  // Bouton retour
+  // Bouton retour (toujours utilise retourFonction)
   document.getElementById("backBtn").addEventListener("click", (e) => {
     e.preventDefault();
     retourFonction();
@@ -128,8 +131,13 @@ function affichListeMinor() {
 
 function affichListeMinorParFamille(famille) {
   const filtered = listeMinors.filter(arcane => arcane.Famille === famille);
-  affichListeArcane(filtered, `Arcanes Mineures - ${famille}`, () => affichListeMinorParFamille(famille));
+  const retourCarteFactory = (arcane) => {
+    return () => affichListeMinorParFamille(famille);
+  };
+
+  affichListeArcane(filtered, `Arcanes Mineures - ${famille}`, affichListeMinor, retourCarteFactory);
 }
+
 
 /* =========== FICHE ARCANE =========== */
 function affichArcane(arcane, retourFonction) {
@@ -178,6 +186,7 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+
 
 
 

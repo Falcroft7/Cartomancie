@@ -30,7 +30,7 @@ function nomToImagePath(nom) {
 function affichHome() {
   render(`
     <div class="home-container">
-      <img src="../Images/Banner/Tarot Banner.jpg" class="home-banner">
+      <img src="../Images/Banner/Tarot_Banner.jpg" class="home-banner">
 
       <h1>Explorez la magie des Arcanes</h1>
       <p>Parcourez les cartes, découvrez leurs significations et plongez dans l'univers fascinant du Tarot.<br>
@@ -160,5 +160,6 @@ Papa.parse(csvUrl, {
     affichHome(); // On affiche la page d’accueil après chargement
   }
 });
+
 
 

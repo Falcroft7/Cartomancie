@@ -26,15 +26,27 @@ function nomToImagePath(nom, type) {
       ".png"
     );
   } else if (type === "Mineure") {
-    const regex = /^(.+?) d[e']? (.+)$/i;
+    const regex = /^(.+?) d[e’']? (.+)$/i;
     const match = nom.match(regex);
     if (!match) {
       console.error("nomToImagePath : nom mineure inconnu →", nom);
       return "Images/placeholder.png";
     }
-    let valeur = match[1].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ /g, "_");
-    let couleur = match[2].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ /g, "_");
-    return `Images/Minor/${valeur}_${couleur}.png`;
+
+    let valeur = match[1]
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/ /g, "_");
+
+    let couleur = match[2]
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/ /g, "_");
+
+    const chemin = `Images/Minor/${valeur}_${couleur}.png`;
+    return chemin;
   }
   return "Images/placeholder.png";
 }
@@ -171,5 +183,3 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
-
-

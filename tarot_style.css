@@ -122,6 +122,31 @@ button,
   margin-bottom: 8px;
 }
 
+/* =============== FAMILLES =============== */
+.minor-familles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.minor-famille-card {
+  text-align: center;
+  cursor: pointer;
+}
+
+.minor-famille-card img {
+  width: 100%;
+  max-width: 160px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 12px rgba(183,146,255,0.4);
+}
+
+.minor-famille-card button {
+  width: 100%;
+}
+
 /* =============== FICHE ARCANE =============== */
 .fiche-arcane {
   display: flex;
@@ -235,3 +260,4 @@ button,
   h2 { font-size: 1.4em; }
   .card p { font-size: 0.9em; }
 }
+

@@ -54,7 +54,7 @@ function nomToImagePath(nom, type) {
     
     let familleFolder = famillesMap[familleOriginale] || familleOriginale;
 
-    const chemin = `Images/${familleFolder}/${valeur}_${famille.toLowerCase()}.png`;
+    const chemin = `Images/${familleFolder}/${valeur}_${familleFolder.toLowerCase()}.png`;
     return chemin;
   }
 
@@ -143,8 +143,10 @@ function affichListeMinor() {
 
   familles.forEach(famille => {
     // Recherche de l'As de la famille
-    const as = listeMinors.find(
-      arcane => arcane.Famille === famille && arcane.Nom.toLowerCase().startsWith("as")
+    const as = listeMinors.find(arcane =>
+      arcane.Famille.normalize("NFD").replace(/[\u0300-\u036f]/g, "") ===
+      famille.normalize("NFD").replace(/[\u0300-\u036f]/g, "") &&
+      arcane.Nom.toLowerCase().startsWith("as")
     );
 
     const img = as
@@ -227,4 +229,5 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+
 

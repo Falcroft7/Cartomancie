@@ -64,6 +64,11 @@ h1, h2 {
   transform: translateY(-2px);
 }
 
+.back-btn,
+.home-buttons button {
+  box-shadow: 0 0 12px rgba(180,140,255,0.35);
+}
+
 /* ===================== BOUTONS ACCUEIL ===================== */
 
 .home-buttons {
@@ -115,6 +120,7 @@ h1, h2 {
   cursor: pointer;
   border: 1px solid #5e4b82;
   transition: 0.25s ease-in-out;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .card:hover {
@@ -153,6 +159,11 @@ h1, h2 {
   flex: 2 1 300px;
 }
 
+.fiche-significations p {
+  line-height: 1.7;
+  color: #f1eaff;
+}
+
 .fiche-left, .fiche-right {
   margin-bottom: 20px;
 }
@@ -165,6 +176,11 @@ h1, h2 {
   border-radius: 12px;
   border-left: 3px solid #bca7ff;
   margin-bottom: 15px;
+}
+
+.mots-cles h3::before {
+  content: "✧ ";
+  color: #bca7ff;
 }
 
 /* ===================== BOUTONS DES FAMILLES MINEURES ===================== */
@@ -227,3 +243,4 @@ h1, h2 {
     font-size: 0.9em;
   }
 }
+

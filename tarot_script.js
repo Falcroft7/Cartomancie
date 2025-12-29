@@ -27,10 +27,7 @@ function nomToImagePath(nom, type) {
   else if (type === "Mineure") {
     const regex = /^(.+?) d[e’']? (.+)$/i;
     const match = nom.match(regex);
-    if (!match) {
-      console.error("nomToImagePath : nom mineure inconnu →", nom);
-      return "Images/placeholder.png";
-    }
+    if (!match) return "Images/placeholder.png";
 
     let valeur = match[1]
       .toLowerCase()
@@ -38,24 +35,14 @@ function nomToImagePath(nom, type) {
       .replace(/[\u0300-\u036f]/g, "")
       .replace(/ /g, "_");
 
-    let familleOriginale = match[2].trim();
-
-    const famillesMap = {
-      "Epées": "Epées",
-      "Épées": "Epées",
-      "Bâtons": "Bâtons",
-      "Batons": "Bâtons",
-      "Coupes": "Coupes",
-      "Deniers": "Deniers"
-    };
-    let familleFolder = famillesMap[familleOriginale] || familleOriginale;
-
-    let familleFile = familleFolder
-      .toLowerCase()
+    let familleFolder = match[2]
+      .trim()
       .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/ /g, "_")
+      .toLowerCase();
 
-    return `Images/${familleFolder}/${valeur}_${familleFile}.png`;
+    return `Images/${familleFolder}/${valeur}_${familleFolder}.png`;
   }
 
   return "Images/placeholder.png";
@@ -224,3 +211,4 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+

@@ -12,7 +12,8 @@ function render(html) {
 }
 
 /* =========== FONCTION NOM → IMAGE =========== */
-function nomToImagePath(nom, type) {
+function nomToImagePath(arcane) {
+  
   function sanitize(str) {
     return str
       .toLowerCase()
@@ -23,17 +24,17 @@ function nomToImagePath(nom, type) {
       .replace(/ /g, "_");             // espaces → _
   }
 
-  if (type === "Majeure") {
+  if (arcane.Type === "Majeure") {
     const nomFile = sanitize(nom);
     return `Images/Major/${nomFile}.png`;
   } 
-  else if (type === "Mineure") {
-    const regex = /^(.+?) d[e’']? (.+)$/i;
-    const match = nom.match(regex);
-    if (!match) return "Images/placeholder.png";
 
-    const valeur = sanitize(match[1]);
-    const famille = sanitize(match[2]);
+  if (arcane.Type === "Mineure") {
+    const valeurMatch = arcane.Nom.match(/^(.+?) d[e’']?/i);
+    if (!valeurMatch) return "Images/placeholder.png";
+
+    const valeur = sanitize(valeurMatch[1]);
+    const famille = sanitize(arcane.Famille);
 
     return `Images/${famille}/${valeur}_${famille}.png`;
   }
@@ -76,7 +77,7 @@ function affichListeArcane(liste, titre, retourFonction, retourCarteFactory) {
 
   const container = document.getElementById("cardsContainer");
   liste.forEach(arcane => {
-    const img = nomToImagePath(arcane.Nom, arcane.Type);
+    const img = nomToImagePath(arcane);
     const card = document.createElement("div");
     card.className = "card";
     card.dataset.name = arcane.Nom;
@@ -146,7 +147,7 @@ function affichListeMinor() {
     );
 
     const imgSrc = as
-      ? nomToImagePath(as.Nom, as.Type)
+      ? nomToImagePath(arcane)
       : "Images/placeholder.png";
 
     const bloc = document.createElement("div");
@@ -188,7 +189,7 @@ function affichListeMinorParFamille(famille) {
 
 /* =========== FICHE ARCANE =========== */
 function affichArcane(arcane, retourFonction) {
-  const img = nomToImagePath(arcane.Nom, arcane.Type);
+  const img = nomToImagePath(arcane);
 
   render(`
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
@@ -232,3 +233,4 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+

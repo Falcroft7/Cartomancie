@@ -42,15 +42,16 @@ p {
 
 /* ===================== BOUTON RETOUR ===================== */
 .back-btn {
-  display: inline-block;
-  color: #c1aaff;
-  text-decoration: none;
-  margin-bottom: 20px;
-  font-size: 1.1em;
+  padding: 10px 20px;
+  background: linear-gradient(145deg, #6f4fd8, #bca7ff);
+  color: #1a161f;
+  border-radius: 14px;
+  border: none;
 }
 
 .back-btn:hover {
-  text-decoration: underline;
+  box-shadow: 0 0 15px rgba(188,167,255,0.8);
+  transform: translateY(-2px);
 }
 
 /* ===================== BOUTONS ACCUEIL ===================== */
@@ -194,3 +195,4 @@ p {
     align-items: center;
   }
 }
+

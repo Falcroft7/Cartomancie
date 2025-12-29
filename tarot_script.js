@@ -87,8 +87,9 @@ function affichListeArcane(liste, titre, retourFonction, retourCarteFactory) {
     const card = document.createElement("div");
     card.className = "card";
     card.dataset.name = arcane.Nom;
+    const numeroAffiche = arcane.Numero ? `${arcane.Numero} - ` : "";
     card.innerHTML = `<img src="${img}" alt="${arcane.Nom}">
-                      <p>${arcane.Numero} - ${arcane.Nom}</p>`;
+                      <p>${numeroAffiche}${arcane.Nom}</p>`;
 
     const retourPourCetteCarte = retourCarteFactory ? retourCarteFactory(arcane) : retourFonction;
 
@@ -211,4 +212,5 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+
 

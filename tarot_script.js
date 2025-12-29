@@ -54,7 +54,12 @@ function nomToImagePath(nom, type) {
     
     let familleFolder = famillesMap[familleOriginale] || familleOriginale;
 
-    const chemin = `Images/${familleFolder}/${valeur}_${familleFolder.toLowerCase()}.png`;
+    const familleFile = familleFolder
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+    
+    const chemin = `Images/${familleFolder}/${valeur}_${familleFile}.png`;
     return chemin;
   }
 
@@ -229,5 +234,6 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+
 
 

@@ -44,6 +44,12 @@ p {
   line-height: 1.5;
 }
 
+h1, h2 {
+  text-shadow:
+    0 0 8px rgba(180,140,255,0.4),
+    0 0 20px rgba(120,80,200,0.2);
+}
+
 /* ===================== BOUTON RETOUR ===================== */
 .back-btn {
   padding: 10px 20px;
@@ -151,6 +157,16 @@ p {
   margin-bottom: 20px;
 }
 
+.mots-cles,
+.fiche-left,
+.fiche-right {
+  background: rgba(30,20,45,0.6);
+  padding: 15px;
+  border-radius: 12px;
+  border-left: 3px solid #bca7ff;
+  margin-bottom: 15px;
+}
+
 /* ===================== BOUTONS DES FAMILLES MINEURES ===================== */
 .minor-types-buttons {
   display: flex;
@@ -198,6 +214,16 @@ p {
     flex-direction: column;
     align-items: center;
   }
+  
+  h1 {
+    font-size: 1.6em;
+  }
+
+  h2 {
+    font-size: 1.4em;
+  }
+
+  .card p {
+    font-size: 0.9em;
+  }
 }
-
-

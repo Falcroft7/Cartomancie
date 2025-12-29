@@ -1,9 +1,8 @@
-/* ===================== STYLE GLOBAL ===================== */
+/* =============== STYLE GLOBAL =============== */
 body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
-  background: #1a161f;
   color: #f3e9ff;
   background:
     radial-gradient(circle at top, rgba(140,110,255,0.08), transparent 40%),
@@ -17,40 +16,38 @@ body {
   margin: auto;
 }
 
+p {
+  line-height: 1.5;
+}
+
+/* =============== TITRES =============== */
 h1, h2, h3 {
   font-family: 'Cinzel', serif;
   letter-spacing: 1px;
   color: #e8d5ff;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 15px;
-  font-size: 2em;
-}
-
-h3 {
-  font-size: 1.3em;
-  margin-bottom: 10px;
-  color: #d8c2ff;
-}
-
-p {
-  line-height: 1.5;
-}
-
 h1, h2 {
+  text-align: center;
   text-shadow:
     0 0 8px rgba(180,140,255,0.4),
     0 0 20px rgba(120,80,200,0.2);
 }
 
-/* ===================== BOUTON RETOUR ===================== */
+h1 { margin-bottom: 20px; }
+h2 { margin-bottom: 15px; font-size: 2em; }
+h3 { font-size: 1.3em; margin-bottom: 10px; color: #d8c2ff; }
+
+/* =============== BOUTONS =============== */
+button,
+.back-btn {
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.25s ease;
+  box-shadow: 0 0 12px rgba(180,140,255,0.35);
+}
+
+/* =============== BOUTON RETOUR =============== */
 .back-btn {
   padding: 10px 20px;
   background: linear-gradient(145deg, #6f4fd8, #bca7ff);
@@ -64,13 +61,7 @@ h1, h2 {
   transform: translateY(-2px);
 }
 
-.back-btn,
-.home-buttons button {
-  box-shadow: 0 0 12px rgba(180,140,255,0.35);
-}
-
-/* ===================== BOUTONS ACCUEIL ===================== */
-
+/* =============== BOUTONS ACCUEIL =============== */
 .home-buttons {
   display: flex;
   gap: 20px;
@@ -84,9 +75,6 @@ h1, h2 {
   padding: 12px 20px;
   color: #eadcff;
   font-size: 1.1em;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: 0.25s ease;
 }
 
 .home-buttons button:hover {
@@ -94,7 +82,7 @@ h1, h2 {
   transform: translateY(-3px);
 }
 
-/* ===================== BANNIERE ===================== */
+/* =============== BANNIERE =============== */
 .home-banner {
   display: block;
   width: 100%;
@@ -104,7 +92,7 @@ h1, h2 {
   border-radius: 12px;
 }
 
-/* ===================== LISTE DES ARCANES ===================== */
+/* =============== LISTE DES ARCANES =============== */
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -119,7 +107,6 @@ h1, h2 {
   text-align: center;
   cursor: pointer;
   border: 1px solid #5e4b82;
-  transition: 0.25s ease-in-out;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
@@ -135,7 +122,7 @@ h1, h2 {
   margin-bottom: 8px;
 }
 
-/* ===================== FICHE ARCANE ===================== */
+/* =============== FICHE ARCANE =============== */
 .fiche-arcane {
   display: flex;
   gap: 30px;
@@ -164,10 +151,7 @@ h1, h2 {
   color: #f1eaff;
 }
 
-.fiche-left, .fiche-right {
-  margin-bottom: 20px;
-}
-
+/* =============== BOITES CONTENU =============== */
 .mots-cles,
 .fiche-left,
 .fiche-right {
@@ -184,21 +168,8 @@ h1, h2 {
 }
 
 .fiche-left {
-  background: linear-gradient(
-    135deg,
-    rgba(70,120,90,0.25),
-    rgba(30,20,45,0.6)
-  );
-  border-left: 3px solid #6fd6a3;
-}
-
-.fiche-right {
-  background: linear-gradient(
-    135deg,
-    rgba(130,60,80,0.25),
-    rgba(30,20,45,0.6)
-  );
-  border-left: 3px solid #e08a9c;
+  background: linear-gradient(135deg, rgba(70,120,90,0.25), rgba(30,20,45,0.6));
+  border-left-color: #6fd6a3;
 }
 
 .fiche-left h3::before {
@@ -206,12 +177,17 @@ h1, h2 {
   color: #7de0b0;
 }
 
+.fiche-right {
+  background: linear-gradient(135deg, rgba(130,60,80,0.25), rgba(30,20,45,0.6));
+  border-left-color: #e08a9c;
+}
+
 .fiche-right h3::before {
   content: "✧ ";
   color: #e09aa8;
 }
 
-/* ===================== BOUTONS DES FAMILLES MINEURES ===================== */
+/* =============== BOUTONS DES FAMILLES MINEURES =============== */
 .minor-types-buttons {
   display: flex;
   gap: 15px;
@@ -226,9 +202,6 @@ h1, h2 {
   padding: 10px 18px;
   color: #f3e9ff;
   font-size: 1em;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: 0.25s ease;
 }
 
 .minor-types-buttons button:hover {
@@ -237,13 +210,12 @@ h1, h2 {
   box-shadow: 0 0 8px rgba(183, 146, 255, 0.4);
 }
 
-/* ===================== RESPONSIVE ===================== */
+/* =============== RESPONSIVE =============== */
 @media (max-width: 700px) {
-  #app {
-    padding: 15px;
-  }
+  #app { padding: 15px; }
 
-  .home-buttons, .minor-types-buttons {
+  .home-buttons,
+  .minor-types-buttons {
     flex-direction: column;
     align-items: center;
   }
@@ -259,17 +231,7 @@ h1, h2 {
     align-items: center;
   }
   
-  h1 {
-    font-size: 1.6em;
-  }
-
-  h2 {
-    font-size: 1.4em;
-  }
-
-  .card p {
-    font-size: 0.9em;
-  }
+  h1 { font-size: 1.6em; }
+  h2 { font-size: 1.4em; }
+  .card p { font-size: 0.9em; }
 }
-
-

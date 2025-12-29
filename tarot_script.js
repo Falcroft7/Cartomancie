@@ -124,16 +124,39 @@ function affichListeMajor() {
 }
 
 function affichListeMinor() {
+  const familles = ["Epées", "Coupes", "Bâtons", "Deniers"];
+
   render(`
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
     <h2>Arcanes Mineures</h2>
-    <div class="minor-types-buttons">
-      <button onclick="affichListeMinorParFamille('Epées')">Les Epées</button>
-      <button onclick="affichListeMinorParFamille('Coupes')">Les Coupes</button>
-      <button onclick="affichListeMinorParFamille('Bâtons')">Les Bâtons</button>
-      <button onclick="affichListeMinorParFamille('Deniers')">Les Deniers</button>
-    </div>
+    <div class="minor-familles" id="minorFamilles"></div>
   `);
+
+  const container = document.getElementById("minorFamilles");
+
+  familles.forEach(famille => {
+    // Recherche de l'As de la famille
+    const as = listeMinors.find(
+      arcane => arcane.Famille === famille && arcane.Nom.toLowerCase().startsWith("as")
+    );
+
+    const img = as
+      ? nomToImagePath(as.Nom, as.Type)
+      : "Images/placeholder.png";
+
+    const bloc = document.createElement("div");
+    bloc.className = "minor-famille-card";
+    bloc.innerHTML = `
+      <img src="${img}" alt="As de ${famille}">
+      <button>${famille}</button>
+    `;
+
+    bloc.addEventListener("click", () => {
+      affichListeMinorParFamille(famille);
+    });
+
+    container.appendChild(bloc);
+  });
 
   document.getElementById("backBtn").addEventListener("click", (e) => {
     e.preventDefault();
@@ -149,7 +172,6 @@ function affichListeMinorParFamille(famille) {
 
   affichListeArcane(filtered, `Arcanes Mineures - ${famille}`, affichListeMinor, retourCarteFactory);
 }
-
 
 /* =========== FICHE ARCANE =========== */
 function affichArcane(arcane, retourFonction) {
@@ -198,14 +220,3 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
-
-
-
-
-
-
-
-
-
-
-

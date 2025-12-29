@@ -41,11 +41,18 @@ function nomToImagePath(nom, type) {
       .replace(/[\u0300-\u036f]/g, "")
       .replace(/ /g, "_");
 
-    let famille = match[2]
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
+    let familleOriginale = match[2].trim();
 
-    let familleFolder = famille.charAt(0).toUpperCase() + famille.slice(1).toLowerCase();
+    const famillesMap = {
+      "Epées": "Epées",
+      "Épées": "Epées",
+      "Bâtons": "Bâtons",
+      "Batons": "Bâtons",
+      "Coupes": "Coupes",
+      "Deniers": "Deniers"
+    };
+    
+    let familleFolder = famillesMap[familleOriginale] || familleOriginale;
 
     const chemin = `Images/${familleFolder}/${valeur}_${famille.toLowerCase()}.png`;
     return chemin;
@@ -220,3 +227,4 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+

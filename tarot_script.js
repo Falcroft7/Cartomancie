@@ -5,6 +5,7 @@ const csvUrl =
 /* =========== DONNÉES =========== */
 let listeMajors = [];
 let listeMinors = [];
+let tiragesCategorie = [];
 
 /* =========== UTILITAIRES =========== */
 function render(html) {
@@ -61,7 +62,7 @@ function affichHome() {
       <div class="home-buttons">
         <button onclick="affichListeMajor()">Arcanes Majeures</button>
         <button onclick="affichListeMinor()">Arcanes Mineures</button>
-        <button onclick="alert('En développement')">Méthodes de tirage</button>
+        <button onclick="affichCategoriesTirages()">Méthodes de tirage</button>
       </div>
     </div>
   `);
@@ -238,6 +239,82 @@ function affichArcane(arcane, retourFonction) {
   });
 }
 
+/* =========== TIRAGES =========== */
+function affichCategoriesTirages() {
+  const categories = Object.keys(tiragesCategorie);
+
+  render(`
+    <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
+    <h2>Choisissez une catégorie</h2>
+    <div id="categoriesContainer" class="categories"></div>
+  `);
+
+  const container = document.getElementById("categoriesContainer");
+
+  categories.forEach(cat => {
+    const btn = document.createElement("button");
+    btn.textContent = cat;
+    btn.addEventListener("click", () => affichTirages(cat));
+    container.appendChild(btn);
+  });
+
+  document.getElementById("backBtn").addEventListener("click", e => {
+    e.preventDefault();
+    affichHome();
+  });
+}
+
+function affichTirages(categorie) {
+  const tirages = tiragesCategorie[categorie] || [];
+
+  render(`
+    <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
+    <h2>Tirages - ${categorie}</h2>
+    <div id="tiragesContainer" class="tirages"></div>
+  `);
+
+  const container = document.getElementById("tiragesContainer");
+
+  tirages.forEach(tirage => {
+    const btn = document.createElement("button");
+    btn.textContent = tirage.nom;
+    btn.addEventListener("click", () => affichTirageDetail(tirage, categorie));
+    container.appendChild(btn);
+  });
+
+  document.getElementById("backBtn").addEventListener("click", e => {
+    e.preventDefault();
+    affichCategoriesTirages();
+  });
+}
+
+function affichTirageDetail(tirage, categorie) {
+  const positions = tirage.Positions ? tirage.Positions.split(";") : ["Position 1", "Position 2", "Position 3"];
+
+  render(`
+    <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
+    <h2>${tirage.nom}</h2>
+    <div class="tirage-plateau" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;"></div>
+  `);
+
+  const plateau = document.querySelector(".tirage-plateau");
+  positions.forEach((desc, index) => {
+    const carteDiv = document.createElement("div");
+    carteDiv.className = "tirage-carte";
+    carteDiv.style.textAlign = "center";
+    carteDiv.innerHTML = `
+      <img src="Images/placeholder.png" alt="Carte ${index+1}" style="width:120px; height:auto; margin-bottom:5px;">
+      <p>${desc.trim()}</p>
+    `;
+    plateau.appendChild(carteDiv);
+  });
+
+  document.getElementById("backBtn").addEventListener("click", e => {
+    e.preventDefault();
+    affichTirages(categorie);
+  });
+}
+
 /* =========== CHARGEMENT CSV =========== */
 Papa.parse(csvUrl, {
   download: true,
@@ -247,8 +324,15 @@ Papa.parse(csvUrl, {
     listeMajors = all.filter(r => r.Type === "Majeure");
     listeMinors = all.filter(r => r.Type === "Mineure");
 
+    const tiragesCSV = all.filter(r => r.Type === "Tirage");
+    tiragesCSV.forEach(t => {
+      const cat = t.Categorie.trim();
+      if (!tiragesCategorie[cat]) tiragesCategorie[cat] = [];
+      tiragesCategorie[cat].push({
+        nom: t.Nom,
+      });
+    });
+    
     affichHome();
   }
 });
-
-

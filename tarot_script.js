@@ -13,35 +13,29 @@ function render(html) {
 
 /* =========== FONCTION NOM → IMAGE =========== */
 function nomToImagePath(nom, type) {
-  if (type === "Majeure") {
-    let nomFile = nom
+  function sanitize(str) {
+    return str
       .toLowerCase()
       .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/'/g, "")
-      .replace(/-/g, "_")
-      .replace(/ /g, "_");
-    return `Images/Major/${nomFile}.png`;
+      .replace(/[\u0300-\u036f]/g, "") // enlever accents
+      .replace(/'/g, "")               // enlever apostrophes
+      .replace(/-/g, "_")              // tirets → _
+      .replace(/ /g, "_");             // espaces → _
   }
 
+  if (type === "Majeure") {
+    const nomFile = sanitize(nom);
+    return `Images/Major/${nomFile}.png`;
+  } 
   else if (type === "Mineure") {
     const regex = /^(.+?) d[e’']? (.+)$/i;
     const match = nom.match(regex);
     if (!match) return "Images/placeholder.png";
 
-    let valeur = match[1]
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/ /g, "_");
+    const valeur = sanitize(match[1]);
+    const famille = sanitize(match[2]);
 
-    let familleFolder = match[2]
-      .trim()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/ /g, "_");
-
-    return `Images/${familleFolder}/${valeur}_${familleFolder}.png`;
+    return `Images/${famille}/${valeur}_${famille}.png`;
   }
 
   return "Images/placeholder.png";
@@ -211,6 +205,7 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+
 
 
 

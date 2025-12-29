@@ -13,29 +13,42 @@ function render(html) {
 
 /* =========== FONCTION NOM → IMAGE =========== */
 function nomToImagePath(nom, type) {
-  function sanitize(str) {
+
+  function sanitizeFile(str) {
     return str
       .toLowerCase()
       .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "") // enlever accents
-      .replace(/'/g, "")               // enlever apostrophes
-      .replace(/-/g, "_")              // tirets → _
-      .replace(/ /g, "_");             // espaces → _
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/'/g, "")
+      .replace(/-/g, "_")
+      .replace(/ /g, "_");
+  }
+
+  function sanitizeFolder(str) {
+    const clean = str
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/'/g, "")
+      .replace(/-/g, "")
+      .replace(/ /g, "");
+    return clean.charAt(0).toUpperCase() + clean.slice(1).toLowerCase();
   }
 
   if (type === "Majeure") {
-    const nomFile = sanitize(nom);
+    const nomFile = sanitizeFile(nom);
     return `Images/Major/${nomFile}.png`;
-  } 
-  else if (type === "Mineure") {
+  }
+
+  if (type === "Mineure") {
     const regex = /^(.+?) d[e’']? (.+)$/i;
     const match = nom.match(regex);
     if (!match) return "Images/placeholder.png";
 
-    const valeur = sanitize(match[1]);
-    const famille = sanitize(match[2]);
+    const valeur = sanitizeFile(match[1]);     // ex: as
+    const famille = sanitizeFile(match[2]);    // ex: epees
+    const familleFolder = sanitizeFolder(match[2]); // ex: Epees
 
-    return `Images/${famille}/${valeur}_${famille}.png`;
+    return `Images/${familleFolder}/${valeur}_${famille}.png`;
   }
 
   return "Images/placeholder.png";
@@ -205,7 +218,3 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
-
-
-
-

@@ -39,8 +39,7 @@ function nomToImagePath(nom, type) {
       .trim()
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
-      .replace(/ /g, "_")
-      .toLowerCase();
+      .replace(/ /g, "_");
 
     return `Images/${familleFolder}/${valeur}_${familleFolder}.png`;
   }
@@ -212,5 +211,6 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+
 
 

@@ -14,17 +14,14 @@ function render(html) {
 /* =========== FONCTION NOM → IMAGE =========== */
 function nomToImagePath(nom, type) {
   if (type === "Majeure") {
-    return (
-      "Images/Major/" +
-      nom
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/'/g, "")
-        .replace(/-/g, "_")
-        .replace(/ /g, "_") +
-      ".png"
-    );
+    let nomFile = nom
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/'/g, "")
+      .replace(/-/g, "_")
+      .replace(/ /g, "_");
+    return `Images/Major/${nomFile}.png`;
   }
 
   else if (type === "Mineure") {
@@ -51,16 +48,14 @@ function nomToImagePath(nom, type) {
       "Coupes": "Coupes",
       "Deniers": "Deniers"
     };
-    
     let familleFolder = famillesMap[familleOriginale] || familleOriginale;
 
-    const familleFile = familleFolder
+    let familleFile = familleFolder
       .toLowerCase()
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "");
-    
-    const chemin = `Images/${familleFolder}/${valeur}_${familleFile}.png`;
-    return chemin;
+
+    return `Images/${familleFolder}/${valeur}_${familleFile}.png`;
   }
 
   return "Images/placeholder.png";
@@ -114,7 +109,6 @@ function affichListeArcane(liste, titre, retourFonction, retourCarteFactory) {
     container.appendChild(card);
   });
 
-  // Bouton retour (toujours utilise retourFonction)
   document.getElementById("backBtn").addEventListener("click", (e) => {
     e.preventDefault();
     retourFonction();
@@ -147,21 +141,18 @@ function affichListeMinor() {
   const container = document.getElementById("minorFamilles");
 
   familles.forEach(famille => {
-    // Recherche de l'As de la famille
     const as = listeMinors.find(arcane =>
       arcane.Famille.normalize("NFD").replace(/[\u0300-\u036f]/g, "") ===
       famille.normalize("NFD").replace(/[\u0300-\u036f]/g, "") &&
       arcane.Nom.toLowerCase().startsWith("as")
     );
 
-    const img = as
-      ? nomToImagePath(as.Nom, as.Type)
-      : "Images/placeholder.png";
+    const imgSrc = as ? nomToImagePath(as.Nom, as.Type) : "Images/placeholder.png";
 
     const bloc = document.createElement("div");
     bloc.className = "minor-famille-card";
     bloc.innerHTML = `
-      <img src="${img}" alt="As de ${famille}">
+      <img src="${imgSrc}" alt="As de ${famille}">
       <button>${famille}</button>
     `;
 
@@ -215,7 +206,6 @@ function affichArcane(arcane, retourFonction) {
     </div>
   `);
 
-  // Bouton retour
   document.getElementById("backBtn").addEventListener("click", (e) => {
     e.preventDefault();
     retourFonction();
@@ -234,6 +224,3 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
-
-
-

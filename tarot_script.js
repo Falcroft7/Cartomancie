@@ -153,8 +153,18 @@ function affichListeMinor() {
 }
 
 function affichListeMinorParFamille(famille) {
-  const filtered = listeMinors.filter(arcane => arcane.Famille === famille);
-  const retourCarteFactory = (arcane) => {
+  const normalize = str =>
+    str
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .trim();
+
+  const filtered = listeMinors.filter(
+    arcane => normalize(arcane.Famille) === normalize(famille)
+  );
+
+  const retourCarteFactory = () => {
     return () => affichListeMinorParFamille(famille);
   };
 
@@ -207,4 +217,5 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+
 

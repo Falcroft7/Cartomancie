@@ -128,10 +128,10 @@ function affichListeMinor() {
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
     <h2>Arcanes Mineures</h2>
     <div class="minor-types-buttons">
-      <button onclick="affichListeMinorParFamille('Epées')">Epées</button>
-      <button onclick="affichListeMinorParFamille('Coupes')">Coupes</button>
-      <button onclick="affichListeMinorParFamille('Bâtons')">Bâtons</button>
-      <button onclick="affichListeMinorParFamille('Deniers')">Deniers</button>
+      <button onclick="affichListeMinorParFamille('Les Epées')">Epées</button>
+      <button onclick="affichListeMinorParFamille('Les Coupes')">Coupes</button>
+      <button onclick="affichListeMinorParFamille('Les Bâtons')">Bâtons</button>
+      <button onclick="affichListeMinorParFamille('Les Deniers')">Deniers</button>
     </div>
   `);
 
@@ -198,6 +198,7 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+
 
 
 

@@ -2,6 +2,11 @@
 const csvUrl =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vTjeBMuYH_nr0z9h1GL9FnU_2XzEeNMZQ4dVsCMeQVZfw5tXacWxY9VC_GdbONB2ZCzo4EVsnrGHwtC/pub?output=csv";
 
+const titre =
+  arcane.Numero && arcane.Numero.trim()
+    ? `${arcane.Numero} - ${arcane.Nom}`
+    : arcane.Nom;
+
 /* =========== DONNÉES =========== */
 let listeMajors = [];
 let listeMinors = [];
@@ -25,7 +30,7 @@ function nomToImagePath(arcane) {
   }
 
   if (arcane.Type === "Majeure") {
-    const nomFile = sanitize(nom);
+    const nomFile = sanitize(arcane.Nom);
     return `Images/Major/${nomFile}.png`;
   } 
 
@@ -193,7 +198,7 @@ function affichArcane(arcane, retourFonction) {
 
   render(`
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
-    <h1>${arcane.Numero} - ${arcane.Nom}</h1>
+    <h1>${titre}</h1>
     <div class="fiche-arcane">
       <div class="fiche-image">
         <img src="${img}" alt="${arcane.Nom}" class="fiche-arcane-image">
@@ -233,4 +238,3 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
-

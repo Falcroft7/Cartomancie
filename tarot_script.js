@@ -13,7 +13,6 @@ function render(html) {
 
 /* =========== FONCTION NOM → IMAGE =========== */
 function nomToImagePath(nom, type) {
-  // Helper pour nettoyer le texte (minuscules, sans accents, espaces -> _)
   function sanitize(str) {
     return str
       .toLowerCase()
@@ -29,7 +28,6 @@ function nomToImagePath(nom, type) {
     return `Images/Major/${nomFile}.png`;
   } 
   else if (type === "Mineure") {
-    // On suppose le format "Valeur de Famille"
     const regex = /^(.+?) d[e’']? (.+)$/i;
     const match = nom.match(regex);
     if (!match) return "Images/placeholder.png";
@@ -112,8 +110,25 @@ function affichListeMajor() {
   );
 }
 
+function normalizeFamille(str) {
+  return str
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
+
 function affichListeMinor() {
-  const familles = ["Epées", "Coupes", "Bâtons", "Deniers"];
+  const famillesMap = {};
+
+  listeMinors.forEach(arcane => {
+    const key = normalizeFamille(arcane.Famille);
+    if (!famillesMap[key]) {
+      famillesMap[key] = arcane.Famille;
+    }
+  });
+
+  const familles = Object.values(famillesMap);
 
   render(`
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
@@ -124,13 +139,15 @@ function affichListeMinor() {
   const container = document.getElementById("minorFamilles");
 
   familles.forEach(famille => {
+
     const as = listeMinors.find(arcane =>
-      arcane.Famille.normalize("NFD").replace(/[\u0300-\u036f]/g, "") ===
-      famille.normalize("NFD").replace(/[\u0300-\u036f]/g, "") &&
+      normalizeFamille(arcane.Famille) === normalizeFamille(famille) &&
       arcane.Nom.toLowerCase().startsWith("as")
     );
 
-    const imgSrc = as ? nomToImagePath(as.Nom, as.Type) : "Images/placeholder.png";
+    const imgSrc = as
+      ? nomToImagePath(as.Nom, as.Type)
+      : "Images/placeholder.png";
 
     const bloc = document.createElement("div");
     bloc.className = "minor-famille-card";
@@ -146,29 +163,27 @@ function affichListeMinor() {
     container.appendChild(bloc);
   });
 
-  document.getElementById("backBtn").addEventListener("click", (e) => {
+  document.getElementById("backBtn").addEventListener("click", e => {
     e.preventDefault();
     affichHome();
   });
 }
 
 function affichListeMinorParFamille(famille) {
-  const normalize = str =>
-    str
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase()
-      .trim();
-
   const filtered = listeMinors.filter(
-    arcane => normalize(arcane.Famille) === normalize(famille)
+    arcane => normalizeFamille(arcane.Famille) === normalizeFamille(famille)
   );
 
   const retourCarteFactory = () => {
     return () => affichListeMinorParFamille(famille);
   };
 
-  affichListeArcane(filtered, `Arcanes Mineures - ${famille}`, affichListeMinor, retourCarteFactory);
+  affichListeArcane(
+    filtered,
+    `Arcanes Mineures - ${famille}`,
+    affichListeMinor,
+    retourCarteFactory
+  );
 }
 
 /* =========== FICHE ARCANE =========== */
@@ -217,5 +232,3 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
-
-

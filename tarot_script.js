@@ -2,11 +2,6 @@
 const csvUrl =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vTjeBMuYH_nr0z9h1GL9FnU_2XzEeNMZQ4dVsCMeQVZfw5tXacWxY9VC_GdbONB2ZCzo4EVsnrGHwtC/pub?output=csv";
 
-const titre =
-  arcane.Numero && arcane.Numero.trim()
-    ? `${arcane.Numero} - ${arcane.Nom}`
-    : arcane.Nom;
-
 /* =========== DONNÉES =========== */
 let listeMajors = [];
 let listeMinors = [];
@@ -165,7 +160,7 @@ function affichListeMinor() {
     );
 
     const imgSrc = as
-      ? nomToImagePath(arcane)
+      ? nomToImagePath(as)
       : "Images/placeholder.png";
 
     const bloc = document.createElement("div");
@@ -208,7 +203,11 @@ function affichListeMinorParFamille(famille) {
 /* =========== FICHE ARCANE =========== */
 function affichArcane(arcane, retourFonction) {
   const img = nomToImagePath(arcane);
-
+  const titre =
+    arcane.Numero && arcane.Numero.trim()
+      ? `${arcane.Numero} - ${arcane.Nom}`
+      : arcane.Nom;
+  
   render(`
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
     <h1>${titre}</h1>
@@ -251,4 +250,5 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+
 

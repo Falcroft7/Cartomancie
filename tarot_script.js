@@ -333,11 +333,18 @@ Papa.parse(csvTiragesUrl, {
   download: true,
   header: true,
   complete: function(results) {
-    listeTirages = results.data.map(r => ({
+    const listeTirages = results.data.map(r => ({
       Categorie: r["Catégorie"]?.trim(),
       Nom: r.Nom?.trim(),
       Positions: r.Positions?.trim()
     }));
+
+    tiragesCategorie = {};
+    listeTirages.forEach(tirage => {
+      if (!tiragesCategorie[tirage.Categorie]) {
+        tiragesCategorie[tirage.Categorie] = [];
+      }
+      tiragesCategorie[tirage.Categorie].push(tirage);
+    });
   }
 });
-

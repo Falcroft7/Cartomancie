@@ -5,6 +5,10 @@ body {
   font-family: 'Roboto', sans-serif;
   background: #1a161f;
   color: #f3e9ff;
+  background:
+    radial-gradient(circle at top, rgba(140,110,255,0.08), transparent 40%),
+    radial-gradient(circle at bottom, rgba(80,60,160,0.12), transparent 40%),
+    #1a161f;
 }
 
 #app {
@@ -195,4 +199,5 @@ p {
     align-items: center;
   }
 }
+
 

@@ -1,5 +1,7 @@
 /* =========== CONSTANTES =========== */
-const csvUrl =
+const csvArcanesUrl =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTjeBMuYH_nr0z9h1GL9FnU_2XzEeNMZQ4dVsCMeQVZfw5tXacWxY9VC_GdbONB2ZCzo4EVsnrGHwtC/pub?output=csv";
+const csvTiragesUrl =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vTjeBMuYH_nr0z9h1GL9FnU_2XzEeNMZQ4dVsCMeQVZfw5tXacWxY9VC_GdbONB2ZCzo4EVsnrGHwtC/pub?output=csv";
 
 /* =========== DONNÉES =========== */
@@ -316,23 +318,25 @@ function affichTirageDetail(tirage, categorie) {
 }
 
 /* =========== CHARGEMENT CSV =========== */
-Papa.parse(csvUrl, {
+Papa.parse(csvArcanesUrl, {
   download: true,
   header: true,
   complete: function (results) {
     const all = results.data.filter(r => r.Nom && r.Nom.trim());
     listeMajors = all.filter(r => r.Type === "Majeure");
-    listeMinors = all.filter(r => r.Type === "Mineure");
-
-    const tiragesCSV = all.filter(r => r.Type === "Tirage");
-    tiragesCSV.forEach(t => {
-      const cat = t.Categorie.trim();
-      if (!tiragesCategorie[cat]) tiragesCategorie[cat] = [];
-      tiragesCategorie[cat].push({
-        nom: t.Nom,
-      });
-    });
-    
+    listeMinors = all.filter(r => r.Type === "Mineure");    
     affichHome();
+  }
+});
+
+Papa.parse(csvTiragesUrl, {
+  download: true,
+  header: true,
+  complete: function(results) {
+    listeTirages = results.data.map(r => ({
+      Categorie: r["Catégorie"]?.trim(),
+      Nom: r.Nom?.trim(),
+      Positions: r.Positions?.trim()
+    }));
   }
 });

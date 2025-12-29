@@ -124,6 +124,19 @@ function normalizeFamille(str) {
     .trim();
 }
 
+function familleToLabel(famille) {
+  const key = normalizeFamille(famille);
+
+  const labels = {
+    epees: "Les Épées",
+    coupes: "Les Coupes",
+    batons: "Les Bâtons",
+    deniers: "Les Deniers"
+  };
+
+  return labels[key] || famille;
+}
+
 function affichListeMinor() {
   const famillesMap = {};
 
@@ -159,7 +172,7 @@ function affichListeMinor() {
     bloc.className = "minor-famille-card";
     bloc.innerHTML = `
       <img src="${imgSrc}" alt="As de ${famille}">
-      <button>${famille}</button>
+      <button>${familleToLabel(famille)}</button>
     `;
 
     bloc.addEventListener("click", () => {
@@ -238,3 +251,4 @@ Papa.parse(csvUrl, {
     affichHome();
   }
 });
+

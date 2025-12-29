@@ -183,6 +183,34 @@ h1, h2 {
   color: #bca7ff;
 }
 
+.fiche-left {
+  background: linear-gradient(
+    135deg,
+    rgba(70,120,90,0.25),
+    rgba(30,20,45,0.6)
+  );
+  border-left: 3px solid #6fd6a3;
+}
+
+.fiche-right {
+  background: linear-gradient(
+    135deg,
+    rgba(130,60,80,0.25),
+    rgba(30,20,45,0.6)
+  );
+  border-left: 3px solid #e08a9c;
+}
+
+.fiche-left h3::before {
+  content: "✧ ";
+  color: #7de0b0;
+}
+
+.fiche-right h3::before {
+  content: "✧ ";
+  color: #e09aa8;
+}
+
 /* ===================== BOUTONS DES FAMILLES MINEURES ===================== */
 .minor-types-buttons {
   display: flex;
@@ -243,4 +271,5 @@ h1, h2 {
     font-size: 0.9em;
   }
 }
+
 

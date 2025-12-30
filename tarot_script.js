@@ -291,14 +291,23 @@ function affichTirages(categorie) {
 }
 
 function affichTirageDetail(tirage, categorie) {
-
   render(`
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
     <h2>${tirage.Nom}</h2>
+    ${tirage.description ? `<p>${tirage.description}</p>` : ""}
     <div class="tirage-plateau"></div>
   `);
 
   const plateau = document.querySelector(".tirage-plateau");
+
+  if (tirage.type === "Grille") {
+    plateau.style.display = "grid";
+    plateau.style.gridTemplateColumns = "repeat(auto-fit, 140px)";
+    plateau.style.justifyContent = "center";
+  } else {
+    plateau.style.position = "relative";
+    plateau.style.minHeight = "300px";
+  }
 
   tirage.positions.forEach(pos => {
     const carte = document.createElement("div");
@@ -308,21 +317,21 @@ function affichTirageDetail(tirage, categorie) {
       <p>${pos.label}</p>
     `;
 
-    if ("x" in pos && "y" in pos) {
-      // Tirage à grille
+    if (tirage.type === "Grille") {
       carte.style.gridColumn = pos.x + 1;
       carte.style.gridRow = pos.y + 1;
-    } else if ("angle" in pos && "radius" in pos) {
-      // Tirage circulaire
-      carte.style.position = "absolute";
+    }
+
+    if (tirage.type === "Circulaire") {
       const radiusPx = pos.radius * 60;
       const angleRad = (pos.angle * Math.PI) / 180;
-      const centerX = 150;
-      const centerY = 150;
-      const left = centerX + radiusPx * Math.cos(angleRad) - 60;
-      const top = centerY + radiusPx * Math.sin(angleRad) - 90;
-      carte.style.left = `${left}px`;
-      carte.style.top = `${top}px`;
+      const center = 150;
+
+      carte.style.position = "absolute";
+      carte.style.left =
+        center + radiusPx * Math.cos(angleRad) - 60 + "px";
+      carte.style.top =
+        center + radiusPx * Math.sin(angleRad) - 90 + "px";
     }
     
     plateau.appendChild(carte);
@@ -350,32 +359,32 @@ Papa.parse(csvTiragesUrl, {
   download: true,
   header: true,
   complete: function (results) {
+    const listeTirages = results.data
+      .filter(r => r.Nom && r.Type && r.Positions)
+      .map(r => {
+        let positions = [];
 
-    const listeTirages = results.data.map(r => {
-      let positions = [];
-
-      if (r.Positions) {
         try {
           positions = JSON.parse(r.Positions);
         } catch (e) {
-          console.error("JSON invalide pour le tirage :", r.Nom, r.Positions);
+          console.error("JSON invalide :", r.Nom, r.Positions);
         }
-      }
 
-      return {
-        Categorie: r["Catégorie"]?.trim(),
-        Nom: r.Nom?.trim(),
-        positions
-      };
-    });
+        return {
+          categorie: r.Catégorie?.trim(),
+          nom: r.Nom.trim(),
+          description: r.Description?.trim() || "",
+          type: r.Type.trim(), // Grille | Circulaire
+          positions
+        };
+      });
 
     tiragesCategorie = {};
-    listeTirages.forEach(tirage => {
-      if (!tiragesCategorie[tirage.Categorie]) {
-        tiragesCategorie[tirage.Categorie] = [];
+    listeTirages.forEach(t => {
+      if (!tiragesCategorie[t.categorie]) {
+        tiragesCategorie[t.categorie] = [];
       }
-      tiragesCategorie[tirage.Categorie].push(tirage);
+      tiragesCategorie[t.categorie].push(t);
     });
   }
 });
-

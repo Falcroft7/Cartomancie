@@ -279,7 +279,7 @@ function affichTirages(categorie) {
 
   tirages.forEach(tirage => {
     const btn = document.createElement("button");
-    btn.textContent = tirage.nom;
+    btn.textContent = tirage.Nom;
     btn.addEventListener("click", () => affichTirageDetail(tirage, categorie));
     container.appendChild(btn);
   });
@@ -295,7 +295,7 @@ function affichTirageDetail(tirage, categorie) {
 
   render(`
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
-    <h2>${tirage.nom}</h2>
+    <h2>${tirage.Nom}</h2>
     <div class="tirage-plateau" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;"></div>
   `);
 
@@ -305,7 +305,7 @@ function affichTirageDetail(tirage, categorie) {
     carteDiv.className = "tirage-carte";
     carteDiv.style.textAlign = "center";
     carteDiv.innerHTML = `
-      <img src="Images/placeholder.png" alt="Carte ${index+1}" style="width:120px; height:auto; margin-bottom:5px;">
+      <img src="Images/Dos_carte.png" alt="Carte ${index+1}" style="width:120px; height:auto; margin-bottom:5px;">
       <p>${desc.trim()}</p>
     `;
     plateau.appendChild(carteDiv);
@@ -348,3 +348,4 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
+

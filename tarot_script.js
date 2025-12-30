@@ -303,13 +303,14 @@ function affichTirageDetail(tirage, categorie) {
   tirage.positions.forEach(pos => {
     const carte = document.createElement("div");
     carte.className = "tirage-carte";
-    carte.style.gridColumn = pos.x + 1;
-    carte.style.gridRow = pos.y + 1;
+    carte.style.setProperty("--x", pos.x + 1);
+    carte.style.setProperty("--y", pos.y + 1);
 
     carte.innerHTML = `
-      <img src="Images/placeholder.png" style="width:120px">
+      <img src="Images/Dos_carte.png" class="tirage-carte-image">
       <p>${pos.label}</p>
     `;
+    
     plateau.appendChild(carte);
   });
 
@@ -363,3 +364,4 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
+

@@ -235,6 +235,20 @@ button,
   box-shadow: 0 0 8px rgba(183, 146, 255, 0.4);
 }
 
+/* =============== TIRAGES =============== */
+.tirage-plateau {
+  display: grid;
+  grid-template-columns: repeat(3, 140px);
+  grid-template-rows: repeat(3, auto);
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.tirage-carte {
+  text-align: center;
+}
+
 /* =============== RESPONSIVE =============== */
 @media (max-width: 700px) {
   #app { padding: 15px; }
@@ -260,4 +274,5 @@ button,
   h2 { font-size: 1.4em; }
   .card p { font-size: 0.9em; }
 }
+
 

@@ -302,8 +302,6 @@ button:focus-visible,
   min-height: 300px; 
   overflow-x: auto;
   display: grid;
-  background:
-    radial-gradient(circle at center, rgba(188,167,255,0.08), transparent 60%);
   border-radius: 20px;
   padding: 30px;
 }
@@ -359,4 +357,3 @@ button:focus-visible,
   h2 { font-size: 1.4em; }
   .card p { font-size: 0.9em; }
 }
-

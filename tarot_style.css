@@ -246,6 +246,66 @@ button:focus-visible,
 }
 
 /* =============== TIRAGES =============== */
+.categories,
+.tirages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+  margin-top: 30px;
+}
+
+.categories button,
+.tirages button {
+  position: relative;
+  padding: 18px 22px;
+  background:
+    linear-gradient(145deg, #2c223a, #3a2a57);
+  border: 1px solid #6f5aa3;
+  border-radius: 16px;
+  color: #f3e9ff;
+  font-family: 'Cinzel', serif;
+  font-size: 1.1em;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+
+  box-shadow:
+    0 0 12px rgba(160,120,255,0.25),
+    inset 0 0 8px rgba(255,255,255,0.05);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.categories button:hover,
+.tirages button:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow:
+    0 0 20px rgba(180,140,255,0.6),
+    inset 0 0 10px rgba(255,255,255,0.08);
+}
+
+.categories button::after,
+.tirages button::after {
+  content: "✧";
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  font-size: 1.1em;
+  color: rgba(188,167,255,0.6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.categories button:hover::after,
+.tirages button:hover::after {
+  opacity: 1;
+}
+
+.categories button:focus-visible,
+.tirages button:focus-visible {
+  outline: 2px solid #bca7ff;
+  outline-offset: 4px;
+}
+
 .tirage-plateau {
   position: relative; 
   max-width: 100%;
@@ -319,4 +379,5 @@ button:focus-visible,
   h2 { font-size: 1.4em; }
   .card p { font-size: 0.9em; }
 }
+
 

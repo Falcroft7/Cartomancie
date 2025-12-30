@@ -334,12 +334,25 @@ Papa.parse(csvArcanesUrl, {
 Papa.parse(csvTiragesUrl, {
   download: true,
   header: true,
-  complete: function(results) {
-    const listeTirages = results.data.map(r => ({
-      Categorie: r["Catégorie"]?.trim(),
-      Nom: r.Nom?.trim(),
-      positions: r.Positions ? JSON.parse(r.Positions) : []
-    }));
+  complete: function (results) {
+
+    const listeTirages = results.data.map(r => {
+      let positions = [];
+
+      if (r.Positions) {
+        try {
+          positions = JSON.parse(r.Positions);
+        } catch (e) {
+          console.error("JSON invalide pour le tirage :", r.Nom, r.Positions);
+        }
+      }
+
+      return {
+        Categorie: r["Catégorie"]?.trim(),
+        Nom: r.Nom?.trim(),
+        positions
+      };
+    });
 
     tiragesCategorie = {};
     listeTirages.forEach(tirage => {
@@ -350,5 +363,3 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
-
-

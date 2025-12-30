@@ -323,7 +323,7 @@ button:focus-visible,
     inset 0 0 10px rgba(255,255,255,0.05);
 }
 
-.tirage-description {
+.tirage-explication {
   font-size: 0.9em;
   margin-top: 5px;
   color: #f1eaff;
@@ -364,4 +364,3 @@ button:focus-visible,
   h2 { font-size: 1.4em; }
   .card p { font-size: 0.9em; }
 }
-

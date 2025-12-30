@@ -291,25 +291,29 @@ function affichTirages(categorie) {
 }
 
 function affichTirageDetail(tirage, categorie) {
+  const positions = JSON.parse(tirage.Positions);
+  const type = tirage.Type;
+  const description = tirage.Description;
+  
   render(`
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
     <h2>${tirage.Nom}</h2>
-    ${tirage.description ? `<p>${tirage.description}</p>` : ""}
+    ${description ? `<p>${description}</p>` : ""}
     <div class="tirage-plateau"></div>
   `);
 
   const plateau = document.querySelector(".tirage-plateau");
 
-  if (tirage.type === "Grille") {
+  if (type === "Grille") {
     plateau.style.display = "grid";
     plateau.style.gridTemplateColumns = "repeat(auto-fit, 140px)";
     plateau.style.justifyContent = "center";
-  } else {
+  } else if (type === "Circulaire") {
     plateau.style.position = "relative";
     plateau.style.minHeight = "300px";
   }
 
-  tirage.positions.forEach(pos => {
+  positions.forEach(pos => {
     const carte = document.createElement("div");
     carte.className = "tirage-carte";
     carte.innerHTML = `
@@ -317,12 +321,12 @@ function affichTirageDetail(tirage, categorie) {
       <p>${pos.label}</p>
     `;
 
-    if (tirage.type === "Grille") {
+    if (type === "Grille") {
       carte.style.gridColumn = pos.x + 1;
       carte.style.gridRow = pos.y + 1;
     }
 
-    if (tirage.type === "Circulaire") {
+    if (type === "Circulaire") {
       const radiusPx = pos.radius * 60;
       const angleRad = (pos.angle * Math.PI) / 180;
       const center = 150;
@@ -366,8 +370,6 @@ Papa.parse(csvTiragesUrl, {
 
         try {
           positions = JSON.parse(r.Positions);
-        } catch (e) {
-          console.error("JSON invalide :", r.Nom, r.Positions);
         }
 
         return {

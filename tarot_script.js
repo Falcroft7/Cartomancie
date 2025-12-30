@@ -290,30 +290,26 @@ function affichTirages(categorie) {
   });
 }
 
-function affichTirageDetail(tirage, categorie) {
-  const positions = JSON.parse(tirage.Positions);
-  const type = tirage.Type;
-  const description = tirage.Description;
-  
+function affichTirageDetail(tirage, categorie) {  
   render(`
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
-    <h2>${tirage.Nom}</h2>
-    ${description ? `<p>${description}</p>` : ""}
+    <h2>${tirage.nom}</h2>
+    ${tirage.description ? `<p>${tirage.description}</p>` : ""}
     <div class="tirage-plateau"></div>
   `);
 
   const plateau = document.querySelector(".tirage-plateau");
 
-  if (type === "Grille") {
+  if (tirage.type === "Grille") {
     plateau.style.display = "grid";
     plateau.style.gridTemplateColumns = "repeat(auto-fit, 140px)";
     plateau.style.justifyContent = "center";
-  } else if (type === "Circulaire") {
+  } else if (tirage.type === "Circulaire") {
     plateau.style.position = "relative";
     plateau.style.minHeight = "300px";
   }
 
-  positions.forEach(pos => {
+  tirage.positions.forEach(pos => {
     const carte = document.createElement("div");
     carte.className = "tirage-carte";
     carte.innerHTML = `
@@ -321,12 +317,12 @@ function affichTirageDetail(tirage, categorie) {
       <p>${pos.label}</p>
     `;
 
-    if (type === "Grille") {
+    if (tirage.type === "Grille") {
       carte.style.gridColumn = pos.x + 1;
       carte.style.gridRow = pos.y + 1;
     }
 
-    if (type === "Circulaire") {
+    if (tirage.type === "Circulaire") {
       const radiusPx = pos.radius * 60;
       const angleRad = (pos.angle * Math.PI) / 180;
       const center = 150;
@@ -370,13 +366,15 @@ Papa.parse(csvTiragesUrl, {
 
         try {
           positions = JSON.parse(r.Positions);
+        } catch (e) {
+          console.error("Erreur JSON Positions :", r.Nom, r.Positions);
         }
 
         return {
           categorie: r.Catégorie?.trim(),
           nom: r.Nom.trim(),
           description: r.Description?.trim() || "",
-          type: r.Type.trim(), // Grille | Circulaire
+          type: r.Type.trim(),
           positions
         };
       });
@@ -390,3 +388,4 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
+

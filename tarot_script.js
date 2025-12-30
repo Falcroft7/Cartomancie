@@ -296,7 +296,7 @@ function affichTirageDetail(tirage, categorie) {
     <h2>${tirage.nom}</h2>
     ${tirage.description ? `<p>${tirage.description}</p>` : ""}
     <div class="tirage-plateau"></div>
-    <div class="carte-explication">${tirage.explication}</div>
+    <div class="tirage-explication">${tirage.explication}</div>
   `);
 
   const plateau = document.querySelector(".tirage-plateau");
@@ -388,5 +388,3 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
-
-

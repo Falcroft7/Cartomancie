@@ -247,7 +247,9 @@ button:focus-visible,
 
 /* =============== TIRAGES =============== */
 .tirage-plateau {
+  position: relative; 
   max-width: 100%;
+  min-height: 300px; 
   overflow-x: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, 140px);
@@ -317,3 +319,4 @@ button:focus-visible,
   h2 { font-size: 1.4em; }
   .card p { font-size: 0.9em; }
 }
+

@@ -303,13 +303,32 @@ function affichTirageDetail(tirage, categorie) {
   tirage.positions.forEach(pos => {
     const carte = document.createElement("div");
     carte.className = "tirage-carte";
-    carte.style.setProperty("--x", pos.x + 1);
-    carte.style.setProperty("--y", pos.y + 1);
-
+    carte.style.position = "absolute";
     carte.innerHTML = `
       <img src="Images/Dos_carte.png" class="tirage-carte-image">
       <p>${pos.label}</p>
     `;
+
+    if ("x" in pos && "y" in pos) {
+      // Tirage à grille
+      let x = pos.x + 1;
+      let y = pos.y + 1;
+      if (x < 1) x = 1;
+      if (y < 1) y = 1;
+      carte.style.setProperty("--x", x);
+      carte.style.setProperty("--y", y);
+      carte.style.position = "";
+    } else if ("angle" in pos && "radius" in pos) {
+      // Tirage circulaire
+      const radiusPx = pos.radius * 60;
+      const angleRad = (pos.angle * Math.PI) / 180;
+      const centerX = 150;
+      const centerY = 150;
+      const left = centerX + radiusPx * Math.cos(angleRad) - 60;
+      const top = centerY + radiusPx * Math.sin(angleRad) - 90;
+      carte.style.left = `${left}px`;
+      carte.style.top = `${top}px`;
+    }
     
     plateau.appendChild(carte);
   });
@@ -364,6 +383,3 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
-
-
-

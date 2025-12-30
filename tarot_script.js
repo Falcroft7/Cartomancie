@@ -290,7 +290,7 @@ function affichTirages(categorie) {
   });
 }
 
-function affichTirageDetail(tirage, categorie) {  
+function affichTirageDetail(tirage, categorie) {
   render(`
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
     <h2>${tirage.nom}</h2>
@@ -307,9 +307,16 @@ function affichTirageDetail(tirage, categorie) {
   } else if (tirage.type === "Circulaire") {
     plateau.style.position = "relative";
     plateau.style.minHeight = "300px";
+    plateau.style.display = "block";
   }
 
-  tirage.positions.forEach(pos => {
+  const plateauWidth = plateau.clientWidth;
+  const plateauHeight = plateau.clientHeight;
+  const centerX = plateauWidth / 2;
+  const centerY = plateauHeight / 2;
+  const radius = Math.min(centerX, centerY) - 80;
+
+  tirage.positions.forEach((pos, i) => {
     const carte = document.createElement("div");
     carte.className = "tirage-carte";
     carte.innerHTML = `
@@ -323,15 +330,13 @@ function affichTirageDetail(tirage, categorie) {
     }
 
     if (tirage.type === "Circulaire") {
-      const radiusPx = pos.radius * 60;
-      const angleRad = (pos.angle * Math.PI) / 180;
-      const center = 150;
+      const angleRad = pos.angle !== undefined
+        ? (pos.angle * Math.PI) / 180
+        : ((2 * Math.PI) / tirage.positions.length) * i;
 
       carte.style.position = "absolute";
-      carte.style.left =
-        center + radiusPx * Math.cos(angleRad) - 60 + "px";
-      carte.style.top =
-        center + radiusPx * Math.sin(angleRad) - 90 + "px";
+      carte.style.left = centerX + radius * Math.cos(angleRad) - 60 + "px";
+      carte.style.top = centerY + radius * Math.sin(angleRad) - 90 + "px";
     }
     
     plateau.appendChild(carte);
@@ -388,6 +393,3 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
-
-
-

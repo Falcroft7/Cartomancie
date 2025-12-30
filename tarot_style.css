@@ -254,25 +254,19 @@ button:focus-visible,
   margin-top: 30px;
 }
 
-.categories button {
-  font-size: 1.2em;
-  padding: 22px 26px;
-  background: linear-gradient(145deg, #3a2a57, #4a3570);
-}
-
-.tirages button {
-  font-size: 1.05em;
-  padding: 18px 22px;
-  background: linear-gradient(145deg, #26203a, #33254f);
-}
-
 .categories button,
 .tirages button {
-  position: relative;
+  min-width: 200px;
+  max-width: 220px;
+  width: 220px;
+  
+  padding: 18px 22px;
+  background: linear-gradient(145deg, #2c223a, #3a2a57);
   border: 1px solid #6f5aa3;
   border-radius: 16px;
   color: #f3e9ff;
   font-family: 'Cinzel', serif;
+  font-size: 1.1em;
   letter-spacing: 0.8px;
   cursor: pointer;
 
@@ -404,6 +398,7 @@ button:focus-visible,
   h2 { font-size: 1.4em; }
   .card p { font-size: 0.9em; }
 }
+
 
 
 

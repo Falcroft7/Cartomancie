@@ -291,30 +291,32 @@ function affichTirages(categorie) {
 }
 
 function affichTirageDetail(tirage, categorie) {
-  const positions = tirage.Positions ? tirage.Positions.split(";") : ["Position 1", "Position 2", "Position 3"];
 
   render(`
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
     <h2>${tirage.Nom}</h2>
-    <div class="tirage-plateau" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;"></div>
+    <div class="tirage-plateau"></div>
   `);
 
   const plateau = document.querySelector(".tirage-plateau");
-  positions.forEach((desc, index) => {
-    const carteDiv = document.createElement("div");
-    carteDiv.className = "tirage-carte";
-    carteDiv.style.textAlign = "center";
-    carteDiv.innerHTML = `
-      <img src="Images/Dos_carte.png" alt="Carte ${index+1}" style="width:120px; height:auto; margin-bottom:5px;">
-      <p>${desc.trim()}</p>
+
+  tirage.positions.forEach(pos => {
+    const carte = document.createElement("div");
+    carte.className = "tirage-carte";
+    carte.style.gridColumn = pos.x + 1;
+    carte.style.gridRow = pos.y + 1;
+
+    carte.innerHTML = `
+      <img src="Images/placeholder.png" style="width:120px">
+      <p>${pos.label}</p>
     `;
-    plateau.appendChild(carteDiv);
+    plateau.appendChild(carte);
   });
 
-  document.getElementById("backBtn").addEventListener("click", e => {
+  document.getElementById("backBtn").onclick = e => {
     e.preventDefault();
     affichTirages(categorie);
-  });
+  };
 }
 
 /* =========== CHARGEMENT CSV =========== */
@@ -336,7 +338,7 @@ Papa.parse(csvTiragesUrl, {
     const listeTirages = results.data.map(r => ({
       Categorie: r["Catégorie"]?.trim(),
       Nom: r.Nom?.trim(),
-      Positions: r.Positions?.trim()
+      positions: r.Positions ? JSON.parse(r.Positions) : []
     }));
 
     tiragesCategorie = {};
@@ -348,4 +350,5 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
+
 

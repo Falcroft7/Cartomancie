@@ -75,7 +75,7 @@ function affichListeArcane(liste, titre, retourFonction, retourCarteFactory) {
   render(`
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
     <h2>${titre}</h2>
-    <div id="cardsContainer" class="cards"></div>
+    <div id="cardsContainer" class="cards grid-container"></div>
   `);
 
   const container = document.getElementById("cardsContainer");
@@ -150,7 +150,7 @@ function affichListeMinor() {
   render(`
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
     <h2>Arcanes Mineures</h2>
-    <div class="minor-familles" id="minorFamilles"></div>
+    <div class="minor-familles grid-container" id="minorFamilles"></div>
   `);
 
   const container = document.getElementById("minorFamilles");
@@ -248,7 +248,7 @@ function affichCategoriesTirages() {
   render(`
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
     <h2>Choisissez une catégorie</h2>
-    <div id="categoriesContainer" class="categories"></div>
+    <div id="categoriesContainer" class="categories grid-container"></div>
   `);
 
   const container = document.getElementById("categoriesContainer");
@@ -272,7 +272,7 @@ function affichTirages(categorie) {
   render(`
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
     <h2>Tirages - ${categorie}</h2>
-    <div id="tiragesContainer" class="tirages"></div>
+    <div id="tiragesContainer" class="tirages grid-container"></div>
   `);
 
   const container = document.getElementById("tiragesContainer");
@@ -388,5 +388,6 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
+
 
 

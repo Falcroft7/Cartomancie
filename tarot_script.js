@@ -296,6 +296,7 @@ function affichTirageDetail(tirage, categorie) {
     <h2>${tirage.nom}</h2>
     ${tirage.description ? `<p>${tirage.description}</p>` : ""}
     <div class="tirage-plateau"></div>
+    <div class="carte-explication">${tirage.explication}</div>
   `);
 
   const plateau = document.querySelector(".tirage-plateau");
@@ -365,17 +366,15 @@ Papa.parse(csvTiragesUrl, {
       .map(r => {
         let positions = [];
 
-        try {
-          positions = JSON.parse(r.Positions);
-        } catch (e) {
-          console.error("Erreur JSON Positions :", r.Nom, r.Positions);
-        }
+        try { positions = JSON.parse(r.Positions); }
+        catch (e) { console.error("Erreur JSON Positions :", r.Nom, r.Positions); }
 
         return {
           categorie: r.Catégorie?.trim(),
           nom: r.Nom.trim(),
-          description: r.Description?.trim() || "",
+          description: r.Description?.trim(),
           type: r.Type.trim(),
+          explication: r.Explication?.trim(),
           positions
         };
       });
@@ -389,4 +388,5 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
+
 

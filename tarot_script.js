@@ -279,7 +279,7 @@ function affichTirages(categorie) {
 
   tirages.forEach(tirage => {
     const btn = document.createElement("button");
-    btn.textContent = tirage.Nom;
+    btn.textContent = tirage.nom;
     btn.addEventListener("click", () => affichTirageDetail(tirage, categorie));
     container.appendChild(btn);
   });
@@ -388,4 +388,5 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
+
 

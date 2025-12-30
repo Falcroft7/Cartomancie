@@ -1,12 +1,8 @@
 /* =================== VARIABLES =================== */
 :root {
-  --violet-main: #bca7ff;
-  --bg-dark: #1a161f;
-  --card-bg: #2c223a;
   --shadow-light: rgba(180,140,255,0.4);
   --shadow-medium: rgba(183,146,255,0.4);
   --shadow-hover: rgba(180,140,255,0.6);
-  --focus-color: #bca7ff;
 }
 
 /* =============== STYLE GLOBAL =============== */
@@ -18,7 +14,7 @@ body {
   background:
     radial-gradient(circle at top, rgba(140,110,255,0.08), transparent 40%),
     radial-gradient(circle at bottom, rgba(80,60,160,0.12), transparent 40%),
-    var(--bg-dark);
+    #1a161f;
 }
 
 p { line-height: 1.5; }
@@ -61,14 +57,14 @@ button:focus-visible,
 .minor-types-buttons button:focus-visible,
 .categories button:focus-visible,
 .tirages button:focus-visible {
-  outline: 2px solid var(--focus-color);
+  outline: 2px solid #bca7ff;
   outline-offset: 3px;
 }
 
 /* =============== BOUTON RETOUR =============== */
 .back-btn {
   padding: 10px 20px;
-  background: linear-gradient(145deg, #6f4fd8, var(--violet-main));
+  background: linear-gradient(145deg, #6f4fd8, #bca7ff);
   color: #1a161f;
   border-radius: 14px;
   border: none;
@@ -363,3 +359,4 @@ button:focus-visible,
   h2 { font-size: 1.4em; }
   .card p { font-size: 0.9em; }
 }
+

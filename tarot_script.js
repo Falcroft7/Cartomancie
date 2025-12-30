@@ -306,17 +306,14 @@ function affichTirageDetail(tirage, categorie) {
     plateau.style.justifyContent = "center";
   } else if (tirage.type === "Circulaire") {
     plateau.style.position = "relative";
-    plateau.style.minHeight = "300px";
-    plateau.style.display = "block";
+    plateau.style.minHeight = "500px";
   }
 
-  const plateauWidth = plateau.clientWidth;
-  const plateauHeight = plateau.clientHeight;
-  const centerX = plateauWidth / 2;
-  const centerY = plateauHeight / 2;
-  const radius = Math.min(centerX, centerY) - 80;
+  const plateauRect = plateau.getBoundingClientRect();
+  const centerX = plateauRect.width / 2;
+  const centerY = plateauRect.height / 2;
 
-  tirage.positions.forEach((pos, i) => {
+  tirage.positions.forEach(pos => {
     const carte = document.createElement("div");
     carte.className = "tirage-carte";
     carte.innerHTML = `
@@ -330,9 +327,8 @@ function affichTirageDetail(tirage, categorie) {
     }
 
     if (tirage.type === "Circulaire") {
-      const angleRad = pos.angle !== undefined
-        ? (pos.angle * Math.PI) / 180
-        : ((2 * Math.PI) / tirage.positions.length) * i;
+      const angleRad = (pos.angle * Math.PI) / 180;
+      const radius = Math.min(plateauRect.width, plateauRect.height) / 2 - 80;
 
       carte.style.position = "absolute";
       carte.style.left = centerX + radius * Math.cos(angleRad) - 60 + "px";
@@ -393,3 +389,4 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
+

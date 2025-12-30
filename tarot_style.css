@@ -238,15 +238,24 @@ button,
 /* =============== TIRAGES =============== */
 .tirage-plateau {
   display: grid;
-  grid-template-columns: repeat(3, 140px);
-  grid-template-rows: repeat(3, auto);
+  grid-template-columns: repeat(auto-fit, 140px);
+  grid-auto-rows: auto;
   gap: 20px;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .tirage-carte {
+  grid-column: var(--x);
+  grid-row: var(--y);
   text-align: center;
+}
+
+.tirage-carte-image {
+  width: 120px;
+  height: auto;
+  display: block;
+  margin: 0 auto 8px;
 }
 
 /* =============== RESPONSIVE =============== */
@@ -274,5 +283,6 @@ button,
   h2 { font-size: 1.4em; }
   .card p { font-size: 0.9em; }
 }
+
 
 

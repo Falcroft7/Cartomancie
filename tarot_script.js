@@ -303,8 +303,8 @@ function affichTirageDetail(tirage, categorie) {
   tirage.positions.forEach(pos => {
     const carte = document.createElement("div");
     carte.className = "tirage-carte";
-    carte.style.setProperty("--x", pos.x + 1);
-    carte.style.setProperty("--y", pos.y + 1);
+    carte.style.setProperty("--x", pos.x);
+    carte.style.setProperty("--y", pos.y);
 
     carte.innerHTML = `
       <img src="Images/Dos_carte.png" class="tirage-carte-image">
@@ -364,4 +364,5 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
+
 

@@ -299,7 +299,7 @@ button:focus-visible,
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-auto-rows: auto;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
   border-radius: 20px;
   padding: 15px;
   margin: 15px auto 0 auto;
@@ -366,3 +366,4 @@ button:focus-visible,
   h2 { font-size: 1.4em; }
   .card p { font-size: 0.9em; }
 }
+

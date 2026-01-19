@@ -326,7 +326,7 @@ button:focus-visible,
   font-size: 0.9em;
   margin-top: 5px;
   color: #f1eaff;
-  line-height: 1.4;
+  line-height: 1.8;
   text-align: center;
   white-space: pre-line;
 }
@@ -365,4 +365,3 @@ button:focus-visible,
   h2 { font-size: 1.4em; }
   .card p { font-size: 0.9em; }
 }
-

@@ -305,14 +305,19 @@ function affichTirageDetail(tirage, categorie) {
     plateau.style.display = "grid";
     plateau.style.gridTemplateColumns = "repeat(auto-fit, 140px)";
     plateau.style.justifyContent = "center";
-  } else if (tirage.type === "Circulaire") {
+    plateau.style.alignItems = "center";
+    plateau.style.margin = "0 auto";
+    plateau.style.width = "fit-content";
+  } 
+  else if (tirage.type === "Circulaire") {
+    plateau.style.display = "flex";
+    plateau.style.justifyContent = "center";
+    plateau.style.alignItems = "center";
     plateau.style.position = "relative";
-    plateau.style.minHeight = "500px";
+    plateau.style.width = "600px";
+    plateau.style.height = "600px";
+    plateau.style.margin = "0 auto";
   }
-
-  const plateauRect = plateau.getBoundingClientRect();
-  const centerX = plateauRect.width / 2;
-  const centerY = plateauRect.height / 2;
 
   tirage.positions.forEach(pos => {
     const carte = document.createElement("div");
@@ -322,22 +327,24 @@ function affichTirageDetail(tirage, categorie) {
       <p>${pos.label}</p>
     `;
 
-    if (tirage.type === "Grille") {
-      carte.style.gridColumn = pos.x + 1;
-      carte.style.gridRow = pos.y + 1;
-    }
+    plateau.appendChild(carte);
+  });
 
-    if (tirage.type === "Circulaire") {
+  if (tirage.type === "Circulaire") {
+    const plateauRect = plateau.getBoundingClientRect();
+    const centerX = plateauRect.width / 2;
+    const centerY = plateauRect.height / 2;
+
+    tirage.positions.forEach((pos, i) => {
+      const carte = plateau.children[i];
       const angleRad = (pos.angle * Math.PI) / 180;
       const radius = Math.min(plateauRect.width, plateauRect.height) / 2 - 80;
 
       carte.style.position = "absolute";
       carte.style.left = centerX + radius * Math.cos(angleRad) - 60 + "px";
       carte.style.top = centerY + radius * Math.sin(angleRad) - 90 + "px";
-    }
-    
-    plateau.appendChild(carte);
-  });
+    });
+  }
 
   document.getElementById("backBtn").onclick = e => {
     e.preventDefault();
@@ -388,4 +395,3 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
-

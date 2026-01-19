@@ -330,6 +330,7 @@ button:focus-visible,
   color: #f1eaff;
   line-height: 1.4;
   text-align: center;
+  white-space: pre-line;
 }
 
 /* =============== ANIMATION =============== */
@@ -366,4 +367,5 @@ button:focus-visible,
   h2 { font-size: 1.4em; }
   .card p { font-size: 0.9em; }
 }
+
 

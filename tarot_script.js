@@ -303,16 +303,14 @@ function affichTirageDetail(tirage, categorie) {
 
   if (tirage.type === "Grille") {
     plateau.style.display = "grid";
-    const maxX = Math.max(...tirage.positions.map(p => p.x));
-    const maxY = Math.max(...tirage.positions.map(p => p.y));
-    
-    plateau.style.gridTemplateColumns = `repeat(${maxX + 1}, 140px)`;
-    plateau.style.gridTemplateRows = `repeat(${maxY + 1}, auto)`;
+    plateau.style.gridTemplateColumns = `repeat(auto-fit, minmax(120px, 1fr))`;
+    plateau.style.gap = "20px";
     plateau.style.justifyContent = "center";
-  } else if (tirage.type === "Circulaire") {
+  }
+  else if (tirage.type === "Circulaire") {
     plateau.style.position = "relative";
-    plateau.style.width = "600px";
-    plateau.style.height = "600px";
+    plateau.style.width = "min(600px, 90vw)";
+    plateau.style.height = "min(600px, 90vw)";
     plateau.style.margin = "0 auto";
   }
   
@@ -339,7 +337,7 @@ function affichTirageDetail(tirage, categorie) {
   if (tirage.type === "Circulaire") {
     const centerX = plateau.clientWidth / 2;
     const centerY = plateau.clientHeight / 2;
-    const radius = Math.min(centerX, centerY) - 80;
+    const radius = Math.min(centerX, centerY) - 60;
 
     tirage.positions.forEach((pos, i) => {
       const carte = plateau.children[i];
@@ -400,3 +398,4 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
+

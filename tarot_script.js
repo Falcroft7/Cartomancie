@@ -294,7 +294,7 @@ function affichTirageDetail(tirage, categorie) {
   render(`
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
     <h2>${tirage.nom}</h2>
-    ${tirage.description ? `<p>${tirage.description}</p>` : ""}
+    <div class="tirage-description">${tirage.description}</div>
     <div class="tirage-plateau"></div>
     <div class="tirage-explication">${tirage.explication}</div>
   `);
@@ -388,3 +388,4 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
+

@@ -304,11 +304,16 @@ function affichTirageDetail(tirage, categorie) {
   if (tirage.type === "Grille") {
     plateau.style.display = "grid";
     const maxX = Math.max(...tirage.positions.map(p => p.x));
-    plateau.style.gridTemplateColumns = "repeat(auto-fit, 140px)";
+    const maxY = Math.max(...tirage.positions.map(p => p.y));
+    
+    plateau.style.gridTemplateColumns = `repeat(${maxX + 1}, 140px)`;
+    plateau.style.gridTemplateRows = `repeat(${maxY + 1}, auto)`;
     plateau.style.justifyContent = "center";
   } else if (tirage.type === "Circulaire") {
     plateau.style.position = "relative";
-    plateau.style.minHeight = "500px";
+    plateau.style.width = "600px";
+    plateau.style.height = "600px";
+    plateau.style.margin = "0 auto";
   }
   
   tirage.positions.forEach(pos => {
@@ -325,26 +330,24 @@ function affichTirageDetail(tirage, categorie) {
     }
     
     plateau.appendChild(carte);
+    
+    setTimeout(() => {
+      carte.style.opacity = "1";
+    }, 50);
   });
 
   if (tirage.type === "Circulaire") {
-
-    plateau.style.width = "600px";
-    plateau.style.height = "600px";
-    plateau.style.margin = "0 auto";
-
-    const plateauRect = plateau.getBoundingClientRect();
-    const centerX = plateauRect.width / 2;
-    const centerY = plateauRect.height / 2;
+    const centerX = plateau.clientWidth / 2;
+    const centerY = plateau.clientHeight / 2;
+    const radius = Math.min(centerX, centerY) - 80;
 
     tirage.positions.forEach((pos, i) => {
       const carte = plateau.children[i];
       const angleRad = (pos.angle * Math.PI) / 180;
-      const radius = Math.min(plateauRect.width, plateauRect.height) / 2 - 80;
 
       carte.style.position = "absolute";
-      carte.style.left = centerX + radius * Math.cos(angleRad) - 60 + "px";
-      carte.style.top = centerY + radius * Math.sin(angleRad) - 90 + "px";
+      carte.style.left = `${centerX + radius * Math.cos(angleRad) - 60}px`;
+      carte.style.top = `${centerY + radius * Math.sin(angleRad) - 90}px`;
     });
   }
   

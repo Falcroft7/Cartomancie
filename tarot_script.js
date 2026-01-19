@@ -305,20 +305,11 @@ function affichTirageDetail(tirage, categorie) {
     plateau.style.display = "grid";
     plateau.style.gridTemplateColumns = "repeat(auto-fit, 140px)";
     plateau.style.justifyContent = "center";
-    plateau.style.alignItems = "center";
-    plateau.style.margin = "0 auto";
-    plateau.style.width = "fit-content";
-  } 
-  else if (tirage.type === "Circulaire") {
-    plateau.style.display = "flex";
-    plateau.style.justifyContent = "center";
-    plateau.style.alignItems = "center";
+  } else if (tirage.type === "Circulaire") {
     plateau.style.position = "relative";
-    plateau.style.width = "600px";
-    plateau.style.height = "600px";
-    plateau.style.margin = "0 auto";
+    plateau.style.minHeight = "500px";
   }
-
+  
   tirage.positions.forEach(pos => {
     const carte = document.createElement("div");
     carte.className = "tirage-carte";
@@ -327,10 +318,20 @@ function affichTirageDetail(tirage, categorie) {
       <p>${pos.label}</p>
     `;
 
+    if (tirage.type === "Grille") {
+      carte.style.gridColumn = pos.x + 1;
+      carte.style.gridRow = pos.y + 1;
+    }
+    
     plateau.appendChild(carte);
   });
 
   if (tirage.type === "Circulaire") {
+
+    plateau.style.width = "600px";
+    plateau.style.height = "600px";
+    plateau.style.margin = "0 auto";
+
     const plateauRect = plateau.getBoundingClientRect();
     const centerX = plateauRect.width / 2;
     const centerY = plateauRect.height / 2;
@@ -345,7 +346,7 @@ function affichTirageDetail(tirage, categorie) {
       carte.style.top = centerY + radius * Math.sin(angleRad) - 90 + "px";
     });
   }
-
+  
   document.getElementById("backBtn").onclick = e => {
     e.preventDefault();
     affichTirages(categorie);
@@ -395,3 +396,4 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
+

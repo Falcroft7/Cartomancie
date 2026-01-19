@@ -303,8 +303,8 @@ function affichTirageDetail(tirage, categorie) {
 
   if (tirage.type === "Grille") {
     plateau.style.display = "grid";
-    plateau.style.gridTemplateColumns = `repeat(auto-fit, minmax(120px, 1fr))`;
-    plateau.style.gap = "20px";
+    plateau.style.gridTemplateColumns = `repeat(auto-fit, 100px)`;
+    plateau.style.gap = "10px";
     plateau.style.justifyContent = "center";
   }
   else if (tirage.type === "Circulaire") {
@@ -398,4 +398,5 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
+
 

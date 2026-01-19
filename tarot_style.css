@@ -295,7 +295,7 @@ button:focus-visible,
   max-width: 100%;
   min-height: 300px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-auto-rows: auto;
   justify-content: center;
   gap: 10px;
@@ -365,3 +365,4 @@ button:focus-visible,
   h2 { font-size: 1.4em; }
   .card p { font-size: 0.9em; }
 }
+

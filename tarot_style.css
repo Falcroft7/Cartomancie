@@ -301,8 +301,7 @@ button:focus-visible,
   gap: 10px;
   border-radius: 20px;
   padding: 15px;
-  margin: 0 auto;
-  margin-top: 15px;
+  margin: 15px auto 0 auto;
 }
 
 .tirage-carte {
@@ -366,4 +365,5 @@ button:focus-visible,
   h2 { font-size: 1.4em; }
   .card p { font-size: 0.9em; }
 }
+
 

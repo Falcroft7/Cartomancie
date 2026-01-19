@@ -140,12 +140,6 @@ button:focus-visible,
 .minor-familles { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 25px; margin-top: 30px; }
 .categories,
 .tirages { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; margin-top: 30px; }
-.tirage-plateau { 
-  grid-template-columns: repeat(auto-fit, 140px); 
-  grid-auto-rows: auto; 
-  justify-content: center; 
-  gap: 20px; 
-}
 
 /* =============== ARCANES =============== */
 .card {
@@ -301,6 +295,8 @@ button:focus-visible,
   max-width: 100%;
   min-height: 300px;
   display: grid;
+  grid-template-columns: repeat(auto-fit, 140px);
+  grid-auto-rows: auto;
   justify-content: center;
   gap: 10px;
   border-radius: 20px;
@@ -369,4 +365,3 @@ button:focus-visible,
   h2 { font-size: 1.4em; }
   .card p { font-size: 0.9em; }
 }
-

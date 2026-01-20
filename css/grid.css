@@ -1,1 +1,126 @@
+/* =============== GRID GENERAL =============== */
+.grid-container {
+  display: grid;
+  gap: 20px;
+  margin-top: 25px;
+  justify-content: center;
+}
 
+.cards { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+.minor-familles { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 25px; margin-top: 30px; }
+.categories,
+.tirages { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; margin-top: 30px; }
+
+/* =============== ARCANES =============== */
+.card {
+  background: #2c223a;
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #5e4b82;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background: #3a2a57;
+  box-shadow: 0 0 10px rgba(183, 146, 255, 0.4);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+/* =============== FAMILLES MINEURES =============== */
+.minor-famille-card {
+  text-align: center;
+  cursor: pointer;
+}
+
+.minor-famille-card img {
+  width: 100%;
+  max-width: 160px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 12px rgba(183,146,255,0.4);
+}
+
+.minor-famille-card button { width: 100%; }
+
+/* =============== FICHE ARCANE =============== */
+.fiche-arcane {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.fiche-image { flex: 1 1 250px; text-align: center; }
+.fiche-arcane-image { width: 100%; max-width: 260px; border-radius: 12px; box-shadow: 0 0 15px rgba(117, 89, 153, 0.5); }
+
+.fiche-significations { flex: 2 1 300px; }
+.fiche-significations p { line-height: 1.7; color: #f1eaff; }
+
+/* Boîtes contenu */
+.mots-cles,
+.fiche-left,
+.fiche-right {
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.mots-cles { background: rgba(30,20,45,0.6); border-left: 3px solid #bca7ff; }
+.mots-cles h3::before { content: "✧ "; color: #bca7ff; }
+
+.fiche-left { background: linear-gradient(135deg, rgba(70,120,90,0.25), rgba(30,20,45,0.6)); border-left: 3px solid #6fd6a3; }
+.fiche-left h3::before { content: "✧ "; color: #7de0b0; }
+
+.fiche-right { background: linear-gradient(135deg, rgba(130,60,80,0.25), rgba(30,20,45,0.6)); border-left: 3px solid #e08a9c; }
+.fiche-right h3::before { content: "✧ "; color: #e09aa8; }
+
+/* =============== PLATEAU TIRAGE =================== */
+.tirage-plateau {
+  position: relative;
+  max-width: 100%;
+  min-height: 250px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-auto-rows: auto;
+  justify-content: center;
+  gap: 20px;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 15px auto 0 auto;
+}
+
+.tirage-carte {
+  grid-column: var(--x);
+  grid-row: var(--y);
+  text-align: center;
+  animation: carteIn 0.4s ease forwards;
+  opacity: 0;
+  position: relative;
+}
+
+.tirage-carte-image {
+  width: 100px;
+  display: block;
+  margin: 0 auto 8px;
+  box-shadow:
+    0 0 15px rgba(180,140,255,0.4),
+    inset 0 0 10px rgba(255,255,255,0.05);
+}
+
+.tirage-description,
+.tirage-explication {
+  font-size: 0.9em;
+  margin-top: 5px;
+  color: #f1eaff;
+  line-height: 1.8;
+  text-align: center;
+  white-space: pre-line;
+}

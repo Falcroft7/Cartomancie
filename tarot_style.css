@@ -311,6 +311,7 @@ button:focus-visible,
   text-align: center;
   animation: carteIn 0.4s ease forwards;
   opacity: 0;
+  position: relative;
 }
 
 .tirage-carte-image {
@@ -366,3 +367,4 @@ button:focus-visible,
   h2 { font-size: 1.4em; }
   .card p { font-size: 0.9em; }
 }
+

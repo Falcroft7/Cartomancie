@@ -62,6 +62,14 @@ function affichTirageDetail(tirage, categorie) {
     plateau.style.display = "grid";
     plateau.style.gridTemplateColumns = `repeat(auto-fit, 120px)`;
     plateau.style.justifyContent = "center";
+    plateau.style.position = "relative";
+  }
+  else if (tirage.type === "offset") {
+    plateau.style.display = "block";
+    plateau.style.position = "relative"; 
+    plateau.style.height = "300px";
+    plateau.style.width = "min(700px, 90vw)";
+    plateau.style.margin = "50px auto";
   }
   else if (tirage.type === "Circulaire") {
     plateau.style.position = "relative";
@@ -87,6 +95,17 @@ function affichTirageDetail(tirage, categorie) {
       const offsetY = pos.offsetY ?? 0;
     
       carte.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    }
+
+    if (tirage.type === "offset") {
+      carte.classList.add("offset");
+      carte.style.position = "absolute";
+      const spacing = 120;
+      const left = (pos.x * spacing) + (pos.offsetX ?? 0);
+      const top = pos.offsetY ?? 0;
+
+      carte.style.left = `${left}px`;
+      carte.style.top = `${top}px`;
     }
     
     plateau.appendChild(carte);

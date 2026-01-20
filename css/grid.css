@@ -7,17 +7,17 @@
 }
 
 .cards {
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fill, fit-content(140px));
 }
 
 .minor-familles {
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, fit-content(180px));
   gap: 25px; margin-top: 30px;
 }
 
 .categories,
 .tirages {
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, fit-content(220px));
   gap: 22px;
   margin-top: 30px;
 }

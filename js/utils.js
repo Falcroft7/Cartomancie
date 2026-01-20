@@ -33,3 +33,24 @@ function nomToImagePath(arcane) {
 
   return "Images/placeholder.png";
 }
+
+function normalizeFamille(str) {
+  return str
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
+
+function familleToLabel(famille) {
+  const key = normalizeFamille(famille);
+
+  const labels = {
+    epees: "Les Épées",
+    coupes: "Les Coupes",
+    batons: "Les Bâtons",
+    deniers: "Les Deniers"
+  };
+
+  return labels[key] || famille;
+}

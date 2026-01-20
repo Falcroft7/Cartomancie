@@ -1,26 +1,53 @@
 /* =================== PLATEAU =================== */
 .tirage-plateau {
-  position: relative; 
   max-width: 100%;
   min-height: 250px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  grid-auto-rows: auto;
-  justify-content: center;
-  gap: 20px;
   border-radius: 20px;
   padding: 15px;
   margin: 15px auto 0 auto;
 }
 
+.tirage-plateau.grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+}
+
+.tirage-plateau.offset {
+  display: block; /* pas de grid */
+  position: relative;
+  width: 90vw;
+  height: 300px; /* ajustable */
+  margin: 50px auto;
+}
+
+.tirage-plateau.circulaire {
+  position: relative;
+  width: min(600px, 90vw);
+  height: min(600px, 90vw);
+  margin: 50px auto;
+}
+
 /* =================== CARTES =================== */
 .tirage-carte {
-  grid-column: var(--x);
-  grid-row: var(--y);
   text-align: center;
   animation: carteIn 0.4s ease forwards;
   opacity: 0;
+}
+
+.tirage-carte.grille {
+  grid-column: var(--col, auto);
+  grid-row: var(--row, auto);
   position: relative;
+}
+
+.tirage-carte.offset {
+  position: absolute;
+  left: var(--x, 0px);
+  top: var(--y, 0px);
+  transition: all 0.4s ease;
 }
 
 /* =================== IMAGE =================== */

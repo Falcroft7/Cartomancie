@@ -303,14 +303,14 @@ function affichTirageDetail(tirage, categorie) {
 
   if (tirage.type === "Grille") {
     plateau.style.display = "grid";
-    plateau.style.gridTemplateColumns = `repeat(auto-fit, 100px)`;
+    plateau.style.gridTemplateColumns = `repeat(auto-fit, 120px)`;
     plateau.style.justifyContent = "center";
   }
   else if (tirage.type === "Circulaire") {
     plateau.style.position = "relative";
     plateau.style.width = "min(600px, 90vw)";
     plateau.style.height = "min(600px, 90vw)";
-    plateau.style.margin = "0 auto";
+    plateau.style.margin = "50px auto";
   }
   
   tirage.positions.forEach(pos => {
@@ -397,3 +397,4 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
+

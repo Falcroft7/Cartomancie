@@ -1,3 +1,4 @@
+/* =================== WRAPPER =================== */
 .tirage-plateau-wrapper {
   display: flex;
   justify-content: center;
@@ -5,29 +6,55 @@
   overflow: visible;
 }
 
+/* =================== PLATEAU =================== */
 .tirage-plateau {
   position: relative;
   max-width: 100%;
   min-height: 250px;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 15px auto 0 auto;
+  gap: 20px;
+}
+
+.tirage-plateau.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   grid-auto-rows: auto;
   justify-content: center;
-  gap: 20px;
-  border-radius: 20px;
-  padding: 15px;
-  margin: 15px auto 0 auto;
 }
 
-.tirage-carte {
-  grid-column: var(--x);
-  grid-row: var(--y);
-  text-align: center;
-  animation: carteIn 0.4s ease forwards;
-  opacity: 0;
+.tirage-plateau.offset {
+  display: block;
+  width: max-content;
+  height: 250px;
   position: relative;
 }
 
+.tirage-plateau.circular {
+  display: block;
+  width: min(600px, 90vw);
+  height: min(600px, 90vw);
+  position: relative;
+}
+
+/* =================== CARTES =================== */
+.tirage-carte {
+  text-align: center;
+  animation: carteIn 0.4s ease forwards;
+  opacity: 0;
+}
+
+.tirage-carte.grid {
+  position: relative;
+}
+
+.tirage-carte.offset,
+.tirage-carte.circular {
+  position: absolute;
+}
+
+/* =================== IMAGE =================== */
 .tirage-carte-image {
   width: 100px;
   display: block;
@@ -37,6 +64,7 @@
     inset 0 0 10px rgba(255,255,255,0.05);
 }
 
+/* =================== DESCRIPTION & EXPLICATION =================== */
 .tirage-description,
 .tirage-explication {
   font-size: 0.9em;

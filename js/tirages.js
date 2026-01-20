@@ -79,9 +79,11 @@ function affichTirageDetail(tirage, categorie) {
       plateau.style.position = "relative";
     }
   } else if (tirage.type === "Circulaire") {
+    plateau.style.display = "block";
     plateau.style.position = "relative";
     plateau.style.width = "min(600px, 90vw)";
     plateau.style.height = "min(600px, 90vw)";
+    plateau.style.margin = "50px auto";
   }
 
   tirage.positions.forEach(pos => {

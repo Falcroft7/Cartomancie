@@ -1,1 +1,48 @@
+.tirage-plateau-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow: visible;
+}
 
+.tirage-plateau {
+  position: relative;
+  max-width: 100%;
+  min-height: 250px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-auto-rows: auto;
+  justify-content: center;
+  gap: 20px;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 15px auto 0 auto;
+}
+
+.tirage-carte {
+  grid-column: var(--x);
+  grid-row: var(--y);
+  text-align: center;
+  animation: carteIn 0.4s ease forwards;
+  opacity: 0;
+  position: relative;
+}
+
+.tirage-carte-image {
+  width: 100px;
+  display: block;
+  margin: 0 auto 8px;
+  box-shadow:
+    0 0 15px rgba(180,140,255,0.4),
+    inset 0 0 10px rgba(255,255,255,0.05);
+}
+
+.tirage-description,
+.tirage-explication {
+  font-size: 0.9em;
+  margin-top: 5px;
+  color: #f1eaff;
+  line-height: 1.8;
+  text-align: center;
+  white-space: pre-line;
+}

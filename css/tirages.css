@@ -16,10 +16,10 @@
 }
 
 .tirage-plateau.offset {
-  display: block; /* pas de grid */
+  display: block;
   position: relative;
   width: 90vw;
-  height: 300px; /* ajustable */
+  height: 300px;
   margin: 50px auto;
 }
 

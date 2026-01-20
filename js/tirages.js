@@ -98,15 +98,18 @@ function affichTirageDetail(tirage, categorie) {
   if (tirage.type === "Circulaire") {
     const centerX = plateau.clientWidth / 2;
     const centerY = plateau.clientHeight / 2;
-    const radius = Math.min(centerX, centerY) - 60;
-
+    const radius = 120;
+    const n = tirage.positions.length;
+    const startAngle = -90;
+    const angleStep = 360 / n;
+  
     tirage.positions.forEach((pos, i) => {
       const carte = plateau.children[i];
-      const angleRad = (pos.angle * Math.PI) / 180;
-
+      const angleRad = ((startAngle + i * angleStep) * Math.PI) / 180;
+  
       carte.style.position = "absolute";
       carte.style.left = `${centerX + radius * Math.cos(angleRad) - 60}px`;
-      carte.style.top = `${centerY + radius * Math.sin(angleRad) - 90}px`;
+      carte.style.top  = `${centerY + radius * Math.sin(angleRad) - 90}px`;
     });
   }
 

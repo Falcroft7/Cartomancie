@@ -58,58 +58,43 @@ function affichTirageDetail(tirage, categorie) {
 
   const plateau = document.querySelector(".tirage-plateau");
 
-  if (tirage.type === "Grille") {
-    plateau.style.display = "grid";
-    plateau.style.gridTemplateColumns = `repeat(auto-fit, 120px)`;
-    plateau.style.justifyContent = "center";
-    plateau.style.position = "relative";
-    plateau.style.height = "auto";
-  }
-  else if (tirage.type === "offset") {
-    plateau.style.display = "block";
-    plateau.style.position = "relative"; 
-    plateau.style.height = "300px";
-    plateau.style.width = "min(700px, 90vw)";
-    plateau.style.margin = "50px auto";
-  }
-  else if (tirage.type === "Circulaire") {
-    plateau.style.position = "relative";
-    plateau.style.width = "min(600px, 90vw)";
-    plateau.style.height = "min(600px, 90vw)";
-    plateau.style.margin = "50px auto";
-  }
-  
-  tirage.positions.forEach(pos => {
+  plateau.className = "tirage-plateau";
+  if (tirage.type === "Grille") plateau.classList.add("grille");
+  else if (tirage.type === "Circulaire") plateau.classList.add("circulaire");
+  else if (tirage.type === "offset") plateau.classList.add("offset");
+
+  tirage.positions.forEach((pos, i) => {
     const carte = document.createElement("div");
-    carte.className = "tirage-carte";
+    carte.className = "tirage-carte"; // reset classes
     carte.innerHTML = `
       <img src="Images/Dos_carte.png" class="tirage-carte-image">
       <p>${pos.label}</p>
     `;
 
     if (tirage.type === "Grille") {
-      carte.style.gridColumn = pos.x + 1;
-      carte.style.gridRow = (pos.y ?? 0) + 1;
+      carte.classList.add("grille");
+      carte.style.setProperty('--col', pos.x + 1);
+      carte.style.setProperty('--row', (pos.y ?? 0) + 1);
     }
 
     if (tirage.type === "Offset") {
       carte.classList.add("offset");
-      carte.style.position = "absolute";
       const spacing = 120;
-      const left = (pos.x * spacing) + (pos.offsetX ?? 0);
-      const top  = pos.offsetY ?? 0;
+      const totalWidth = (tirage.positions.length - 1) * spacing;
+      const centerOffset = (plateau.clientWidth - totalWidth) / 2;
 
-      carte.style.left = `${left}px`;
-      carte.style.top = `${top}px`;
+      carte.style.setProperty('--x', `${centerOffset + pos.x * spacing + (pos.offsetX ?? 0)}px`);
+      carte.style.setProperty('--y', `${pos.offsetY ?? 0}px`);
     }
-    
+
     plateau.appendChild(carte);
-    
+
     setTimeout(() => {
       carte.style.opacity = "1";
     }, 50);
   });
 
+  // === Placement circulaire ===
   if (tirage.type === "Circulaire") {
     const centerX = plateau.clientWidth / 2;
     const centerY = plateau.clientHeight / 2;
@@ -124,7 +109,7 @@ function affichTirageDetail(tirage, categorie) {
       carte.style.top = `${centerY + radius * Math.sin(angleRad) - 90}px`;
     });
   }
-  
+
   document.getElementById("backBtn").onclick = e => {
     e.preventDefault();
     affichTirages(categorie);

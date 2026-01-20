@@ -16,11 +16,14 @@
 }
 
 .tirage-plateau.offset {
-  display: block;
   position: relative;
   width: 90vw;
+  max-width: 700px;
   height: 300px;
   margin: 50px auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .tirage-plateau.circulaire {
@@ -48,6 +51,8 @@
   left: var(--x, 0px);
   top: var(--y, 0px);
   transition: all 0.4s ease;
+  opacity: 0;
+  text-align: center;
 }
 
 /* =================== IMAGE =================== */

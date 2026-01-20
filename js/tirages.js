@@ -63,6 +63,7 @@ function affichTirageDetail(tirage, categorie) {
     plateau.style.gridTemplateColumns = `repeat(auto-fit, 120px)`;
     plateau.style.justifyContent = "center";
     plateau.style.position = "relative";
+    plateau.style.height = "auto";
   }
   else if (tirage.type === "offset") {
     plateau.style.display = "block";
@@ -88,21 +89,15 @@ function affichTirageDetail(tirage, categorie) {
 
     if (tirage.type === "Grille") {
       carte.style.gridColumn = pos.x + 1;
-      const y = pos.y ?? 0;
-      carte.style.gridRow = y + 1;
-    
-      const offsetX = pos.offsetX ?? 0;
-      const offsetY = pos.offsetY ?? 0;
-    
-      carte.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+      carte.style.gridRow = (pos.y ?? 0) + 1;
     }
 
-    if (tirage.type === "offset") {
+    if (tirage.type === "Offset") {
       carte.classList.add("offset");
       carte.style.position = "absolute";
-      const spacing = 60;
+      const spacing = 120; // espace horizontal entre cartes
       const left = (pos.x * spacing) + (pos.offsetX ?? 0);
-      const top = pos.offsetY ?? 0;
+      const top  = pos.offsetY ?? 0;
 
       carte.style.left = `${left}px`;
       carte.style.top = `${top}px`;

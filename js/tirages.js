@@ -80,7 +80,12 @@ function affichTirageDetail(tirage, categorie) {
     if (tirage.type === "Offset") {
       carte.classList.add("offset");
       const spacing = 120;
-      carte.style.setProperty('--x', `${pos.x * spacing + (pos.offsetX ?? 0)}px`);
+      const totalWidth = (tirage.positions.length - 1) * spacing;
+      const plateauWidth = plateau.clientWidth;
+
+      const startX = (plateauWidth - totalWidth) / 2;
+
+      carte.style.setProperty('--x', `${startX + pos.x * spacing + (pos.offsetX ?? 0)}px`);
       carte.style.setProperty('--y', `${pos.offsetY ?? 0}px`);
     }
 

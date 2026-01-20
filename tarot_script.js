@@ -323,9 +323,8 @@ function affichTirageDetail(tirage, categorie) {
 
     if (tirage.type === "Grille") {
       carte.style.gridColumn = pos.x + 1;
-      if (pos.y !== undefined) {
-        carte.style.gridRow = pos.y + 1;
-      }
+      const y = pos.y ?? 0;
+      carte.style.gridRow = y + 1;
     
       const offsetX = pos.offsetX ?? 0;
       const offsetY = pos.offsetY ?? 0;
@@ -404,5 +403,3 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
-
-

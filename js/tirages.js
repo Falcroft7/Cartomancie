@@ -63,6 +63,10 @@ function affichTirageDetail(tirage, categorie) {
   else if (tirage.type === "Circulaire") plateau.classList.add("circulaire");
   else if (tirage.type === "Offset") plateau.classList.add("offset");
 
+  const style = getComputedStyle(plateau);
+  const paddingLeft = parseInt(style.paddingLeft);
+  const paddingRight = parseInt(style.paddingRight);
+  
   tirage.positions.forEach((pos, i) => {
     const carte = document.createElement("div");
     carte.className = "tirage-carte";
@@ -81,9 +85,9 @@ function affichTirageDetail(tirage, categorie) {
       carte.classList.add("offset");
       const spacing = 120;
       const totalWidth = (tirage.positions.length - 1) * spacing;
-      const plateauWidth = plateau.clientWidth;
+      const plateauWidth = plateau.clientWidth - paddingLeft - paddingRight;
 
-      const startX = (plateauWidth - totalWidth) / 2;
+      const startX = paddingLeft + (plateauWidth - totalWidth) / 2;
 
       carte.style.setProperty('--x', `${startX + pos.x * spacing + (pos.offsetX ?? 0)}px`);
       carte.style.setProperty('--y', `${pos.offsetY ?? 0}px`);

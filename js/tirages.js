@@ -95,7 +95,7 @@ function affichTirageDetail(tirage, categorie) {
     if (tirage.type === "Offset") {
       carte.classList.add("offset");
       carte.style.position = "absolute";
-      const spacing = 60;
+      const spacing = 120;
       const left = (pos.x * spacing) + (pos.offsetX ?? 0);
       const top  = pos.offsetY ?? 0;
 

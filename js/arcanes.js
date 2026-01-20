@@ -66,3 +66,109 @@ function affichListeMajor() {
     retourCarteFactory
   );
 }
+
+function affichListeMinor() {
+  const famillesMap = {};
+
+  listeMinors.forEach(arcane => {
+    const key = normalizeFamille(arcane.Famille);
+    if (!famillesMap[key]) {
+      famillesMap[key] = arcane.Famille;
+    }
+  });
+
+  const familles = Object.values(famillesMap);
+
+  render(`
+    <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
+    <h2>Arcanes Mineures</h2>
+    <div class="minor-familles grid-container" id="minorFamilles"></div>
+  `);
+
+  const container = document.getElementById("minorFamilles");
+
+  familles.forEach(famille => {
+
+    const as = listeMinors.find(arcane =>
+      normalizeFamille(arcane.Famille) === normalizeFamille(famille) &&
+      arcane.Nom.toLowerCase().startsWith("as")
+    );
+
+    const imgSrc = as
+      ? nomToImagePath(as)
+      : "Images/placeholder.png";
+
+    const bloc = document.createElement("div");
+    bloc.className = "minor-famille-card";
+    bloc.innerHTML = `
+      <img src="${imgSrc}" alt="As de ${famille}">
+      <button>${familleToLabel(famille)}</button>
+    `;
+
+    bloc.addEventListener("click", () => {
+      affichListeMinorParFamille(famille);
+    });
+
+    container.appendChild(bloc);
+  });
+
+  document.getElementById("backBtn").addEventListener("click", e => {
+    e.preventDefault();
+    affichHome();
+  });
+}
+
+function affichListeMinorParFamille(famille) {
+  const filtered = listeMinors.filter(
+    arcane => normalizeFamille(arcane.Famille) === normalizeFamille(famille)
+  );
+
+  const retourCarteFactory = () => {
+    return () => affichListeMinorParFamille(famille);
+  };
+
+  affichListeArcane(
+    filtered,
+    `Arcanes Mineures - ${famille}`,
+    affichListeMinor,
+    retourCarteFactory
+  );
+}
+
+/* =========== FICHE ARCANE =========== */
+function affichArcane(arcane, retourFonction) {
+  const img = nomToImagePath(arcane);
+  const titre =
+    arcane.Numero && arcane.Numero.trim()
+      ? `${arcane.Numero} - ${arcane.Nom}`
+      : arcane.Nom;
+  
+  render(`
+    <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
+    <h1>${titre}</h1>
+    <div class="fiche-arcane">
+      <div class="fiche-image">
+        <img src="${img}" alt="${arcane.Nom}" class="fiche-arcane-image">
+      </div>
+      <div class="fiche-significations">
+        <div class="mots-cles">
+          <h3>Mots clés</h3>
+          <p>${arcane["Mots clés"] || "Non renseigné"}</p>
+        </div>
+        <div class="fiche-left">
+          <h3>Signification Positive</h3>
+          <p>${arcane["Signification Positive"] || "Non renseigné"}</p>
+        </div>
+        <div class="fiche-right">
+          <h3>Signification Négative</h3>
+          <p>${arcane["Signification Négative"] || "Non renseigné"}</p>
+        </div>
+      </div>
+    </div>
+  `);
+
+  document.getElementById("backBtn").addEventListener("click", (e) => {
+    e.preventDefault();
+    retourFonction();
+  });
+}

@@ -323,7 +323,14 @@ function affichTirageDetail(tirage, categorie) {
 
     if (tirage.type === "Grille") {
       carte.style.gridColumn = pos.x + 1;
-      carte.style.gridRow = pos.y + 1;
+      if (pos.y !== undefined) {
+        carte.style.gridRow = pos.y + 1;
+      }
+    
+      const offsetX = pos.offsetX ?? 0;
+      const offsetY = pos.offsetY ?? 0;
+    
+      carte.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
     }
     
     plateau.appendChild(carte);
@@ -397,4 +404,5 @@ Papa.parse(csvTiragesUrl, {
     });
   }
 });
+
 

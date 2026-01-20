@@ -61,11 +61,11 @@ function affichTirageDetail(tirage, categorie) {
   plateau.className = "tirage-plateau";
   if (tirage.type === "Grille") plateau.classList.add("grille");
   else if (tirage.type === "Circulaire") plateau.classList.add("circulaire");
-  else if (tirage.type === "offset") plateau.classList.add("offset");
+  else if (tirage.type === "Offset") plateau.classList.add("offset");
 
   tirage.positions.forEach((pos, i) => {
     const carte = document.createElement("div");
-    carte.className = "tirage-carte"; // reset classes
+    carte.className = "tirage-carte";
     carte.innerHTML = `
       <img src="Images/Dos_carte.png" class="tirage-carte-image">
       <p>${pos.label}</p>

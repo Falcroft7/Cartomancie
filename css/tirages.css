@@ -51,7 +51,6 @@
   left: var(--x, 0px);
   top: var(--y, 0px);
   transition: all 0.4s ease;
-  opacity: 0;
   text-align: center;
 }
 

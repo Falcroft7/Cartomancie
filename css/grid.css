@@ -83,6 +83,13 @@
 .fiche-right h3::before { content: "✧ "; color: #e09aa8; }
 
 /* =============== PLATEAU TIRAGE =================== */
+.tirage-plateau-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow: visible;
+}
+
 .tirage-plateau {
   position: relative;
   max-width: 100%;

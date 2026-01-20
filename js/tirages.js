@@ -66,24 +66,9 @@ function affichTirageDetail(tirage, categorie) {
 
   if (tirage.type === "Grille") {
     const hasOffset = tirage.positions.some(pos => pos.offsetX || pos.offsetY);
-
-    if (hasOffset) {
-      plateau.style.display = "block";
-      plateau.style.position = "relative";
-      plateau.style.width = "max-content";
-      plateau.style.height = "250px";
-    } else {
-      plateau.style.display = "grid";
-      plateau.style.gridTemplateColumns = `repeat(auto-fit, 120px)`;
-      plateau.style.justifyContent = "center";
-      plateau.style.position = "relative";
-    }
+    plateau.className = 'tirage-plateau ' + (hasOffset ? 'offset' : 'grid');
   } else if (tirage.type === "Circulaire") {
-    plateau.style.display = "block";
-    plateau.style.position = "relative";
-    plateau.style.width = "min(600px, 90vw)";
-    plateau.style.height = "min(600px, 90vw)";
-    plateau.style.margin = "50px auto";
+    plateau.className = 'tirage-plateau circular';
   }
 
   tirage.positions.forEach(pos => {
@@ -96,12 +81,13 @@ function affichTirageDetail(tirage, categorie) {
 
     if (tirage.type === "Grille") {
       if (pos.offsetX || pos.offsetY) {
-        carte.style.position = "absolute";
+        carte.classList.add('offset');
         const left = pos.x * 140 + (pos.offsetX ?? 0);
         const top = (pos.y ?? 0) * 180 + (pos.offsetY ?? 0);
         carte.style.left = `${left}px`;
         carte.style.top = `${top}px`;
       } else {
+        carte.classList.add('grid');
         carte.style.gridColumn = pos.x + 1;
         carte.style.gridRow = (pos.y ?? 0) + 1;
       }
@@ -121,8 +107,7 @@ function affichTirageDetail(tirage, categorie) {
       const carte = plateau.children[i];
       const angleRad = (pos.angle * Math.PI) / 180;
       const radius = pos.radius ?? defaultRadius;
-
-      carte.style.position = "absolute";
+      carte.classList.add('circular');
       carte.style.left = `${centerX + radius * Math.cos(angleRad) - 60}px`;
       carte.style.top = `${centerY + radius * Math.sin(angleRad) - 90}px`;
     });

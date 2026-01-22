@@ -35,7 +35,7 @@
 }
 
 .tirage-carte.offset {
-  z-index: 1;
+  transform: translate(var(--offsetX, 0px), var(--offsetY, 0px));
 }
 
 /* =================== IMAGE =================== */

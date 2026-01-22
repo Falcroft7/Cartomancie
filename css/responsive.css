@@ -1,16 +1,26 @@
-/* =============== RESPONSIVE =============== */
-@media (max-width: 700px) {
-  #app { padding: 15px; }
+@media (max-width: 850px) {
+  #app { padding: 20px; }
 
-  .home-buttons,
-  .minor-types-buttons { flex-direction: column; align-items: center; }
+  /* La fiche passe en colonne */
+  .fiche-arcane {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
 
-  .home-buttons button,
-  .minor-types-buttons button { width: 100%; max-width: 250px; }
-
-  .fiche-arcane { flex-direction: column; align-items: center; }
+  /* Les boutons d'accueil prennent plus de place */
+  .home-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
   
-  h1 { font-size: 1.6em; }
-  h2 { font-size: 1.4em; }
-  .card p { font-size: 0.9em; }
+  .home-buttons button { width: 100%; max-width: 320px; }
+  
+  h1 { font-size: 1.8em; }
+  h2 { font-size: 1.5em; }
+}
+
+@media (max-width: 480px) {
+  /* Optimisation pour très petits écrans */
+  .grid-container { --card-min: 120px; gap: 15px; }
+  .back-btn { width: 100%; }
 }

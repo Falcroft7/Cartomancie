@@ -73,17 +73,15 @@ function affichTirageDetail(tirage, categorie) {
     if (tirage.type === "Grille") {
       carte.classList.add("grille");
     
+      // Placement sur la grille
       carte.style.setProperty('--col', pos.x + 1);
       carte.style.setProperty('--row', (pos.y ?? 0) + 1);
     
+      // Si offset, ajouter transform
       if (pos.offsetX !== undefined || pos.offsetY !== undefined) {
-        const spacingX = 120;
-        const spacingY = 120;
-    
-        carte.classList.add("offset-mode");
-    
-        carte.style.left = `${pos.x * spacingX + (pos.offsetX ?? 0)}px`;
-        carte.style.top  = `${pos.y * spacingY + (pos.offsetY ?? 0)}px`;
+        carte.classList.add("offset");
+        carte.style.setProperty('--offsetX', `${pos.offsetX ?? 0}px`);
+        carte.style.setProperty('--offsetY', `${pos.offsetY ?? 0}px`);
       }
     }
 

@@ -1,16 +1,26 @@
 @media (max-width: 850px) {
   #app { padding: 20px; }
 
-  /* La fiche passe en colonne */
+  .back-btn {
+    top: 15px;
+    left: 15px;
+    padding: 8px 16px;
+    font-size: 0.75em;
+  }
+
+  h1, h2 {
+    margin-top: 50px !important;
+  }
+
   .fiche-arcane {
     grid-template-columns: 1fr;
     justify-items: center;
   }
 
-  /* Les boutons d'accueil prennent plus de place */
   .home-buttons {
     flex-direction: column;
     gap: 15px;
+    align-items: center;
   }
   
   .home-buttons button { width: 100%; max-width: 320px; }
@@ -22,5 +32,8 @@
 @media (max-width: 480px) {
   /* Optimisation pour très petits écrans */
   .grid-container { --card-min: 120px; gap: 15px; }
-  .back-btn { width: 100%; }
+  .back-btn {
+    padding: 6px 12px;
+    letter-spacing: 0px;
+  }
 }

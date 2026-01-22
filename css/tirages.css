@@ -32,11 +32,11 @@
 .tirage-carte.grille {
   grid-column: var(--col, auto);
   grid-row: var(--row, auto);
-  position: relative;
 }
 
 .tirage-carte.offset {
   transform: translate(var(--offsetX, 0px), var(--offsetY, 0px));
+  z-index: 1;
 }
 
 /* =================== IMAGE =================== */

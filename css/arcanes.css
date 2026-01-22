@@ -1,4 +1,4 @@
-/* CARTES DANS LES LISTES */
+/* =============== CARTES DANS LES LISTES (GRILLE) =============== */
 .card {
   background: var(--glass-bg);
   padding: 12px;
@@ -6,11 +6,13 @@
   border: var(--glass-border);
   text-align: center;
   transition: all 0.35s ease;
+  cursor: pointer;
 }
 
 .card:hover {
   border-color: var(--primary);
   background: var(--secondary);
+  transform: translateY(-5px);
 }
 
 .card img {
@@ -20,12 +22,48 @@
   box-shadow: var(--glow-light);
 }
 
-/* FICHE DÉTAILLÉE */
+/* =============== SÉLECTION DES FAMILLES MINEURES =============== */
+.minor-famille-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.minor-famille-card img {
+  width: 140px;
+  height: auto;
+  border-radius: var(--radius-std);
+  box-shadow: var(--glow-light);
+  margin-bottom: 15px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.minor-famille-card:hover {
+  transform: translateY(-5px);
+}
+
+.minor-famille-card:hover img {
+  box-shadow: var(--glow-strong);
+  transform: scale(1.05);
+}
+
+.minor-famille-card button {
+  width: 100%;
+  max-width: 180px;
+}
+
+/* =============== FICHE ARCANE DÉTAILLÉE =============== */
 .fiche-arcane {
   display: grid;
   grid-template-columns: minmax(250px, 1fr) 2fr;
   gap: 40px;
   margin-top: 30px;
+}
+
+.fiche-image {
+  text-align: center;
 }
 
 .fiche-arcane-image {
@@ -35,7 +73,6 @@
   box-shadow: 0 0 30px rgba(0,0,0,0.5), var(--glow-light);
 }
 
-/* Blocs de texte (Significations) */
 .mots-cles, .fiche-left, .fiche-right {
   padding: 20px;
   border-radius: var(--radius-std);

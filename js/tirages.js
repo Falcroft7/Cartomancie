@@ -57,10 +57,7 @@ function affichTirageDetail(tirage, categorie) {
   `);
 
   const plateau = document.querySelector(".tirage-plateau");
-
-  plateau.className = "tirage-plateau";
-  if (tirage.type === "Grille") plateau.classList.add("grille");
-  else if (tirage.type === "Circulaire") plateau.classList.add("circulaire");
+  plateau.className = "tirage-plateau " + tirage.type.toLowerCase();
   
   tirage.positions.forEach((pos, i) => {
     const carte = document.createElement("div");
@@ -76,10 +73,13 @@ function affichTirageDetail(tirage, categorie) {
       carte.style.setProperty('--col', pos.x + 1);
       carte.style.setProperty('--row', (pos.y ?? 0) + 1);
     
-      if (pos.offsetX !== undefined || pos.offsetY !== undefined) {
+      const offX = parseFloat(pos.offsetX) || 0;
+      const offY = parseFloat(pos.offsetY) || 0;
+
+      if (offX !== 0 || offY !== 0) {
         carte.classList.add("offset");
-        carte.style.setProperty('--offsetX', `${pos.offsetX}px`);
-        carte.style.setProperty('--offsetY', `${pos.offsetY}px`);
+        carte.style.setProperty('--offsetX', `${offX}px`);
+        carte.style.setProperty('--offsetY', `${offY}px`);
       }
     }
 
@@ -93,9 +93,7 @@ function affichTirageDetail(tirage, categorie) {
   if (tirage.type === "Circulaire") {
     const centerX = plateau.clientWidth / 2;
     const centerY = plateau.clientHeight / 2;
-    
     const radius = Math.min(centerX, centerY) - 80;
-    
     const n = tirage.positions.length;
     const startAngle = -90;
     const angleStep = 360 / n;

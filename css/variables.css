@@ -1,22 +1,27 @@
 :root {
-  /* Couleurs */
+  /* Couleurs de base */
   --bg-dark: #1a161f;
+  --bg-gradient: radial-gradient(circle at top, rgba(140,110,255,0.08), transparent 40%),
+                  radial-gradient(circle at bottom, rgba(80,60,160,0.12), transparent 40%),
+                  #1a161f;
+  
+  /* Couleurs thématiques */
   --primary: #bca7ff;
   --primary-glow: #6f4fd8;
-  --secondary: #3a2a57;
   --text-main: #f3e9ff;
   --text-muted: #b48cff;
-
-  /* Effets de boîte (Glassmorphism) */
+  
+  /* Glassmorphism */
   --glass-bg: rgba(30, 20, 45, 0.6);
   --glass-border: 1px solid rgba(188, 167, 255, 0.2);
   
-  /* Ombres et Glows */
-  --shadow-light: rgba(180, 140, 255, 0.3);
-  --shadow-glow: 0 0 15px var(--shadow-light);
+  /* Ombres et Effets */
+  --shadow-std: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --glow-light: 0 0 15px rgba(180, 140, 255, 0.3);
+  --glow-strong: 0 0 20px rgba(180, 140, 255, 0.6);
   
-  /* Layout */
+  /* Rayons et Grilles */
   --radius-std: 12px;
   --radius-lg: 20px;
-  --container-max: 1200px;
+  --grid-gap: 25px;
 }

@@ -2,8 +2,6 @@
 .tirage-plateau {
   max-width: 100%;
   min-height: 300px;
-  background: var(--glass-bg);
-  border: var(--glass-border);
   border-radius: var(--radius-lg);
   padding: 30px;
   margin: 20px auto;
@@ -39,7 +37,7 @@
 }
 
 .tirage-carte-image {
-  width: 100px;
+  width: 90px;
   border-radius: 8px;
   box-shadow: var(--glow-light);
   transition: transform 0.3s ease;

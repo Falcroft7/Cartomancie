@@ -35,9 +35,8 @@
   position: relative;
 }
 
-.tirage-carte.offset-mode {
-  position: absolute;
-  transition: all 0.3s ease;
+.tirage-carte.offset {
+  transform: translate(var(--offsetX, 0px), var(--offsetY, 0px));
 }
 
 /* =================== IMAGE =================== */

@@ -39,6 +39,17 @@
   color: var(--text-muted);
 }
 
+.tirage-carte-title-top {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: var(--primary);
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(188, 167, 255, 0.3);
+}
+
 .tirage-carte.offset {
   translate: var(--offsetX, 0px) var(--offsetY, 0px);
 }

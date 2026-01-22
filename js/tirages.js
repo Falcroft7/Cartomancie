@@ -58,6 +58,8 @@ function affichTirageDetail(tirage, categorie) {
 
   const plateau = document.querySelector(".tirage-plateau");
   plateau.className = "tirage-plateau " + tirage.type.toLowerCase();
+
+  let maxOffsetY = 0;
   
   tirage.positions.forEach((pos, i) => {
     const carte = document.createElement("div");
@@ -76,6 +78,8 @@ function affichTirageDetail(tirage, categorie) {
       const offX = parseFloat(pos.offsetX) || 0;
       const offY = parseFloat(pos.offsetY) || 0;
 
+      if (offY > maxOffsetY) maxOffsetY = offY;
+      
       if (offX !== 0 || offY !== 0) {
         carte.classList.add("offset");
         carte.style.setProperty('--offsetX', `${offX}px`);
@@ -84,12 +88,13 @@ function affichTirageDetail(tirage, categorie) {
     }
 
     plateau.appendChild(carte);
-
-    setTimeout(() => {
-      carte.style.opacity = "1";
-    }, 50);
+    setTimeout(() => { carte.style.opacity = "1"; }, 50);
   });
 
+  if (maxOffsetY > 0) {
+    plateau.style.marginBottom = `${maxOffsetY}px`;
+  }
+  
   if (tirage.type === "Circulaire") {
     const centerX = plateau.clientWidth / 2;
     const centerY = plateau.clientHeight / 2;

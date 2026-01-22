@@ -7,8 +7,10 @@ function renderPage(title, contentHTML, backAction, description = "") {
   const descHTML = description ? `<div class="tirage-description">${description}</div>` : "";
   
   const html = `
-    <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
-    <h2>${title}</h2>
+    <div class="page-header">
+      <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
+      <h2>${title}</h2>
+    </div>
     ${descHTML}
     <div class="page-body">
       ${contentHTML}

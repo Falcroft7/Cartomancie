@@ -1,66 +1,48 @@
 /* =========== TIRAGES =========== */
 function affichCategoriesTirages() {
   const categories = Object.keys(tiragesCategorie);
-
-  render(`
-    <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
-    <h2>Choisissez une catégorie</h2>
-    <div id="categoriesContainer" class="categories grid-container"></div>
-  `);
+  
+  const content = `<div id="categoriesContainer" class="categories grid-container"></div>`;
+  
+  renderPage("Choisissez une catégorie", content, affichHome);
 
   const container = document.getElementById("categoriesContainer");
-
   categories.forEach(cat => {
     const btn = document.createElement("button");
     btn.textContent = cat;
-    btn.addEventListener("click", () => affichTirages(cat));
+    btn.onclick = () => affichTirages(cat);
     container.appendChild(btn);
-  });
-
-  document.getElementById("backBtn").addEventListener("click", e => {
-    e.preventDefault();
-    affichHome();
   });
 }
 
 function affichTirages(categorie) {
   const tirages = tiragesCategorie[categorie] || [];
+  const content = `<div id="tiragesContainer" class="tirages grid-container"></div>`;
 
-  render(`
-    <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
-    <h2>Tirages - ${categorie}</h2>
-    <div id="tiragesContainer" class="tirages grid-container"></div>
-  `);
+  renderPage(`Tirages - ${categorie}`, content, affichCategoriesTirages);
 
   const container = document.getElementById("tiragesContainer");
-
   tirages.forEach(tirage => {
     const btn = document.createElement("button");
     btn.textContent = tirage.nom;
-    btn.addEventListener("click", () => affichTirageDetail(tirage, categorie));
+    btn.onclick = () => affichTirageDetail(tirage, categorie);
     container.appendChild(btn);
-  });
-
-  document.getElementById("backBtn").addEventListener("click", e => {
-    e.preventDefault();
-    affichCategoriesTirages();
   });
 }
 
 function affichTirageDetail(tirage, categorie) {
-  render(`
-    <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
-    <h2>${tirage.nom}</h2>
-    <div class="tirage-description">${tirage.description}</div>
+  const content = `
     <div class="tirage-plateau"></div>
     <div class="tirage-explication">${tirage.explication}</div>
-  `);
+  `;
+
+  renderPage(tirage.nom, content, () => affichTirages(categorie), tirage.description);
 
   const plateau = document.querySelector(".tirage-plateau");
   plateau.className = "tirage-plateau " + tirage.type.toLowerCase();
 
   let maxOffsetY = 0;
-  
+
   tirage.positions.forEach((pos, i) => {
     const carte = document.createElement("div");
     carte.className = "tirage-carte";
@@ -71,15 +53,13 @@ function affichTirageDetail(tirage, categorie) {
 
     if (tirage.type === "Grille") {
       carte.classList.add("grille");
-    
       carte.style.setProperty('--col', pos.x + 1);
       carte.style.setProperty('--row', (pos.y ?? 0) + 1);
-    
+      
       const offX = parseFloat(pos.offsetX) || 0;
       const offY = parseFloat(pos.offsetY) || 0;
-
       if (offY > maxOffsetY) maxOffsetY = offY;
-      
+
       if (offX !== 0 || offY !== 0) {
         carte.classList.add("offset");
         carte.style.setProperty('--offsetX', `${offX}px`);
@@ -94,7 +74,7 @@ function affichTirageDetail(tirage, categorie) {
   if (maxOffsetY > 0) {
     plateau.style.marginBottom = `${maxOffsetY}px`;
   }
-  
+
   if (tirage.type === "Circulaire") {
     const centerX = plateau.clientWidth / 2;
     const centerY = plateau.clientHeight / 2;
@@ -102,19 +82,13 @@ function affichTirageDetail(tirage, categorie) {
     const n = tirage.positions.length;
     const startAngle = -90;
     const angleStep = 360 / n;
-  
+
     tirage.positions.forEach((pos, i) => {
       const carte = plateau.children[i];
       const angleRad = ((startAngle + i * angleStep) * Math.PI) / 180;
-  
       carte.style.position = "absolute";
       carte.style.left = `${centerX + radius * Math.cos(angleRad) - 60}px`;
       carte.style.top  = `${centerY + radius * Math.sin(angleRad) - 90}px`;
     });
   }
-
-  document.getElementById("backBtn").onclick = e => {
-    e.preventDefault();
-    affichTirages(categorie);
-  };
 }

@@ -1,7 +1,7 @@
 /* =================== PLATEAU =================== */
 .tirage-plateau {
   max-width: 100%;
-  min-height: 300px;
+  min-height: 200px;
   border-radius: var(--radius-lg);
   padding: 30px;
   margin: 20px auto;

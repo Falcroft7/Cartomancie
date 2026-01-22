@@ -1,5 +1,5 @@
 /* =================== BOUTONS COMMUNS =================== */
-/* Base commune pour tous les clics */
+/* Base commune pour tous les éléments cliquables */
 button, .back-btn {
   font-family: 'Cinzel', serif;
   cursor: pointer;
@@ -10,12 +10,13 @@ button, .back-btn {
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  box-sizing: border-box;
 }
 
-/* =================== BOUTON RETOUR (OR) =================== */
+/* =================== BOUTON RETOUR (OR LUNAIRE) =================== */
 .back-btn {
-  background: linear-gradient(145deg, #b8860b, #f1d359); /* Dégradé Or */
-  color: #1a161f !important; /* Force le texte sombre pour le contraste */
+  background: linear-gradient(145deg, #b8860b, #f1d359);
+  color: #1a161f !important;
   padding: 10px 22px;
   box-shadow: 0 4px 15px rgba(184, 134, 11, 0.4);
   font-weight: bold;
@@ -23,6 +24,7 @@ button, .back-btn {
   text-transform: uppercase;
   font-size: 0.85em;
   letter-spacing: 1px;
+  margin-bottom: 15px;
 }
 
 .back-btn:hover {
@@ -31,37 +33,79 @@ button, .back-btn {
   transform: translateY(-2px) scale(1.05);
 }
 
+/* =================== BOUTONS ACCUEIL (HOME) =================== */
+.home-buttons {
+  display: flex;
+  gap: 35px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 45px;
+  padding: 0 20px;
+}
+
+.home-buttons button {
+  background: var(--glass-bg);
+  border: 1px solid var(--text-muted);
+  color: var(--text-main);
+  padding: 16px 28px;
+  min-width: 220px;
+  backdrop-filter: blur(4px);
+  font-size: 1.1em;
+  letter-spacing: 0.5px;
+  box-shadow: var(--glow-light);
+}
+
+.home-buttons button:hover {
+  border-color: var(--primary);
+  background: rgba(188, 167, 255, 0.15);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: var(--glow-strong);
+}
+
 /* =================== BOUTONS D'ACTION (VIOLET) =================== */
-/* Catégories et Tirages */
+/* Catégories et Tirages spécifiques */
 .categories button, .tirages button {
   background: linear-gradient(145deg, var(--primary-glow), var(--primary));
   color: #1a161f;
   padding: 14px 24px;
+  min-width: 200px;
   box-shadow: var(--shadow-std);
   font-weight: bold;
+  font-size: 1.05em;
 }
 
-/* =================== BOUTONS SECONDAIRES =================== */
-/* Accueil, Mineures */
-.home-buttons button, .minor-famille-card button {
-  background: var(--glass-bg);
-  border: 1px solid var(--text-muted);
-  color: var(--text-main);
-  padding: 12px 20px;
-  backdrop-filter: blur(4px);
-}
-
-/* =================== ÉTATS ET EFFETS =================== */
-/* Hover général pour les boutons qui ne sont pas le bouton retour */
-button:hover {
-  transform: translateY(-3px) scale(1.02);
+.categories button:hover, .tirages button:hover {
+  transform: translateY(-4px) scale(1.02);
   box-shadow: var(--glow-strong);
   filter: brightness(1.1);
 }
 
-/* Icône mystique sur les boutons de tirages */
+/* Petite icône décorative pour les tirages */
 .categories button::after, .tirages button::after {
   content: "✧";
-  margin-left: 8px;
-  opacity: 0.6;
+  margin-left: 10px;
+  opacity: 0.7;
+}
+
+/* =================== BOUTONS MINEURES (FAMILLES) =================== */
+/* Boutons sous les images des As dans la liste des familles */
+.minor-famille-card button {
+  background: var(--glass-bg);
+  border: 1px solid var(--text-muted);
+  color: var(--text-main);
+  padding: 12px 20px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.minor-famille-card button:hover {
+  border-color: var(--primary);
+  background: var(--secondary);
+  box-shadow: var(--glow-light);
+}
+
+/* =================== ACCESSIBILITÉ =================== */
+button:focus-visible, .back-btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
 }

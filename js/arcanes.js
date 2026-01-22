@@ -23,98 +23,62 @@ function affichHome() {
   `);
 }
 
-/* =========== AFFICHAGE LISTES ARCANES =========== */
-function affichListeArcane(liste, titre, retourFonction, retourCarteFactory) {
-  render(`
-    <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
-    <h2>${titre}</h2>
-    <div id="cardsContainer" class="cards grid-container"></div>
-  `);
-
-  const container = document.getElementById("cardsContainer");
-  liste.forEach(arcane => {
+/* =========== CREER CARTE =========== */
+function creerCarteArcane(arcane, retourAction) {
     const img = nomToImagePath(arcane);
     const card = document.createElement("div");
     card.className = "card";
-    card.dataset.name = arcane.Nom;
     const numeroAffiche = arcane.Numero ? `${arcane.Numero} - ` : "";
-    card.innerHTML = `<img src="${img}" alt="${arcane.Nom}">
-                      <p>${numeroAffiche}${arcane.Nom}</p>`;
+    card.innerHTML = `
+        <img src="${img}" alt="${arcane.Nom}">
+        <p>${numeroAffiche}${arcane.Nom}</p>
+    `;
+    card.onclick = () => affichArcane(arcane, retourAction);
+    return card;
+}
 
-    const retourPourCetteCarte = retourCarteFactory ? retourCarteFactory(arcane) : retourFonction;
+/* =========== AFFICHAGE LISTES ARCANES =========== */
+function affichListeArcane(liste, titre, retourFonction) {
+  const content = `<div id="cardsContainer" class="cards grid-container"></div>`;
+  
+  renderPage(titre, content, retourFonction);
 
-    card.addEventListener("click", () => affichArcane(arcane, retourPourCetteCarte));
+  const container = document.getElementById("cardsContainer");
+  
+  liste.forEach(arcane => {
+    const card = creerCarteArcane(arcane, () => affichListeArcane(liste, titre, retourFonction));
     container.appendChild(card);
-  });
-
-  document.getElementById("backBtn").addEventListener("click", (e) => {
-    e.preventDefault();
-    retourFonction();
   });
 }
 
 /* =========== LISTES SPÉCIFIQUES =========== */
 function affichListeMajor() {
-  const retourCarteFactory = (arcane) => {
-    return () => affichListeMajor();
-  };
-
-  affichListeArcane(
-    listeMajors,
-    "Arcanes Majeures",
-    affichHome,
-    retourCarteFactory
-  );
+  affichListeArcane(listeMajors, "Arcanes Majeures", affichHome);
 }
 
 function affichListeMinor() {
-  const famillesMap = {};
+  const familles = [...new Set(listeMinors.map(a => a.Famille))];
 
-  listeMinors.forEach(arcane => {
-    const key = normalizeFamille(arcane.Famille);
-    if (!famillesMap[key]) {
-      famillesMap[key] = arcane.Famille;
-    }
-  });
-
-  const familles = Object.values(famillesMap);
-
-  render(`
-    <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
-    <h2>Arcanes Mineures</h2>
-    <div class="minor-familles grid-container" id="minorFamilles"></div>
-  `);
+  const content = `<div class="minor-familles grid-container" id="minorFamilles"></div>`;
+  renderPage("Arcanes Mineures", content, affichHome);
 
   const container = document.getElementById("minorFamilles");
 
   familles.forEach(famille => {
-
     const as = listeMinors.find(arcane =>
       normalizeFamille(arcane.Famille) === normalizeFamille(famille) &&
       arcane.Nom.toLowerCase().startsWith("as")
     );
 
-    const imgSrc = as
-      ? nomToImagePath(as)
-      : "Images/placeholder.png";
-
     const bloc = document.createElement("div");
     bloc.className = "minor-famille-card";
     bloc.innerHTML = `
-      <img src="${imgSrc}" alt="As de ${famille}">
+      <img src="${as ? nomToImagePath(as) : 'Images/placeholder.png'}" alt="As de ${famille}">
       <button>${familleToLabel(famille)}</button>
     `;
 
-    bloc.addEventListener("click", () => {
-      affichListeMinorParFamille(famille);
-    });
-
+    bloc.onclick = () => affichListeMinorParFamille(famille);
     container.appendChild(bloc);
-  });
-
-  document.getElementById("backBtn").addEventListener("click", e => {
-    e.preventDefault();
-    affichHome();
   });
 }
 
@@ -122,30 +86,18 @@ function affichListeMinorParFamille(famille) {
   const filtered = listeMinors.filter(
     arcane => normalizeFamille(arcane.Famille) === normalizeFamille(famille)
   );
-
-  const retourCarteFactory = () => {
-    return () => affichListeMinorParFamille(famille);
-  };
-
-  affichListeArcane(
-    filtered,
-    `Arcanes Mineures - ${famille}`,
-    affichListeMinor,
-    retourCarteFactory
-  );
+  
+  affichListeArcane(filtered, `Arcanes Mineures - ${famille}`, affichListeMinor);
 }
 
 /* =========== FICHE ARCANE =========== */
 function affichArcane(arcane, retourFonction) {
   const img = nomToImagePath(arcane);
-  const titre =
-    arcane.Numero && arcane.Numero.trim()
-      ? `${arcane.Numero} - ${arcane.Nom}`
-      : arcane.Nom;
-  
-  render(`
-    <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
-    <h1>${titre}</h1>
+  const titre = arcane.Numero && arcane.Numero.trim() 
+                ? `${arcane.Numero} - ${arcane.Nom}` 
+                : arcane.Nom;
+
+  const content = `
     <div class="fiche-arcane">
       <div class="fiche-image">
         <img src="${img}" alt="${arcane.Nom}" class="fiche-arcane-image">
@@ -165,10 +117,7 @@ function affichArcane(arcane, retourFonction) {
         </div>
       </div>
     </div>
-  `);
+  `;
 
-  document.getElementById("backBtn").addEventListener("click", (e) => {
-    e.preventDefault();
-    retourFonction();
-  });
+  renderPage(titre, content, retourFonction);
 }

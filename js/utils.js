@@ -3,6 +3,23 @@ function render(html) {
   document.getElementById("app").innerHTML = html;
 }
 
+function renderPage(title, contentHTML, backAction) {
+  const html = `
+    <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>
+    <h2>${title}</h2>
+    <div class="page-body">
+      ${contentHTML}
+    </div>
+  `;
+  
+  render(html);
+
+  document.getElementById("backBtn").onclick = (e) => {
+    e.preventDefault();
+    backAction();
+  };
+}
+
 /* =========== FONCTION NOM → IMAGE =========== */
 function nomToImagePath(arcane) {
   

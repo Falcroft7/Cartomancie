@@ -15,14 +15,6 @@
   position: relative;
 }
 
-.tirage-plateau.offset {
-  position: relative;
-  width: 90vw;
-  max-width: 700px;
-  height: 300px;
-  margin: 30px auto;
-}
-
 .tirage-plateau.circulaire {
   position: relative;
   width: min(600px, 90vw);
@@ -43,12 +35,9 @@
   position: relative;
 }
 
-.tirage-carte.offset {
+.tirage-carte.offset-mode {
   position: absolute;
-  left: var(--x, 0px);
-  top: var(--y, 0px);
-  transition: all 0.4s ease;
-  text-align: center;
+  transition: all 0.3s ease;
 }
 
 /* =================== IMAGE =================== */

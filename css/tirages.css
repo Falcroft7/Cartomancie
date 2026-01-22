@@ -9,7 +9,7 @@
 
 .tirage-plateau.grille {
   display: grid;
-  grid-template-columns: repeat(auto-fit, fit-content(120px));
+  grid-template-columns: repeat(auto-fit, 120px);
   justify-content: center;
   gap: 20px;
   position: relative;

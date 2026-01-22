@@ -55,8 +55,8 @@ function affichTirageDetail(tirage, categorie) {
 
     if (tirage.type === "Grille") {
       carte.classList.add("grille");
-      carte.style.setProperty('--col', pos.x + 1);
-      carte.style.setProperty('--row', (pos.y ?? 0) + 1);
+      carte.style.gridColumn = pos.x + 1;
+      carte.style.gridRow = (pos.y ?? 0) + 1;
       
       const offX = parseFloat(pos.offsetX) || 0;
       const offY = parseFloat(pos.offsetY) || 0;

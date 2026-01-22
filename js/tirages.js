@@ -61,7 +61,6 @@ function affichTirageDetail(tirage, categorie) {
   plateau.className = "tirage-plateau";
   if (tirage.type === "Grille") plateau.classList.add("grille");
   else if (tirage.type === "Circulaire") plateau.classList.add("circulaire");
-  else if (tirage.type === "Offset") plateau.classList.add("offset");
   
   tirage.positions.forEach((pos, i) => {
     const carte = document.createElement("div");
@@ -73,21 +72,19 @@ function affichTirageDetail(tirage, categorie) {
 
     if (tirage.type === "Grille") {
       carte.classList.add("grille");
+    
       carte.style.setProperty('--col', pos.x + 1);
       carte.style.setProperty('--row', (pos.y ?? 0) + 1);
-    }
-
-    if (tirage.type === "Offset") {
-      carte.classList.add("offset");
     
-      const spacingX = 120;
-      const spacingY = 120;
+      if (pos.offsetX !== undefined || pos.offsetY !== undefined) {
+        const spacingX = 120;
+        const spacingY = 120;
     
-      const totalWidth = (tirage.positions.length - 1) * spacingX;
-      const startX = (plateau.clientWidth - totalWidth) / 2;
+        carte.classList.add("offset-mode");
     
-      carte.style.setProperty('--x', `${startX + pos.x * spacingX + (pos.offsetX ?? 0)}px`);
-      carte.style.setProperty('--y', `${pos.y * spacingY + (pos.offsetY ?? 0)}px`);
+        carte.style.left = `${pos.x * spacingX + (pos.offsetX ?? 0)}px`;
+        carte.style.top  = `${pos.y * spacingY + (pos.offsetY ?? 0)}px`;
+      }
     }
 
     plateau.appendChild(carte);

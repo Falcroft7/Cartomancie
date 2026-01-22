@@ -1,4 +1,4 @@
-/* =========== TIRAGES =========== */
+/* =========== CATEGORIES =========== */
 function affichCategoriesTirages() {
   const categories = Object.keys(tiragesCategorie);
   
@@ -15,6 +15,7 @@ function affichCategoriesTirages() {
   });
 }
 
+/* =========== LISTES =========== */
 function affichTirages(categorie) {
   const tirages = tiragesCategorie[categorie] || [];
   const content = `<div id="tiragesContainer" class="tirages grid-container"></div>`;
@@ -30,6 +31,7 @@ function affichTirages(categorie) {
   });
 }
 
+/* =========== DETAILS =========== */
 function affichTirageDetail(tirage, categorie) {
   const content = `
     <div class="tirage-plateau"></div>

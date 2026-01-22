@@ -2,7 +2,7 @@
 .tirage-plateau {
   max-width: 100%;
   min-height: 300px;
-  background: var(--glass-bg); /* Fond semi-transparent */
+  background: var(--glass-bg);
   border: var(--glass-border);
   border-radius: var(--radius-lg);
   padding: 30px;
@@ -13,17 +13,17 @@
 
 .tirage-plateau.grille {
   display: grid;
-  /* On réutilise la logique de grille auto-adaptative */
   grid-template-columns: repeat(auto-fit, 120px);
+  grid-auto-rows: 160px;
   justify-content: center;
-  gap: 25px;
+  gap: 20px;
+  position: relative;
 }
 
 .tirage-plateau.circulaire {
   width: min(600px, 85vw);
   height: min(600px, 85vw);
   margin: 40px auto;
-  border-radius: 50%; /* Le plateau circulaire devient un disque visuel */
 }
 
 /* =================== CARTES DU TIRAGE =================== */

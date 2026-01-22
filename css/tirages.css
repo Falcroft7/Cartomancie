@@ -1,64 +1,63 @@
 /* =================== PLATEAU =================== */
 .tirage-plateau {
   max-width: 100%;
-  min-height: 250px;
-  border-radius: 20px;
-  padding: 15px;
-  margin: 15px auto 0 auto;
+  min-height: 300px;
+  background: var(--glass-bg); /* Fond semi-transparent */
+  border: var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  margin: 20px auto;
+  position: relative;
   transition: margin-bottom 0.4s ease;
 }
 
 .tirage-plateau.grille {
   display: grid;
+  /* On réutilise la logique de grille auto-adaptative */
   grid-template-columns: repeat(auto-fit, 120px);
   justify-content: center;
-  gap: 20px;
-  position: relative;
+  gap: 25px;
 }
 
 .tirage-plateau.circulaire {
-  position: relative;
-  width: min(600px, 90vw);
-  height: min(600px, 90vw);
-  margin: 50px auto;
+  width: min(600px, 85vw);
+  height: min(600px, 85vw);
+  margin: 40px auto;
+  border-radius: 50%; /* Le plateau circulaire devient un disque visuel */
 }
 
-/* =================== CARTES =================== */
+/* =================== CARTES DU TIRAGE =================== */
 .tirage-carte {
   text-align: center;
-  animation: carteIn 0.4s ease forwards;
+  animation: carteIn 0.5s ease forwards;
   opacity: 0;
-}
-
-.tirage-carte.grille {
-  grid-column: var(--col, auto);
-  grid-row: var(--row, auto);
+  z-index: 2;
 }
 
 .tirage-carte.offset {
   translate: var(--offsetX, 0px) var(--offsetY, 0px);
 }
 
-/* =================== IMAGE =================== */
 .tirage-carte-image {
   width: 100px;
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto 8px;
-  box-shadow:
-    0 0 15px rgba(180,140,255,0.4),
-    inset 0 0 10px rgba(255,255,255,0.05);
+  border-radius: 8px;
+  box-shadow: var(--glow-light);
+  transition: transform 0.3s ease;
 }
 
-/* =================== DESCRIPTION & EXPLICATION =================== */
+.tirage-carte:hover .tirage-carte-image {
+  transform: scale(1.1);
+  box-shadow: var(--glow-strong);
+}
+
 .tirage-explication,
 .tirage-description {
-  font-size: 0.9em;
-  margin-top: 5px;
-  color: #f1eaff;
-  line-height: 1.8;
+  color: var(--text-main);
+  background: var(--glass-bg);
+  padding: 20px;
+  border-radius: var(--radius-std);
+  border: var(--glass-border);
+  margin-top: 20px;
   text-align: center;
   white-space: pre-line;
-  word-break: break-word;
 }

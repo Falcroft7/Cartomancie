@@ -4,7 +4,7 @@ function render(html) {
 }
 
 function renderPage(title, contentHTML, backAction, description = "") {
-  const descHTML = description ? `<div class="page-description">${description}</div>` : "";
+  const descHTML = description ? `<div class="tirage-description">${description}</div>` : "";
   
   const html = `
     <a href="#" id="backBtn" class="back-btn">⬅ Retour</a>

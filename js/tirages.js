@@ -48,7 +48,10 @@ function affichTirageDetail(tirage, categorie) {
   tirage.positions.forEach((pos, i) => {
     const carte = document.createElement("div");
     carte.className = "tirage-carte";
+    const titleTopHTML = pos.titleTop ? `<div class="carte-title-top">${pos.titleTop}</div>` : "";
+    
     carte.innerHTML = `
+      ${titleTopHTML}
       <img src="Images/Dos_carte.png" class="tirage-carte-image">
       <p>${pos.label}</p>
     `;

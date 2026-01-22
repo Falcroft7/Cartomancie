@@ -78,17 +78,8 @@ function affichTirageDetail(tirage, categorie) {
     
       if (pos.offsetX !== undefined || pos.offsetY !== undefined) {
         carte.classList.add("offset");
-        
-        carte.style.position = "absolute";
-    
-        const spacingX = 120;
-        const spacingY = 120;
-    
-        const x = pos.x * spacingX + (pos.offsetX ?? 0);
-        const y = (pos.y ?? 0) * spacingY + (pos.offsetY ?? 0);
-    
-        carte.style.left = `${x}px`;
-        carte.style.top = `${y}px`;
+        carte.style.setProperty('--offsetX', `${pos.offsetX}px`);
+        carte.style.setProperty('--offsetY', `${pos.offsetY}px`);
       }
     }
 

@@ -5,6 +5,7 @@
   border-radius: 20px;
   padding: 15px;
   margin: 15px auto 0 auto;
+  transition: margin-bottom 0.4s ease;
 }
 
 .tirage-plateau.grille {

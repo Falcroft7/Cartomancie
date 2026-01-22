@@ -35,3 +35,14 @@ h3 { color: var(--text-muted); }
   box-shadow: var(--shadow-std);
   margin-bottom: 30px;
 }
+
+.home-container {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.home-container p {
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -73,15 +73,22 @@ function affichTirageDetail(tirage, categorie) {
     if (tirage.type === "Grille") {
       carte.classList.add("grille");
     
-      // Placement sur la grille
       carte.style.setProperty('--col', pos.x + 1);
       carte.style.setProperty('--row', (pos.y ?? 0) + 1);
     
-      // Si offset, ajouter transform
       if (pos.offsetX !== undefined || pos.offsetY !== undefined) {
         carte.classList.add("offset");
-        carte.style.setProperty('--offsetX', `${pos.offsetX ?? 0}px`);
-        carte.style.setProperty('--offsetY', `${pos.offsetY ?? 0}px`);
+        
+        carte.style.position = "absolute";
+    
+        const spacingX = 120;
+        const spacingY = 120;
+    
+        const x = pos.x * spacingX + (pos.offsetX ?? 0);
+        const y = (pos.y ?? 0) * spacingY + (pos.offsetY ?? 0);
+    
+        carte.style.left = `${x}px`;
+        carte.style.top = `${y}px`;
       }
     }
 
@@ -92,7 +99,6 @@ function affichTirageDetail(tirage, categorie) {
     }, 50);
   });
 
-  // === Placement circulaire ===
   if (tirage.type === "Circulaire") {
     const centerX = plateau.clientWidth / 2;
     const centerY = plateau.clientHeight / 2;

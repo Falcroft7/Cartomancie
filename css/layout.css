@@ -15,12 +15,11 @@
     display: flex;
     align-items: center;
 
-    /* Effet de flou sur le fond pour la lisibilité */
-    background: rgba(26, 22, 31, 0.85); 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(10, 17, 40, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     
-    border-bottom: 1px solid rgba(184, 134, 11, 0.2);
+    border-bottom: 1px solid rgba(241, 211, 89, 0.2); 
     margin-bottom: 20px;
 }
 

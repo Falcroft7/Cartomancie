@@ -6,21 +6,29 @@ function affichHome() {
       <h1>Explorez la magie des Arcanes</h1>
       <p>
         Le Tarot est un voyage symbolique à travers les mystères de l’existence.<br>
-        Que vous soyez débutant ou passionné, découvrez chaque carte, son énergie, sa signification et les messages qu’elle souhaite vous transmettre.
-      </p>
-      <p>
-        Choisissez votre voie :<br>
-        • commencez par la sagesse profonde des Arcanes Majeures,<br>
-        • explorez la richesse quotidienne des Arcanes Mineures,<br>
-        • ou initiez-vous aux différentes méthodes de tirage pour donner vie à vos lectures.
+        Découvrez la sagesse des cartes ou apprenez à les faire parler à travers différents tirages.
       </p>
       <div class="home-buttons">
-        <button onclick="affichListeMajor()">Arcanes Majeures</button>
-        <button onclick="affichListeMinor()">Arcanes Mineures</button>
+        <button onclick="affichChoixSignifications()">Signification des cartes</button>
         <button onclick="affichCategoriesTirages()">Méthodes de tirage</button>
       </div>
     </div>
   `);
+}
+
+/* =========== MENU INTERMÉDIAIRE : CHOIX SIGNIFICATIONS =========== */
+function affichChoixSignifications() {
+  const content = `
+    <div class="categories grid-container">
+      <button onclick="affichListeMajor()">Arcanes Majeures</button>
+      <button onclick="affichListeMinorParFamille('Coupes')">Les Coupes</button>
+      <button onclick="affichListeMinorParFamille('Bâtons')">Les Bâtons</button>
+      <button onclick="affichListeMinorParFamille('Deniers')">Les Deniers</button>
+      <button onclick="affichListeMinorParFamille('Épées')">Les Épées</button>
+    </div>
+  `;
+  
+  renderPage("Signification des cartes", content, affichHome);
 }
 
 /* =========== CREER CARTE =========== */
@@ -53,33 +61,7 @@ function affichListeArcane(liste, titre, retourFonction) {
 
 /* =========== LISTES SPÉCIFIQUES =========== */
 function affichListeMajor() {
-  affichListeArcane(listeMajors, "Arcanes Majeures", affichHome);
-}
-
-function affichListeMinor() {
-  const familles = [...new Set(listeMinors.map(a => a.Famille))];
-
-  const content = `<div class="minor-familles grid-container" id="minorFamilles"></div>`;
-  renderPage("Arcanes Mineures", content, affichHome);
-
-  const container = document.getElementById("minorFamilles");
-
-  familles.forEach(famille => {
-    const as = listeMinors.find(arcane =>
-      normalizeFamille(arcane.Famille) === normalizeFamille(famille) &&
-      arcane.Nom.toLowerCase().startsWith("as")
-    );
-
-    const bloc = document.createElement("div");
-    bloc.className = "minor-famille-card";
-    bloc.innerHTML = `
-      <img src="${as ? nomToImagePath(as) : 'Images/placeholder.png'}" alt="As de ${famille}">
-      <button>${familleToLabel(famille)}</button>
-    `;
-
-    bloc.onclick = () => affichListeMinorParFamille(famille);
-    container.appendChild(bloc);
-  });
+  affichListeArcane(listeMajors, "Arcanes Majeures", affichChoixSignifications);
 }
 
 function affichListeMinorParFamille(famille) {
@@ -87,7 +69,7 @@ function affichListeMinorParFamille(famille) {
     arcane => normalizeFamille(arcane.Famille) === normalizeFamille(famille)
   );
   
-  affichListeArcane(filtered, `Arcanes Mineures - ${famille}`, affichListeMinor);
+  affichListeArcane(filtered, `Arcanes Mineures - ${famille}`, affichChoixSignifications);
 }
 
 /* =========== FICHE ARCANE =========== */

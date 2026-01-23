@@ -27,6 +27,18 @@
     display: flex;
     margin: 0 auto 20px auto; 
   }
+
+  #menuSignifications {
+    overflow-x: auto;
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 10px;
+  }
+  
+  .minor-famille-card {
+    min-width: 140px;
+    flex: 0 0 auto;
+  }
 }
 
 @media (max-width: 480px) {

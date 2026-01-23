@@ -89,9 +89,14 @@
 /* =================== CARTES DU TIRAGE =================== */
 .tirage-carte {
   text-align: center;
-  animation: carteIn 0.6s ease-out 0.2s forwards;
   opacity: 0;
   z-index: 2;
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.tirage-carte.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .tirage-carte p {

@@ -98,8 +98,7 @@ function familleToLabel(famille) {
 /* =========== ANIMATION ETOILES =========== */
 function createStars() {
     const app = document.body;
-    // On descend à 15-20 étoiles pour tout l'écran
-    const starCount = 18; 
+    const starCount = 20; 
 
     for (let i = 0; i < starCount; i++) {
         const star = document.createElement('div');
@@ -108,10 +107,8 @@ function createStars() {
         const x = Math.random() * 100;
         const y = Math.random() * 100;
         
-        // Tailles très petites pour rester discret
-        const size = Math.random() * 1.5 + 0.5; // Entre 0.5px et 2px
+        const size = Math.random() * 1.5 + 0.5;
         
-        // Cycles très longs : une étoile met entre 7 et 15 secondes pour faire un cycle complet
         const duration = Math.random() * 8 + 7; 
         const maxOpacity = Math.random() * 0.5 + 0.2;
 
@@ -123,8 +120,6 @@ function createStars() {
         star.style.setProperty('--duration', `${duration}s`);
         star.style.setProperty('--max-opacity', maxOpacity);
         
-        // Très important : on décale massivement le début de l'animation
-        // pour qu'elles n'apparaissent pas toutes en même temps au chargement
         star.style.animationDelay = `${Math.random() * 20}s`;
 
         app.appendChild(star);

@@ -1,140 +1,74 @@
-/* =========== PAGE ACCUEIL =========== */
-function affichHome() {
-  render(`
-    <div class="home-container">
-      <img src="Images/Banner/Tarot_Banner.jpg" class="home-banner">
-      <h1>Explorez la magie des Arcanes</h1>
-      <p>
-        Le Tarot est un voyage symbolique à travers les mystères de l’existence.<br>
-        Découvrez la sagesse des cartes ou apprenez à les faire parler à travers différents tirages.
-      </p>
-      <div class="home-buttons">
-        <button onclick="affichChoixSignifications()">Signification des cartes</button>
-        <button onclick="affichCategoriesTirages()">Méthodes de tirage</button>
-      </div>
-    </div>
-  `);
-}
-
-/* =========== MENU INTERMÉDIAIRE : CHOIX SIGNIFICATIONS =========== */
-function affichChoixSignifications() {
-  const content = `
-    <div class="categories grid-container">
-      <button onclick="affichListeMajor()">Arcanes Majeures</button>
-      <button onclick="affichListeMinor('Coupes')">Les Coupes</button>
-      <button onclick="affichListeMinor('Bâtons')">Les Bâtons</button>
-      <button onclick="affichListeMinor('Deniers')">Les Deniers</button>
-      <button onclick="affichListeMinor('Épées')">Les Épées</button>
-    </div>
-  `;
-  
-  renderPage("Signification des cartes", content, affichHome);
-}
-
-/* =========== MENU INTERMÉDIAIRE : CHOIX SIGNIFICATIONS =========== */
-function affichChoixSignifications() {
-  const familles = ["Coupes", "Bâtons", "Deniers", "Épées"];
-  const content = `<div class="minor-familles grid-container" id="menuSignifications"></div>`;
-  
-  renderPage("Signification des cartes", content, affichHome);
-
-  const container = document.getElementById("menuSignifications");
-
-  const majeureArcane = listeMajors.find(a => a.Nom.toLowerCase() === "le monde") || listeMajors[0];
-  const blocMajor = creerBlocMenu(majeureArcane, "Arcanes Majeures", affichListeMajor);
-  container.appendChild(blocMajor);
-
-  familles.forEach(famille => {
-    const as = listeMinors.find(arcane => 
-      normalizeFamille(arcane.Famille) === normalizeFamille(famille) && 
-      arcane.Nom.toLowerCase().startsWith("as")
-    );
-    
-    const bloc = creerBlocMenu(as, familleToLabel(famille), () => affichListeMinor(famille));
-    container.appendChild(bloc);
-  });
-}
-
-function creerBlocMenu(arcane, label, action) {
-  const bloc = document.createElement("div");
-  bloc.className = "minor-famille-card";
-  bloc.innerHTML = `
-    <img src="${arcane ? nomToImagePath(arcane) : 'Images/placeholder.png'}" alt="${label}">
-    <button>${label}</button>
-  `;
-  bloc.onclick = action;
-  return bloc;
-}
-
-/* =========== CREER CARTE =========== */
+/* =========== CARTE INDIVIDUELLE =========== */
 function creerCarteArcane(arcane, retourAction) {
     const img = nomToImagePath(arcane);
     const card = document.createElement("div");
     card.className = "card";
+    
     const numeroAffiche = arcane.Numero ? `${arcane.Numero} - ` : "";
+    
     card.innerHTML = `
         <img src="${img}" alt="${arcane.Nom}">
         <p>${numeroAffiche}${arcane.Nom}</p>
     `;
+    
     card.onclick = () => affichArcane(arcane, retourAction);
     return card;
 }
 
-/* =========== AFFICHAGE LISTES ARCANES =========== */
+/* =========== LISTES ARCANES =========== */
 function affichListeArcane(liste, titre, retourFonction) {
-  const content = `<div id="cardsContainer" class="cards grid-container"></div>`;
-  
-  renderPage(titre, content, retourFonction);
+    const content = `<div id="cardsContainer" class="cards grid-container"></div>`;
+    
+    renderPage(titre, content, retourFonction);
 
-  const container = document.getElementById("cardsContainer");
-  
-  liste.forEach(arcane => {
-    const card = creerCarteArcane(arcane, () => affichListeArcane(liste, titre, retourFonction));
-    container.appendChild(card);
-  });
+    const container = document.getElementById("cardsContainer");
+    
+    liste.forEach(arcane => {
+        const card = creerCarteArcane(arcane, () => affichListeArcane(liste, titre, retourFonction));
+        container.appendChild(card);
+    });
 }
 
 /* =========== LISTES SPÉCIFIQUES =========== */
 function affichListeMajor() {
-  affichListeArcane(listeMajors, "Arcanes Majeures", affichChoixSignifications);
+    affichListeArcane(listeMajors, "Arcanes Majeures", affichChoixSignifications);
 }
 
 function affichListeMinor(famille) {
-  const filtered = listeMinors.filter(
-    arcane => normalizeFamille(arcane.Famille) === normalizeFamille(famille)
-  );
-  
-  affichListeArcane(filtered, `Arcanes Mineures - ${famille}`, affichChoixSignifications);
+    const filtered = listeMinors.filter(
+        arcane => normalizeFamille(arcane.Famille) === normalizeFamille(famille)
+    );
+    affichListeArcane(filtered, `Arcanes Mineures - ${famille}`, affichChoixSignifications);
 }
 
 /* =========== FICHE ARCANE =========== */
 function affichArcane(arcane, retourFonction) {
-  const img = nomToImagePath(arcane);
-  const titre = arcane.Numero && arcane.Numero.trim() 
+    const img = nomToImagePath(arcane);
+    const titre = arcane.Numero && arcane.Numero.trim() 
                 ? `${arcane.Numero} - ${arcane.Nom}` 
                 : arcane.Nom;
 
-  const content = `
-    <div class="fiche-arcane">
-      <div class="fiche-image">
-        <img src="${img}" alt="${arcane.Nom}" class="fiche-arcane-image">
-      </div>
-      <div class="fiche-significations">
-        <div class="mots-cles">
-          <h3>Mots clés</h3>
-          <p>${arcane["Mots clés"] || "Non renseigné"}</p>
+    const content = `
+        <div class="fiche-arcane">
+            <div class="fiche-image">
+                <img src="${img}" alt="${arcane.Nom}" class="fiche-arcane-image">
+            </div>
+            <div class="fiche-significations">
+                <div class="mots-cles">
+                    <h3>Mots clés</h3>
+                    <p>${arcane["Mots clés"] || "Non renseigné"}</p>
+                </div>
+                <div class="fiche-left">
+                    <h3>Signification Positive</h3>
+                    <p>${arcane["Signification Positive"] || "Non renseigné"}</p>
+                </div>
+                <div class="fiche-right">
+                    <h3>Signification Négative</h3>
+                    <p>${arcane["Signification Négative"] || "Non renseigné"}</p>
+                </div>
+            </div>
         </div>
-        <div class="fiche-left">
-          <h3>Signification Positive</h3>
-          <p>${arcane["Signification Positive"] || "Non renseigné"}</p>
-        </div>
-        <div class="fiche-right">
-          <h3>Signification Négative</h3>
-          <p>${arcane["Signification Négative"] || "Non renseigné"}</p>
-        </div>
-      </div>
-    </div>
-  `;
+    `;
 
-  renderPage(titre, content, retourFonction);
+    renderPage(titre, content, retourFonction);
 }

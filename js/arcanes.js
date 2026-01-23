@@ -21,10 +21,10 @@ function affichChoixSignifications() {
   const content = `
     <div class="categories grid-container">
       <button onclick="affichListeMajor()">Arcanes Majeures</button>
-      <button onclick="affichListeMinorParFamille('Coupes')">Les Coupes</button>
-      <button onclick="affichListeMinorParFamille('Bâtons')">Les Bâtons</button>
-      <button onclick="affichListeMinorParFamille('Deniers')">Les Deniers</button>
-      <button onclick="affichListeMinorParFamille('Épées')">Les Épées</button>
+      <button onclick="affichListeMinor('Coupes')">Les Coupes</button>
+      <button onclick="affichListeMinor('Bâtons')">Les Bâtons</button>
+      <button onclick="affichListeMinor('Deniers')">Les Deniers</button>
+      <button onclick="affichListeMinor('Épées')">Les Épées</button>
     </div>
   `;
   
@@ -64,7 +64,7 @@ function affichListeMajor() {
   affichListeArcane(listeMajors, "Arcanes Majeures", affichChoixSignifications);
 }
 
-function affichListeMinorParFamille(famille) {
+function affichListeMinor(famille) {
   const filtered = listeMinors.filter(
     arcane => normalizeFamille(arcane.Famille) === normalizeFamille(famille)
   );

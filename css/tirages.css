@@ -46,7 +46,7 @@
   font-weight: bold;
   color: var(--primary);
   margin-bottom: 12px;
-  letter-spacing: 1px;
+  letter-spacing: 0px;
   text-transform: uppercase;
   text-shadow: 0 0 10px rgba(188, 167, 255, 0.3);
 }

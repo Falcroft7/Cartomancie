@@ -1,33 +1,51 @@
 /* =========== CATEGORIES =========== */
 function affichCategoriesTirages() {
   const categories = Object.keys(tiragesCategorie);
+  const content = `<div id="accordionContainer" class="accordion-container"></div>`;
   
-  const content = `<div id="categoriesContainer" class="categories grid-container"></div>`;
-  
-  renderPage("Choisissez une catégorie", content, affichHome);
+  renderPage("Méthodes de tirage", content, affichHome);
 
-  const container = document.getElementById("categoriesContainer");
+  const container = document.getElementById("accordionContainer");
+
   categories.forEach(cat => {
+    const tirages = tiragesCategorie[cat] || [];
+    
+    const catBlock = document.createElement("div");
+    catBlock.className = "accordion-item";
+
     const btn = document.createElement("button");
-    btn.textContent = cat;
-    btn.onclick = () => affichTirages(cat);
-    container.appendChild(btn);
-  });
-}
+    btn.className = "accordion-header";
+    btn.innerHTML = `${cat} <span class="arrow">▼</span>`;
+    
+    const panel = document.createElement("div");
+    panel.className = "accordion-panel";
+    
+    tirages.forEach(tirage => {
+      const tirageBtn = document.createElement("button");
+      tirageBtn.className = "tirage-link-btn";
+      tirageBtn.textContent = tirage.nom;
+      tirageBtn.onclick = () => affichTirageDetail(tirage, cat);
+      panel.appendChild(tirageBtn);
+    });
 
-/* =========== LISTES =========== */
-function affichTirages(categorie) {
-  const tirages = tiragesCategorie[categorie] || [];
-  const content = `<div id="tiragesContainer" class="tirages grid-container"></div>`;
+    btn.onclick = () => {
+      const allPanels = document.querySelectorAll('.accordion-panel');
+      const allArrows = document.querySelectorAll('.arrow');
+      
+      const isOpen = panel.style.maxHeight;
 
-  renderPage(`Tirages - ${categorie}`, content, affichCategoriesTirages);
+      allPanels.forEach(p => p.style.maxHeight = null);
+      allArrows.forEach(a => a.style.transform = "rotate(0deg)");
 
-  const container = document.getElementById("tiragesContainer");
-  tirages.forEach(tirage => {
-    const btn = document.createElement("button");
-    btn.textContent = tirage.nom;
-    btn.onclick = () => affichTirageDetail(tirage, categorie);
-    container.appendChild(btn);
+      if (!isOpen) {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        btn.querySelector(".arrow").style.transform = "rotate(180deg)";
+      }
+    };
+
+    catBlock.appendChild(btn);
+    catBlock.appendChild(panel);
+    container.appendChild(catBlock);
   });
 }
 
@@ -38,7 +56,7 @@ function affichTirageDetail(tirage, categorie) {
     <div class="tirage-explication">${tirage.explication}</div>
   `;
 
-  renderPage(tirage.nom, content, () => affichTirages(categorie), tirage.description);
+  renderPage(tirage.nom, content, affichCategoriesTirages, tirage.description);
 
   const plateau = document.querySelector(".tirage-plateau");
   plateau.className = "tirage-plateau " + tirage.type.toLowerCase();

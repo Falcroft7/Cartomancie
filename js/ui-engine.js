@@ -3,10 +3,9 @@ function render(html) {
   const appContainer = document.getElementById("app");
   if (appContainer) {
     appContainer.classList.remove("fade-in");
+    void appContainer.offsetWidth;
     appContainer.innerHTML = html;
-    requestAnimationFrame(() => {
-      appContainer.classList.add("fade-in");
-    });
+    appContainer.classList.add("fade-in");
   }
 }
 

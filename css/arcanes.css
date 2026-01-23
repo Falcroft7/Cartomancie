@@ -28,33 +28,20 @@
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  transition: transform 0.3s ease;
 }
 
 .minor-famille-card img {
   width: 100px;
-  max-width: 130px;
   height: auto;
   border-radius: var(--radius-std);
   box-shadow: var(--glow-light);
   margin-bottom: 15px;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.minor-famille-card:hover {
-  transform: translateY(-5px);
+  transition: all 0.3s ease;
 }
 
 .minor-famille-card:hover img {
   box-shadow: var(--glow-strong);
   transform: scale(1.05);
-}
-
-.minor-famille-card button {
-  width: 100%;
-  max-width: 180px;
-  padding: 8px 5px;
-  font-size: 0.8em;
 }
 
 /* =============== FICHE ARCANE DÉTAILLÉE =============== */
@@ -63,10 +50,6 @@
   grid-template-columns: minmax(250px, 1fr) 2fr;
   gap: 40px;
   margin-top: 30px;
-}
-
-.fiche-image {
-  text-align: center;
 }
 
 .fiche-arcane-image {
@@ -88,5 +71,3 @@
 .mots-cles { border-left: 4px solid var(--primary); }
 .fiche-left { border-left: 4px solid #6fd6a3; }
 .fiche-right { border-left: 4px solid #e08a9c; }
-
-h3::before { content: "✧ "; color: var(--primary); opacity: 0.8; }

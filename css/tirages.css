@@ -83,7 +83,7 @@
 .tirage-plateau.circulaire {
   width: min(600px, 85vw);
   height: min(600px, 85vw);
-  margin: 40px auto;
+  margin: 20px auto;
 }
 
 /* =================== CARTES DU TIRAGE =================== */

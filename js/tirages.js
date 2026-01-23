@@ -9,7 +9,6 @@ function affichCategoriesTirages(categoryToOpen = null) {
 
   categories.forEach(cat => {
     const tirages = tiragesCategorie[cat] || [];
-    
     const catBlock = document.createElement("div");
     catBlock.className = "accordion-item";
 
@@ -36,7 +35,6 @@ function affichCategoriesTirages(categoryToOpen = null) {
     btn.onclick = () => {
       const allPanels = document.querySelectorAll('.accordion-panel');
       const allArrows = document.querySelectorAll('.arrow');
-      
       const isOpen = panel.style.maxHeight;
 
       allPanels.forEach(p => p.style.maxHeight = null);
@@ -46,7 +44,7 @@ function affichCategoriesTirages(categoryToOpen = null) {
     };
 
     if (categoryToOpen === cat) {
-      setTimeout(openPanel, 10);
+        setTimeout(openPanel, 10);
     }
 
     catBlock.appendChild(btn);
@@ -55,7 +53,7 @@ function affichCategoriesTirages(categoryToOpen = null) {
   });
 }
 
-/* =========== DETAILS =========== */
+/* =========== PLATEAU DE TIRAGE =========== */
 function affichTirageDetail(tirage, categorie) {
   const content = `
     <div class="tirage-plateau"></div>
@@ -100,9 +98,7 @@ function affichTirageDetail(tirage, categorie) {
     setTimeout(() => { carte.style.opacity = "1"; }, 50);
   });
 
-  if (maxOffsetY > 0) {
-    plateau.style.marginBottom = `${maxOffsetY}px`;
-  }
+  if (maxOffsetY > 0) plateau.style.marginBottom = `${maxOffsetY}px`;
 
   if (tirage.type === "Circulaire") {
     const centerX = plateau.clientWidth / 2;

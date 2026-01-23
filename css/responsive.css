@@ -40,6 +40,25 @@
     min-width: 140px;
     flex: 0 0 auto;
   }
+
+  .tirage-plateau.circulaire {
+    width: min(450px, 90vw);
+    height: min(450px, 90vw);
+    margin: 10px auto;
+  }
+
+  .tirage-carte-image {
+    width: 65px;
+  }
+
+  .tirage-carte-title-top {
+    font-size: 0.8em;
+    margin-bottom: 5px;
+  }
+
+  .tirage-carte p {
+    font-size: 0.7em;
+  }
 }
 
 @media (max-width: 480px) {
@@ -53,5 +72,14 @@
     width: 100%;
     max-width: 250px;
     font-size: 0.8em;
+  }
+
+  .tirage-plateau.circulaire {
+    width: min(320px, 95vw);
+    height: min(320px, 95vw);
+  }
+
+  .tirage-carte-image {
+    width: 50px;
   }
 }

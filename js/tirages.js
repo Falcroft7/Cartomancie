@@ -1,5 +1,5 @@
 /* =========== CATEGORIES =========== */
-function affichCategoriesTirages() {
+function affichCategoriesTirages(categoryToOpen = null) {
   const categories = Object.keys(tiragesCategorie);
   const content = `<div id="accordionContainer" class="accordion-container"></div>`;
   
@@ -28,6 +28,11 @@ function affichCategoriesTirages() {
       panel.appendChild(tirageBtn);
     });
 
+    const openPanel = () => {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+      btn.querySelector(".arrow").style.transform = "rotate(180deg)";
+    };
+    
     btn.onclick = () => {
       const allPanels = document.querySelectorAll('.accordion-panel');
       const allArrows = document.querySelectorAll('.arrow');
@@ -37,11 +42,12 @@ function affichCategoriesTirages() {
       allPanels.forEach(p => p.style.maxHeight = null);
       allArrows.forEach(a => a.style.transform = "rotate(0deg)");
 
-      if (!isOpen) {
-        panel.style.maxHeight = panel.scrollHeight + "px";
-        btn.querySelector(".arrow").style.transform = "rotate(180deg)";
-      }
+      if (!isOpen) openPanel();
     };
+
+    if (categoryToOpen === cat) {
+      setTimeout(openPanel, 10);
+    }
 
     catBlock.appendChild(btn);
     catBlock.appendChild(panel);
@@ -56,7 +62,7 @@ function affichTirageDetail(tirage, categorie) {
     <div class="tirage-explication">${tirage.explication}</div>
   `;
 
-  renderPage(tirage.nom, content, affichCategoriesTirages, tirage.description);
+  renderPage(tirage.nom, content, () => affichCategoriesTirages(categorie), tirage.description);
 
   const plateau = document.querySelector(".tirage-plateau");
   plateau.className = "tirage-plateau " + tirage.type.toLowerCase();

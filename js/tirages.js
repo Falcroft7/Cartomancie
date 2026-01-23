@@ -107,7 +107,7 @@ function affichTirageDetail(tirage, categorie) {
   if (tirage.type === "Circulaire") {
     const centerX = plateau.clientWidth / 2;
     const centerY = plateau.clientHeight / 2;
-    const radius = Math.min(centerX, centerY) - 80;
+    const radius = Math.min(centerX, centerY) - 120;
     const n = tirage.positions.length;
     const startAngle = -90;
     const angleStep = 360 / n;

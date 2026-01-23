@@ -1,73 +1,10 @@
-/* =================== ACCORDEON =================== */
-.accordion-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.accordion-header {
-  width: 100%;
-  background: var(--glass-bg);
-  border: 1px solid var(--text-muted) !important;
-  color: var(--text-main);
-  padding: 15px 20px !important;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1.1em;
-  transition: 0.3s;
-}
-
-.accordion-header:hover {
-  border-color: var(--primary) !important;
-  background: rgba(188, 167, 255, 0.1);
-}
-
-.arrow {
-  transition: transform 0.3s;
-  font-size: 0.8em;
-  color: var(--primary);
-}
-
-.accordion-panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
-  background: rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  border-radius: 0 0 8px 8px;
-}
-
-.tirage-link-btn {
-  background: transparent !important;
-  border: none !important;
-  border-left: 3px solid transparent !important;
-  color: var(--text-muted);
-  text-align: left !important;
-  padding: 12px 30px !important;
-  width: 100%;
-  font-size: 1em;
-  justify-content: flex-start !important;
-}
-
-.tirage-link-btn:hover {
-  color: var(--primary);
-  border-left: 3px solid var(--primary) !important;
-  background: rgba(188, 167, 255, 0.05) !important;
-}
-
 /* =================== PLATEAU =================== */
 .tirage-plateau {
   max-width: 100%;
   min-height: 200px;
-  border-radius: var(--radius-lg);
   padding: 30px;
   margin: 20px auto;
   position: relative;
-  transition: margin-bottom 0.4s ease;
 }
 
 .tirage-plateau.grille {
@@ -92,11 +29,12 @@
   opacity: 0;
   z-index: 2;
   transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  transform: translateY(-20px) scale(0.9);
 }
 
 .tirage-carte.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 .tirage-carte p {
@@ -135,6 +73,7 @@
   box-shadow: var(--glow-strong);
 }
 
+/* =============== TEXTES D'EXPLICATION =========== */
 .tirage-explication,
 .tirage-description {
   color: var(--text-main);

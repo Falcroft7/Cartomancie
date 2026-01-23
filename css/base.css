@@ -1,7 +1,7 @@
 :root {
   /* Couleurs de base */
   --bg-dark: #020617;
-  --bg-gradient: radial-gradient(circle at top, #0f172a, transparent 6%),
+  --bg-gradient: radial-gradient(circle at top, #0f172a, transparent 60%),
                   radial-gradient(circle at bottom, #020617, transparent 60%),
                   #020617;
   

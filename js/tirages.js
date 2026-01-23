@@ -95,7 +95,9 @@ function affichTirageDetail(tirage, categorie) {
     }
 
     plateau.appendChild(carte);
-    setTimeout(() => { carte.style.opacity = "1"; }, 50);
+    setTimeout(() => { 
+      carte.classList.add("visible"); 
+    }, 100 + (i * 50));
   });
 
   if (maxOffsetY > 0) plateau.style.marginBottom = `${maxOffsetY}px`;

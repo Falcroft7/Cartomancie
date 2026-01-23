@@ -30,18 +30,25 @@ h2 {
 }
 h3 { color: var(--text-muted); }
 
-/* =============== PAGE HEADER (BACK BTN + TITRE) =============== */
-.page-header {
+/* =============== PAGE HEADER =============== */
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  padding: 15px 20px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 10px; 
+  align-items: center;
+
+  background: rgba(26, 22, 31, 0.8); 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  border-bottom: 1px solid rgba(184, 134, 11, 0.2);
+  margin-bottom: 20px;
 }
 
-.page-header h2 {
-  width: 100%;
-  text-align: center;
-  margin-top: 5px;
+.page-content {
+  padding: 0 20px;
 }
 
 /* =============== HOME PAGE =============== */

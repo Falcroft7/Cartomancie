@@ -2,7 +2,11 @@
 function render(html) {
   const appContainer = document.getElementById("app");
   if (appContainer) {
+    appContainer.classList.remove("fade-in");
     appContainer.innerHTML = html;
+    requestAnimationFrame(() => {
+      appContainer.classList.add("fade-in");
+    });
   }
 }
 

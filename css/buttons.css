@@ -24,7 +24,7 @@ button, .back-btn {
   font-size: 0.85em;
   letter-spacing: 1px;
   display: inline-flex;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   align-self: flex-start;
 }
 

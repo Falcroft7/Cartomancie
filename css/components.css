@@ -1,1 +1,170 @@
+/* --- SOCLE COMMUN DES BOUTONS --- */
+button, .back-btn {
+    font-family: 'Cinzel', serif;
+    cursor: pointer;
+    border-radius: var(--radius-std);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-sizing: border-box;
+    outline: none;
+}
 
+button:focus-visible, .back-btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+}
+
+/* --- 1. BOUTON RETOUR (STYLE OR LUNAIRE) --- */
+.back-btn {
+    background: linear-gradient(145deg, #b8860b, #f1d359);
+    color: #1a161f !important;
+    padding: 10px 22px;
+    box-shadow: 0 4px 15px rgba(184, 134, 11, 0.4);
+    font-weight: bold;
+    border: 1px solid #d4af37;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 1px;
+}
+
+.back-btn:hover {
+    background: linear-gradient(145deg, #f1d359, #b8860b);
+    box-shadow: 0 0 20px rgba(241, 211, 89, 0.6);
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* --- 2. BOUTONS DE LA PAGE D'ACCUEIL --- */
+.home-buttons {
+    display: flex;
+    gap: 35px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 45px;
+    padding: 0 20px;
+}
+
+.home-buttons button {
+    background: var(--glass-bg);
+    border: 1px solid var(--text-muted);
+    color: var(--text-main);
+    padding: 16px 10px;
+    width: 320px;
+    min-width: 320px;
+    backdrop-filter: blur(4px);
+    font-size: 1.1em;
+    letter-spacing: 0.5px;
+    box-shadow: var(--glow-light);
+    white-space: nowrap;
+}
+
+.home-buttons button:hover {
+    border-color: var(--primary);
+    background: rgba(188, 167, 255, 0.15);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: var(--glow-strong);
+}
+
+/* --- 3. BOUTONS D'ACTION (STYLE VIOLET/MYSTIQUE) --- */
+.categories button, .tirages button {
+    background: linear-gradient(145deg, var(--primary-glow), var(--primary));
+    color: #1a161f;
+    padding: 14px 24px;
+    min-width: 200px;
+    box-shadow: var(--shadow-std);
+    font-weight: bold;
+    font-size: 1.05em;
+}
+
+.categories button:hover, .tirages button:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--glow-strong);
+    filter: brightness(1.1);
+}
+
+.categories button::after, .tirages button::after {
+    content: "✧";
+    margin-left: 10px;
+    opacity: 0.7;
+}
+
+/* --- 4. BOUTONS DES FAMILLES (CARTES MINEURES) --- */
+.minor-famille-card button {
+    background: var(--glass-bg);
+    border: 1px solid var(--text-muted);
+    color: var(--text-main);
+    padding: 12px 20px;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 0.8em;
+}
+
+.minor-famille-card button:hover {
+    border-color: var(--primary);
+    background: var(--secondary);
+    box-shadow: var(--glow-light);
+}
+
+/* --- 5. SYSTÈME D'ACCORDÉON (TIRAGES) --- */
+.accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.accordion-header {
+    width: 100%;
+    background: var(--glass-bg);
+    border: 1px solid var(--text-muted) !important;
+    color: var(--text-main);
+    padding: 15px 20px !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1em;
+}
+
+.accordion-header:hover {
+    border-color: var(--primary) !important;
+    background: rgba(188, 167, 255, 0.1);
+}
+
+.arrow {
+    transition: transform 0.3s;
+    font-size: 0.8em;
+    color: var(--primary);
+}
+
+.accordion-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 0 8px 8px;
+}
+
+/* Liens à l'intérieur de l'accordéon */
+.tirage-link-btn {
+    background: transparent !important;
+    border: none !important;
+    border-left: 3px solid transparent !important;
+    color: var(--text-muted);
+    text-align: left !important;
+    padding: 12px 30px !important;
+    width: 100%;
+    font-size: 1em;
+    justify-content: flex-start !important;
+}
+
+.tirage-link-btn:hover {
+    color: var(--primary);
+    border-left: 3px solid var(--primary) !important;
+    background: rgba(188, 167, 255, 0.05) !important;
+}

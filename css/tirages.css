@@ -37,20 +37,38 @@
   transform: translateY(0) scale(1);
 }
 
-.tirage-carte.horizontal .tirage-carte-image {
-  transform: rotate(90deg);
-  margin: 20px auto; 
-}
-
-.tirage-carte.horizontal:hover .tirage-carte-image {
-  transform: rotate(90deg) scale(1.1) !important;
-}
-
 .tirage-carte p {
   margin: 4px 0 0 0;
   font-size: 0.85em;
   line-height: 1.2;
   color: var(--text-muted);
+}
+
+.tirage-carte.horizontal {
+  position: relative;
+}
+
+.tirage-carte.horizontal p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 !important;
+  width: 100%;
+  z-index: 5;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.tirage-carte.horizontal .tirage-carte-image {
+  transform: rotate(90deg);
+  margin: 0 auto; 
+}
+
+.tirage-carte.horizontal:hover .tirage-carte-image {
+  transform: rotate(90deg) scale(1.1) !important;
 }
 
 .tirage-carte-title-top {

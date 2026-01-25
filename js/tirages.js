@@ -55,9 +55,14 @@ function affichCategoriesTirages(categoryToOpen = null) {
 
 /* =========== PLATEAU DE TIRAGE =========== */
 function affichTirageDetail(tirage, categorie) {
+  const formatExplication = (texte) => {
+    if (!texte) return "";
+    return texte.replace(/^([^:\n]+):/gm, '<strong>$1 :</strong>');
+  };
+
   const content = `
     <div class="tirage-plateau"></div>
-    <div class="tirage-explication">${tirage.explication}</div>
+    <div class="tirage-explication">${formatExplication(tirage.explication)}</div>
   `;
 
   renderPage(tirage.nom, content, () => affichCategoriesTirages(categorie), tirage.description);

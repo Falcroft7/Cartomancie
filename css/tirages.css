@@ -37,6 +37,15 @@
   transform: translateY(0) scale(1);
 }
 
+.tirage-carte.horizontal .tirage-carte-image {
+  transform: rotate(90deg);
+  margin: 20px auto; 
+}
+
+.tirage-carte.horizontal:hover .tirage-carte-image {
+  transform: rotate(90deg) scale(1.1) !important;
+}
+
 .tirage-carte p {
   margin: 4px 0 0 0;
   font-size: 0.85em;

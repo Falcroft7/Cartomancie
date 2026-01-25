@@ -78,6 +78,7 @@ function affichTirageDetail(tirage, categorie) {
 
     if (pos.horizontal === "true" || pos.horizontal === true) {
       carte.classList.add("horizontal");
+      carte.style.zIndex = "10";
     }
     
     const titleTopHTML = pos.titleTop ? `<div class="tirage-carte-title-top">${pos.titleTop}</div>` : "";

@@ -86,3 +86,9 @@
   white-space: pre-line;
   line-height: 1.5;
 }
+
+.tirage-explication strong {
+  color: var(--primary);
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.5px;
+}

@@ -4,20 +4,33 @@
     padding: 20px; 
   }
 
-  .fiche-arcane {
-    grid-template-columns: 120px 1fr;
-    gap: 20px;
+  div.fiche-arcane {
+    display: grid !important;
+    grid-template-columns: 150px 1fr !important; 
+    grid-template-rows: auto;
+    gap: 25px;
     align-items: start;
   }
 
+  .fiche-significations {
+    grid-column: 2;
+    width: 100%;
+  }
+
   .fiche-arcane-image {
-    max-width: 120px;
-    box-shadow: var(--glow-light);
+    width: 100%;
+    max-width: 150px !important;
+    height: auto;
   }
 
   .fiche-columns {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr !important;
     gap: 15px;
+  }
+
+  .mots-cles h3, .fiche-left h3, .fiche-right h3 {
+    margin-top: 0;
+    font-size: 1.1em;
   }
 
   .home-buttons {

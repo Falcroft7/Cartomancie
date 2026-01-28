@@ -133,6 +133,6 @@ function affichTirageDetail(tirage, categorie) {
         carte.style.top  = `${centerY + radius * Math.sin(angleRad) - 80}px`;
         carte.style.margin = "0";
       });
-    }
+    }, 50);
   }
 }

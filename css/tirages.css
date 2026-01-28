@@ -20,7 +20,6 @@
 .tirage-plateau.circulaire {
   width: min(600px, 85vw);
   height: min(600px, 85vw);
-  margin: 20px auto;
 }
 
 .tirage-plateau.circulaire .tirage-carte {

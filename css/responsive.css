@@ -32,7 +32,7 @@
 
   .fiche-columns {
     grid-template-columns: 1fr !important;
-    /* gap: 15px; */
+    gap: 0;
   }
 
   .mots-cles h3, .fiche-left h3, .fiche-right h3 {

@@ -110,7 +110,12 @@
     justify-items: center;
   }
 
+  .fiche-image {
+    margin-top: 0;
+  }
+
   .fiche-arcane-image {
+    transform: none;
     max-width: 200px;
   }
 

@@ -78,7 +78,6 @@ function affichTirageDetail(tirage, categorie) {
 
     if (pos.horizontal === "true" || pos.horizontal === true) {
       carte.classList.add("horizontal");
-      carte.style.zIndex = "10";
     }
     
     const titleTopHTML = pos.titleTop ? `<div class="tirage-carte-title-top">${pos.titleTop}</div>` : "";
@@ -111,12 +110,7 @@ function affichTirageDetail(tirage, categorie) {
     }, 200 + (i * 500));
   });
 
-  /* if (maxOffsetY > 0) plateau.style.marginBottom = `${maxOffsetY}px`; */
-
   if (tirage.type === "Circulaire") {
-    plateau.style.position = "relative";
-    plateau.style.display = "block";
-
     setTimeout(() => {
       const centerX = plateau.clientWidth / 2;
       const centerY = plateau.clientHeight / 2;

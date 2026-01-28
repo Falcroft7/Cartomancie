@@ -85,25 +85,18 @@ function affichTirageDetail(tirage, categorie) {
     `;
 
     if (tirage.type === "Grille") {
-      carte.classList.add("grille");
-      carte.style.gridColumn = pos.x + 1;
-      carte.style.gridRow = (pos.y ?? 0) + 1;
+      carte.style.gridColumn = (pos.x || 0) + 1;
+      carte.style.gridRow = (pos.y || 0) + 1;
       
-      const offX = parseFloat(pos.offsetX) || 0;
-      const offY = parseFloat(pos.offsetY) || 0;
-      if (offY > maxOffsetY) maxOffsetY = offY;
-
-      if (offX !== 0 || offY !== 0) {
+      if (pos.offsetX || pos.offsetY) {
         carte.classList.add("offset");
-        carte.style.setProperty('--offsetX', `${offX}px`);
-        carte.style.setProperty('--offsetY', `${offY}px`);
+        carte.style.setProperty('--offsetX', `${pos.offsetX || 0}px`);
+        carte.style.setProperty('--offsetY', `${pos.offsetY || 0}px`);
       }
     }
 
     plateau.appendChild(carte);
-    setTimeout(() => { 
-      carte.classList.add("visible"); 
-    }, 200 + (i * 500));
+    setTimeout(() => carte.classList.add("visible"), 200 + (i * 300));
   });
 
   if (tirage.type === "Circulaire") {
@@ -112,13 +105,10 @@ function affichTirageDetail(tirage, categorie) {
       const centerY = plateau.clientHeight / 2;
       const radius = Math.min(centerX, centerY) * 0.7;
       const n = tirage.positions.length;
-      const startAngle = -90;
       const angleStep = 360 / n;
   
-      tirage.positions.forEach((pos, i) => {
-        const carte = plateau.children[i];
-        const angleRad = ((startAngle + i * angleStep) * Math.PI) / 180;
-        carte.style.position = "absolute";
+      Array.from(plateau.children).forEach((carte, i) => {
+        const angleRad = ((-90 + i * angleStep) * Math.PI) / 180;
         carte.style.left = `${centerX + radius * Math.cos(angleRad)}px`;
         carte.style.top  = `${centerY + radius * Math.sin(angleRad)}px`;
       });

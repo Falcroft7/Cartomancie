@@ -17,15 +17,22 @@
     width: 100%;
   }
 
+  .fiche-image {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+  }
+  
   .fiche-arcane-image {
     width: 100%;
     max-width: 150px !important;
     height: auto;
+    transform: rotate(-2deg);
   }
 
   .fiche-columns {
     grid-template-columns: 1fr !important;
-    gap: 15px;
+    /* gap: 15px; */
   }
 
   .mots-cles h3, .fiche-left h3, .fiche-right h3 {

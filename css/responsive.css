@@ -5,9 +5,19 @@
   }
 
   .fiche-arcane {
-    grid-template-columns: 1fr;
-    justify-items: center;
+    grid-template-columns: 120px 1fr;
     gap: 20px;
+    align-items: start;
+  }
+
+  .fiche-arcane-image {
+    max-width: 120px;
+    box-shadow: var(--glow-light);
+  }
+
+  .fiche-columns {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
   }
 
   .home-buttons {
@@ -75,6 +85,19 @@
     gap: 15px; 
   }
 
+  .fiche-arcane {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .fiche-arcane-image {
+    max-width: 200px;
+  }
+
+  .fiche-columns {
+    grid-template-columns: 1fr;
+  }
+  
   .back-btn {
     width: 100%;
     max-width: 250px;

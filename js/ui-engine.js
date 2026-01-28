@@ -47,8 +47,8 @@ function nomToImagePath(arcane) {
     return str
       .toLowerCase()
       .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "") // enlève les accents
-      .replace(/'/g, "")                // enlève les apostrophes
+      .replace(/[\u0300-\u036f]/g, "")  // enlève les accents
+      .replace(/['’‘]/g, "")            // enlève les apostrophes
       .replace(/-/g, "_")               // remplace tirets par underscore
       .replace(/ /g, "_");              // remplace espaces par underscore
   }
@@ -97,33 +97,38 @@ function familleToLabel(famille) {
 
 /* =========== ANIMATION ETOILES =========== */
 function createStars() {
-    const app = document.body;
-    const starCount = 20; 
+  if (document.getElementById('stars-container')) return;
+  
+  const starsContainer = document.createElement('div');
+  starsContainer.id = 'stars-container';
+  document.body.appendChild(starsContainer);
 
-    for (let i = 0; i < starCount; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        
-        const x = Math.random() * 100;
-        const y = Math.random() * 100;
-        
-        const size = Math.random() * 1.5 + 0.5;
-        
-        const duration = Math.random() * 8 + 7; 
-        const maxOpacity = Math.random() * 0.5 + 0.2;
+  const starCount = 20;
 
-        star.style.left = `${x}%`;
-        star.style.top = `${y}%`;
-        star.style.width = `${size}px`;
-        star.style.height = `${size}px`;
-        
-        star.style.setProperty('--duration', `${duration}s`);
-        star.style.setProperty('--max-opacity', maxOpacity);
-        
-        star.style.animationDelay = `${Math.random() * 20}s`;
+  for (let i = 0; i < starCount; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    
+    const x = Math.random() * 100;
+    const y = Math.random() * 100;
+    
+    const size = Math.random() * 1.5 + 0.5;
+    
+    const duration = Math.random() * 8 + 7; 
+    const maxOpacity = Math.random() * 0.5 + 0.2;
 
-        app.appendChild(star);
-    }
+    star.style.left = `${x}%`;
+    star.style.top = `${y}%`;
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+    
+    star.style.setProperty('--duration', `${duration}s`);
+    star.style.setProperty('--max-opacity', maxOpacity);
+    
+    star.style.animationDelay = `${Math.random() * 20}s`;
+
+    starsContainer.appendChild(star);
+  }
 }
 
 window.addEventListener('DOMContentLoaded', createStars);

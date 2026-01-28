@@ -1,4 +1,5 @@
 @media (max-width: 850px) {
+  /* Pour les tablettes */
   #app { 
     padding: 20px; 
   }
@@ -41,6 +42,12 @@
     flex: 0 0 auto;
   }
 
+  .tirage-plateau.grille {
+    grid-template-columns: repeat(auto-fit, 70px);
+    gap: 15px;
+    padding: 10px;
+  }
+  
   .tirage-plateau.circulaire {
     width: min(450px, 90vw);
     height: min(450px, 90vw);

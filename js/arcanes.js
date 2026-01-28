@@ -48,6 +48,16 @@ function affichArcane(arcane, retourFonction) {
                 ? `${arcane.Numero} - ${arcane.Nom}` 
                 : arcane.Nom;
 
+    const formatList = (txt) => {
+        if (!txt || txt === "Non renseigné") return txt;
+        return txt.split(/[,;]/).map(item => item.trim()).join('<br>');
+    };
+
+    const formatBadges = (txt) => {
+        if (!txt || txt === "Non renseigné") return txt;
+        return txt.split(/[,;]/).map(item => `<span class="badge-mot">${item.trim()}</span>`).join('');
+    };
+
     const content = `
         <div class="fiche-arcane">
             <div class="fiche-image">
@@ -56,15 +66,17 @@ function affichArcane(arcane, retourFonction) {
             <div class="fiche-significations">
                 <div class="mots-cles">
                     <h3>Mots clés</h3>
-                    <p>${arcane["Mots clés"] || "Non renseigné"}</p>
+                    <div class="badges-wrapper">${formatBadges(arcane["Mots clés"])}</div>
                 </div>
-                <div class="fiche-left">
-                    <h3>Signification Positive</h3>
-                    <p>${arcane["Signification Positive"] || "Non renseigné"}</p>
-                </div>
-                <div class="fiche-right">
-                    <h3>Signification Négative</h3>
-                    <p>${arcane["Signification Négative"] || "Non renseigné"}</p>
+                <div class="fiche-columns">
+                    <div class="fiche-left">
+                        <h3>Signification Positive</h3>
+                        <p>${formatList(arcane["Signification Positive"])}</p>
+                    </div>
+                    <div class="fiche-right">
+                        <h3>Signification Négative</h3>
+                        <p>${formatList(arcane["Signification Négative"])}</p>
+                    </div>
                 </div>
             </div>
         </div>

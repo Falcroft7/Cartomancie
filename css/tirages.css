@@ -23,6 +23,17 @@
   margin: 20px auto;
 }
 
+.tirage-plateau.circulaire .tirage-carte {
+  position: absolute;
+  transform: translate(-50%, -50%) translateY(-20px) scale(0.9);
+  margin: 0;
+}
+
+.tirage-plateau.circulaire .tirage-carte.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) translateY(0) scale(1);
+}
+
 /* =================== CARTES DU TIRAGE =================== */
 .tirage-carte {
   text-align: center;

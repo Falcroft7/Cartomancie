@@ -111,7 +111,7 @@ function affichTirageDetail(tirage, categorie) {
     }, 200 + (i * 500));
   });
 
-  if (maxOffsetY > 0) plateau.style.marginBottom = `${maxOffsetY}px`;
+  /* if (maxOffsetY > 0) plateau.style.marginBottom = `${maxOffsetY}px`; */ 
 
   if (tirage.type === "Circulaire") {
     plateau.style.position = "relative";

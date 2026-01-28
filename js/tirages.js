@@ -70,15 +70,11 @@ function affichTirageDetail(tirage, categorie) {
   const plateau = document.querySelector(".tirage-plateau");
   plateau.className = "tirage-plateau " + tirage.type.toLowerCase();
 
-  let maxOffsetY = 0;
-
   tirage.positions.forEach((pos, i) => {
     const carte = document.createElement("div");
     carte.className = "tirage-carte";
 
-    if (pos.horizontal === "true" || pos.horizontal === true) {
-      carte.classList.add("horizontal");
-    }
+    if (pos.horizontal === "true" || pos.horizontal === true) carte.classList.add("horizontal");
     
     const titleTopHTML = pos.titleTop ? `<div class="tirage-carte-title-top">${pos.titleTop}</div>` : "";
     

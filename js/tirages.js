@@ -129,9 +129,8 @@ function affichTirageDetail(tirage, categorie) {
         const carte = plateau.children[i];
         const angleRad = ((startAngle + i * angleStep) * Math.PI) / 180;
         carte.style.position = "absolute";
-        carte.style.left = `${centerX + radius * Math.cos(angleRad) - 45}px`;
-        carte.style.top  = `${centerY + radius * Math.sin(angleRad) - 80}px`;
-        carte.style.margin = "0";
+        carte.style.left = `${centerX + radius * Math.cos(angleRad)}px`;
+        carte.style.top  = `${centerY + radius * Math.sin(angleRad)}px`;
       });
     }, 50);
   }

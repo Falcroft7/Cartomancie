@@ -67,34 +67,37 @@ function affichArcane(arcane, retourFonction) {
 
     const content = `
         <div class="fiche-arcane">
-            <div class="fiche-image">
-                <img src="${img}" alt="${arcane.Nom}" class="fiche-arcane-image">
-            </div>
-
+        
             ${arcane.Affirmation ? `
                 <div class="full-width-block affirmation-container">
                     <p class="arcane-affirmation">"${arcane.Affirmation}"</p>
                 </div>
             ` : ''}
-            
-            <div class="fiche-significations">              
-                <div class="fiche-columns">
-                    <div class="fiche-left">
-                        <h3>Signification Positive</h3>
-                        <p>${formatList(arcane["Signification Positive"])}</p>
-                    </div>
-                    <div class="fiche-right">
-                        <h3>Signification Négative</h3>
-                        <p>${formatList(arcane["Signification Négative"])}</p>
-                    </div>
-                </div>
 
-                <div class="fiche-domaines">
-                    <h3>Interprétations par domaine</h3>
-                    ${renderDomaine("Amour", arcane["Amour"], "❤️")}
-                    ${renderDomaine("Travail", arcane["Travail"], "💼")}
-                    ${renderDomaine("Argent", arcane["Argent"], "💰")}
-                    ${renderDomaine("Guidance", arcane["Guidance"], "✨")}
+            <div class="fiche-header-grid">
+                <div class="fiche-image">
+                    <img src="${img}" alt="${arcane.Nom}" class="fiche-arcane-image">
+                </div>
+                
+                <div class="fiche-significations">              
+                    <div class="fiche-columns">
+                        <div class="fiche-left">
+                            <h3>Signification Positive</h3>
+                            <p>${formatList(arcane["Signification Positive"])}</p>
+                        </div>
+                        <div class="fiche-right">
+                            <h3>Signification Négative</h3>
+                            <p>${formatList(arcane["Signification Négative"])}</p>
+                        </div>
+                    </div>
+    
+                    <div class="fiche-domaines">
+                        <h3>Interprétations par domaine</h3>
+                        ${renderDomaine("Amour", arcane["Amour"], "❤️")}
+                        ${renderDomaine("Travail", arcane["Travail"], "💼")}
+                        ${renderDomaine("Argent", arcane["Argent"], "💰")}
+                        ${renderDomaine("Guidance", arcane["Guidance"], "✨")}
+                    </div>
                 </div>
             </div>
 

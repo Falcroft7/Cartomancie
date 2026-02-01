@@ -102,20 +102,19 @@
 
 /* --- BLOC DOMAINES --- */
 .fiche-domaines {
-    padding: 20px;
+    padding: 0px 10px 15px 20px;
     border-radius: var(--radius-std);
     background: var(--glass-bg);
     border: var(--glass-border);
     border-top: 4px solid var(--primary);
-    margin-top: 20px;
 }
 
 .domaine-item {
     display: flex;
     align-items: flex-start;
-    gap: 15px;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 

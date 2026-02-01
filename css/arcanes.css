@@ -89,30 +89,12 @@
   backdrop-filter: blur(8px);
 }
 
-.mots-cles { border-left: 4px solid var(--primary); }
 .fiche-left { border-left: 4px solid #6fd6a3; }
 .fiche-right { border-left: 4px solid #e08a9c; }
 
 .fiche-left p, .fiche-right p {
   line-height: 1.8;
   margin-top: 10px;
-}
-
-.badges-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.badge-mot {
-  background: rgba(234, 179, 8, 0.1);
-  color: var(--primary);
-  border: 1px solid rgba(234, 179, 8, 0.3);
-  padding: 4px 12px;
-  border-radius: 15px;
-  font-size: 0.85em;
-  backdrop-filter: blur(4px);
 }
 
 /* --- BLOC DOMAINES --- */

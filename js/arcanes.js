@@ -71,6 +71,9 @@ function affichArcane(arcane, retourFonction) {
                 <img src="${img}" alt="${arcane.Nom}" class="fiche-arcane-image">
             </div>
             <div class="fiche-significations">
+
+                ${arcane.Affirmation ? `<p class="arcane-affirmation">"${arcane.Affirmation}"</p>` : ''}
+                
                 <div class="fiche-columns">
                     <div class="fiche-left">
                         <h3>Signification Positive</h3>
@@ -89,6 +92,13 @@ function affichArcane(arcane, retourFonction) {
                     ${renderDomaine("Argent", arcane["Argent"], "💰")}
                     ${renderDomaine("Guidance", arcane["Guidance"], "✨")}
                 </div>
+
+                ${arcane.Question ? `
+                    <div class="fiche-questions">
+                        <h3>Réflexion intérieure</h3>
+                        <p>${formatList(arcane.Question)}</p>
+                    </div>
+                ` : ''}
             </div>
         </div>
     `;

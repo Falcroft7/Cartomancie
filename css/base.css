@@ -75,3 +75,7 @@ h3::before {
   color: var(--primary); 
   opacity: 0.9; 
 }
+
+.fiche-questions h3 {
+    text-align: center;
+}

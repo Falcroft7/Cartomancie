@@ -60,9 +60,9 @@
 }
 
 .fiche-columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
 .mots-cles, .fiche-left, .fiche-right {
@@ -79,62 +79,67 @@
 .fiche-right { border-left: 4px solid #e08a9c; }
 
 .fiche-left p, .fiche-right p {
-    line-height: 1.8;
-    margin-top: 10px;
+  line-height: 1.8;
+  margin-top: 10px;
 }
 
 .badges-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 .badge-mot {
-    background: rgba(234, 179, 8, 0.1);
-    color: var(--primary);
-    border: 1px solid rgba(234, 179, 8, 0.3);
-    padding: 4px 12px;
-    border-radius: 15px;
-    font-size: 0.85em;
-    backdrop-filter: blur(4px);
+  background: rgba(234, 179, 8, 0.1);
+  color: var(--primary);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.85em;
+  backdrop-filter: blur(4px);
 }
 
 /* --- BLOC DOMAINES --- */
 .fiche-domaines {
-    padding: 0px 10px 15px 20px;
-    border-radius: var(--radius-std);
-    background: var(--glass-bg);
-    border: var(--glass-border);
-    border-top: 4px solid var(--primary);
+  padding: 0px 10px 15px 20px;
+  border-radius: var(--radius-std);
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  border-top: 4px solid var(--primary);
 }
 
 .domaine-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .domaine-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
+  border-bottom: none;
+  margin-bottom: 0;
 }
 
 .domaine-icon {
-    font-size: 1.4em;
-    min-width: 30px;
-    text-align: center;
+  font-size: 1.4em;
+  min-width: 30px;
+  text-align: center;
+  margin-top: -3px;
+  transform: translateY(-2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .domaine-texte {
-    line-height: 1.5;
-    font-size: 0.95em;
+  line-height: 1.5;
+  font-size: 0.95em;
 }
 
 .domaine-texte strong {
-    color: var(--primary);
-    margin-right: 5px;
+  color: var(--primary);
+  margin-right: 5px;
 }

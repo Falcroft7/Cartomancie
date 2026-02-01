@@ -75,10 +75,11 @@
 }
 
 .fiche-header-grid {
-    display: grid;
-    grid-template-columns: minmax(250px, 1fr) 2fr;
-    gap: 40px;
-    margin-top: 10px;
+  display: grid;
+  grid-template-columns: minmax(250px, 1fr) 2fr;
+  gap: 40px;
+  margin-top: 10px;
+  align-items: start;
 }
 
 .fiche-columns {
@@ -150,36 +151,36 @@
 
 /* --- Style de l'Affirmation --- */
 .arcane-affirmation {
-    font-style: italic;
-    font-size: 1.2em;
-    color: var(--primary);
-    text-align: center;
-    padding: 15px 20px;
-    background: var(--glass-bg);
-    border: var(--glass-border);
-    border-radius: var(--radius-std);
-    backdrop-filter: blur(8px);
-    margin-bottom: 10px;
+  font-style: italic;
+  font-size: 1.2em;
+  color: var(--primary);
+  text-align: center;
+  padding: 15px 20px;
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  border-radius: var(--radius-std);
+  backdrop-filter: blur(8px);
+  margin-bottom: 10px;
 }
 
 /* --- Style du Bloc Questions --- */
 .fiche-questions {
-    margin-top: 30px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: var(--radius-std);
-    border: 1px dashed rgba(234, 179, 8, 0.3);
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-std);
+  border: 1px dashed rgba(234, 179, 8, 0.3);
 }
 
 .fiche-questions h3 {
-    font-size: 1.1em;
-    color: var(--primary);
-    margin-bottom: 10px;
-    text-align: center;
+  font-size: 1.1em;
+  color: var(--primary);
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .fiche-questions p {
-    font-style: italic;
-    line-height: 1.6;
-    text-align: center;
+  font-style: italic;
+  line-height: 1.6;
+  text-align: center;
 }

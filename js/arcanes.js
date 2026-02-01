@@ -58,6 +58,18 @@ function affichArcane(arcane, retourFonction) {
         return txt.split(/[,;]/).map(item => `<span class="badge-mot">${item.trim()}</span>`).join('');
     };
 
+    const renderDomaine = (label, texte, icone) => {
+        if (!texte || texte === "Non renseigné") return "";
+        return `
+            <div class="domaine-item">
+                <span class="domaine-icon">${icone}</span>
+                <div class="domaine-texte">
+                    <strong>${label} :</strong> ${texte}
+                </div>
+            </div>
+        `;
+    };
+
     const content = `
         <div class="fiche-arcane">
             <div class="fiche-image">
@@ -77,6 +89,14 @@ function affichArcane(arcane, retourFonction) {
                         <h3>Signification Négative</h3>
                         <p>${formatList(arcane["Signification Négative"])}</p>
                     </div>
+                </div>
+
+                <div class="fiche-domaines">
+                    <h3>Interprétations par domaine</h3>
+                    ${renderDomaine("Amour", arcane["Amour"], "❤️")}
+                    ${renderDomaine("Travail", arcane["Travail"], "💼")}
+                    ${renderDomaine("Argent", arcane["Argent"], "💰")}
+                    ${renderDomaine("Guidance", arcane["Guidance"], "✨")}
                 </div>
             </div>
         </div>

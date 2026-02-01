@@ -140,3 +140,37 @@
   color: var(--primary);
   margin-right: 5px;
 }
+
+/* --- Style de l'Affirmation --- */
+.arcane-affirmation {
+    font-style: italic;
+    font-size: 1.1em;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 10px;
+    opacity: 0.9;
+    border-bottom: 1px solid rgba(234, 179, 8, 0.1);
+}
+
+/* --- Style du Bloc Questions --- */
+.fiche-questions {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-std);
+    border: 1px dashed rgba(234, 179, 8, 0.3);
+}
+
+.fiche-questions h3 {
+    font-size: 1.1em;
+    color: var(--primary);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.fiche-questions p {
+    font-style: italic;
+    line-height: 1.6;
+    text-align: center;
+}

@@ -12,6 +12,12 @@
     align-items: start;
   }
 
+  .fiche-header-grid {
+    display: grid !important;
+    grid-template-columns: 150px 1fr !important;
+    gap: 20px;
+  }
+
   .fiche-significations {
     grid-column: 2;
     width: 100%;

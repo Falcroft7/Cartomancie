@@ -99,3 +99,43 @@
     font-size: 0.85em;
     backdrop-filter: blur(4px);
 }
+
+/* --- BLOC DOMAINES --- */
+.fiche-domaines {
+    padding: 20px;
+    border-radius: var(--radius-std);
+    background: var(--glass-bg);
+    border: var(--glass-border);
+    border-top: 4px solid var(--primary);
+    margin-top: 20px;
+}
+
+.domaine-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.domaine-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.domaine-icon {
+    font-size: 1.4em;
+    min-width: 30px;
+    text-align: center;
+}
+
+.domaine-texte {
+    line-height: 1.5;
+    font-size: 0.95em;
+}
+
+.domaine-texte strong {
+    color: var(--primary);
+    margin-right: 5px;
+}

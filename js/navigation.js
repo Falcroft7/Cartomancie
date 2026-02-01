@@ -18,16 +18,16 @@ function affichHome() {
 
 /* ============= PAGE SIGNIFICATIONS ============= */
 function affichChoixSignifications() {
-  const familles = ["Coupes", "Bâtons", "Deniers", "Épées"];
+  const familles = ["Bâtons", "Coupes", "Épées", "Deniers"];
   
-  const content = `<div class="minor-familles grid-container" id="menuSignifications"></div>`;
-  
+  const content = `<div class="menu-significations-grid" id="menuSignifications"></div>`;
   renderPage("Signification des cartes", content, affichHome);
 
   const container = document.getElementById("menuSignifications");
 
   const majeureArcane = listeMajors.find(a => a.Nom.toLowerCase() === "le monde") || listeMajors[0];
   const blocMajor = creerBlocMenu(majeureArcane, "Arcanes Majeures", affichListeMajor);
+  blocMajor.classList.add("card-major");
   container.appendChild(blocMajor);
 
   familles.forEach(famille => {

@@ -5,11 +5,8 @@
   }
 
   div.fiche-arcane {
-    display: grid !important;
-    grid-template-columns: 150px 1fr !important; 
-    grid-template-rows: auto;
-    gap: 25px;
-    align-items: start;
+    display: flex !important;
+    flex-direction: column !important;
   }
 
   .fiche-header-grid {
@@ -30,10 +27,8 @@
   }
   
   .fiche-arcane-image {
-    width: 100%;
     max-width: 150px !important;
-    height: auto;
-    transform: rotate(-2deg);
+    margin-top: 0;
   }
 
   .fiche-columns {
@@ -123,13 +118,17 @@
     justify-items: center;
   }
 
-  .fiche-image {
-    margin-top: 0;
+  .fiche-header-grid {
+    grid-template-columns: 1fr !important;
+    justify-items: center;
   }
 
   .fiche-arcane-image {
-    transform: none;
     max-width: 200px;
+  }
+  
+  .fiche-image {
+    margin-top: 0;
   }
 
   .fiche-columns {

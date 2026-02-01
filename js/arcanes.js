@@ -53,11 +53,6 @@ function affichArcane(arcane, retourFonction) {
         return txt.split(/[,;]/).map(item => item.trim()).join('<br>');
     };
 
-    const formatBadges = (txt) => {
-        if (!txt || txt === "Non renseigné") return txt;
-        return txt.split(/[,;]/).map(item => `<span class="badge-mot">${item.trim()}</span>`).join('');
-    };
-
     const renderDomaine = (label, texte, icone) => {
         if (!texte || texte === "Non renseigné") return "";
         return `
@@ -76,10 +71,6 @@ function affichArcane(arcane, retourFonction) {
                 <img src="${img}" alt="${arcane.Nom}" class="fiche-arcane-image">
             </div>
             <div class="fiche-significations">
-                <div class="mots-cles">
-                    <h3>Mots clés</h3>
-                    <div class="badges-wrapper">${formatBadges(arcane["Mots clés"])}</div>
-                </div>
                 <div class="fiche-columns">
                     <div class="fiche-left">
                         <h3>Signification Positive</h3>

@@ -18,7 +18,8 @@
 .card img {
   width: 100%;
   aspect-ratio: 2/3;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   background: rgba(255,255,255,0.05);
   border-radius: 8px;
   margin-bottom: 10px;
@@ -72,7 +73,8 @@
 .fiche-arcane-image {
   width: 100%;
   aspect-ratio: 2/3;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   max-width: 300px;
   border-radius: var(--radius-lg);
   box-shadow: 0 0 30px rgba(0,0,0,0.5), var(--glow-light);

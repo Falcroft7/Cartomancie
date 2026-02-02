@@ -4,11 +4,9 @@ function creerCarteArcane(arcane, retourAction) {
     const card = document.createElement("div");
     card.className = "card";
     
-    const numeroAffiche = arcane.Numero ? `${arcane.Numero} - ` : "";
-    
     card.innerHTML = `
         <img src="${img}" alt="${arcane.Nom}" loading="lazy">
-        <p>${numeroAffiche}${arcane.Nom}</p>
+        <p>${arcane.Numero ? `${arcane.Numero} - ` : ""}${arcane.Nom}</p>
     `;
     
     card.onclick = () => affichArcane(arcane, retourAction);

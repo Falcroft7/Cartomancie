@@ -7,7 +7,7 @@ function creerCarteArcane(arcane, retourAction) {
     const numeroAffiche = arcane.Numero ? `${arcane.Numero} - ` : "";
     
     card.innerHTML = `
-        <img src="${img}" alt="${arcane.Nom}">
+        <img src="${img}" alt="${arcane.Nom}" loading="lazy">
         <p>${numeroAffiche}${arcane.Nom}</p>
     `;
     
@@ -76,7 +76,7 @@ function affichArcane(arcane, retourFonction) {
 
             <div class="fiche-header-grid">
                 <div class="fiche-image">
-                    <img src="${img}" alt="${arcane.Nom}" class="fiche-arcane-image">
+                    <img src="${img}" alt="${arcane.Nom}" class="fiche-arcane-image" fetchpriority="high">
                 </div>
                 
                 <div class="fiche-significations">              

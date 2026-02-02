@@ -9,6 +9,11 @@
     flex-direction: column !important;
   }
 
+  .grid-container {
+    --card-min: 120px !important;
+    gap: 15px;
+  }
+
   .fiche-header-grid {
     display: grid !important;
     grid-template-columns: 150px 1fr !important;
@@ -21,7 +26,7 @@
   }
 
   .fiche-image {
-    margin-top: 50px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
   }

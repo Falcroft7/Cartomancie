@@ -77,10 +77,6 @@
   margin: 0 auto; 
 }
 
-.tirage-carte.horizontal:hover .tirage-carte-image {
-  transform: rotate(90deg) scale(1.1) !important;
-}
-
 .tirage-carte-title-top {
   font-family: 'Cinzel', serif;
   font-size: 1.1em;
@@ -103,11 +99,6 @@
   border-radius: 8px;
   box-shadow: var(--glow-light);
   transition: transform 0.3s ease;
-}
-
-.tirage-carte:hover .tirage-carte-image {
-  transform: scale(1.1);
-  box-shadow: var(--glow-strong);
 }
 
 /* =============== TEXTES D'EXPLICATION =========== */

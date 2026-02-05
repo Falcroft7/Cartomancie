@@ -61,7 +61,13 @@ function affichArcane(arcane, retourFonction) {
     
     const formatList = (txt) => {
         if (!txt || txt === "Non renseigné") return txt;
+
         return txt.split(/[,;]/).map(item => item.trim()).join('<br>');
+        
+        return txt.split(/[,;\n]/)
+              .map(item => item.trim())
+              .filter(item => item !== "")
+              .join('<br>• ');
     };
 
     const renderDomaine = (label, texte, icone) => {
@@ -125,7 +131,7 @@ function affichArcane(arcane, retourFonction) {
                 <div class="full-width-block question-container">
                     <div class="fiche-questions">
                         <h3>Réflexion intérieure</h3>
-                        <p>${formatList(arcane.Question)}</p>
+                        <p>• ${formatList(arcane.Question)}</p>
                     </div>
                 </div>
             ` : ''}

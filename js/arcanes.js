@@ -46,6 +46,19 @@ function affichArcane(arcane, retourFonction) {
                 ? `${arcane.Numero} - ${arcane.Nom}` 
                 : arcane.Nom;
 
+    const renderInfoSide = (label, valeur, icone) => {
+        if (!valeur || valeur === "Non renseigné" || valeur === "") return "";
+        return `
+            <div class="info-side-item">
+                <span class="info-side-icon">${icone}</span>
+                <div class="info-side-texte">
+                    <strong>${label}</strong>
+                    <span>${valeur}</span>
+                </div>
+            </div>
+        `;
+    };
+    
     const formatList = (txt) => {
         if (!txt || txt === "Non renseigné") return txt;
         return txt.split(/[,;]/).map(item => item.trim()).join('<br>');
@@ -73,8 +86,17 @@ function affichArcane(arcane, retourFonction) {
             ` : ''}
 
             <div class="fiche-header-grid">
-                <div class="fiche-image">
-                    <img src="${img}" alt="${arcane.Nom}" class="fiche-arcane-image" fetchpriority="high">
+                <div class="fiche-left-column">
+                    <div class="fiche-image">
+                        <img src="${img}" alt="${arcane.Nom}" class="fiche-arcane-image" fetchpriority="high">
+                    </div>
+                    <div class="fiche-correspondances">
+                        ${renderInfoSide("Élément", arcane["Elément"], "🌀")}
+                        ${renderInfoSide("Signe", arcane["Signe astro"], "♈")}
+                        ${renderInfoSide("Planète", arcane.Planète, "🪐")}
+                        ${renderInfoSide("Chakra", arcane.Shakra, "💎")}
+                        ${renderInfoSide("Oui/Non", arcane["Oui/Non"], "⚖️")}
+                    </div>
                 </div>
                 
                 <div class="fiche-significations">              

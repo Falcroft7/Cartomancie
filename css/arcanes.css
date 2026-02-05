@@ -249,9 +249,3 @@
     font-size: 0.95em;
     color: var(--text-main);
 }
-
-/* Teinte très légère du fond de la fiche selon l'élément */
-.element-feu { background: radial-gradient(circle at 20% 30%, rgba(255, 50, 0, 0.05) 0%, transparent 70%); }
-.element-eau { background: radial-gradient(circle at 20% 30%, rgba(0, 100, 255, 0.05) 0%, transparent 70%); }
-.element-air { background: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 70%); }
-.element-terre { background: radial-gradient(circle at 20% 30%, rgba(50, 255, 0, 0.03) 0%, transparent 70%); }

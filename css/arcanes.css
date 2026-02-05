@@ -172,8 +172,8 @@
 
 /* --- Style du Bloc Questions --- */
 .fiche-questions {
-  margin-top: 30px;
-  padding: 20px;
+  margin-top: 20px;
+  padding: 10px;
   background: rgba(255, 255, 255, 0.03);
   border-radius: var(--radius-std);
   border: 1px dashed rgba(234, 179, 8, 0.3);

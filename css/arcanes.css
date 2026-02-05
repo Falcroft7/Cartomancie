@@ -190,3 +190,57 @@
   line-height: 1.6;
   text-align: center;
 }
+
+/* --- Structure de la colonne gauche --- */
+.fiche-left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* --- Bloc Correspondances --- */
+.fiche-correspondances {
+    background: var(--glass-bg);
+    border: var(--glass-border);
+    border-radius: var(--radius-std);
+    padding: 15px;
+    backdrop-filter: blur(5px);
+}
+
+.info-side-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.info-side-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.info-side-icon {
+    font-size: 1.2em;
+    min-width: 25px;
+    text-align: center;
+}
+
+.info-side-texte {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-side-texte strong {
+    font-size: 0.75em;
+    text-transform: uppercase;
+    color: var(--primary);
+    letter-spacing: 0.5px;
+}
+
+.info-side-texte span {
+    font-size: 0.95em;
+    color: var(--text-main);
+}

@@ -66,7 +66,7 @@ function affichArcane(arcane, retourFonction) {
     
     const formatQuestions = (txt) => {
         if (!txt || txt === "Non renseigné") return "";
-        return txt.replace(/\?\s*/g, "?<br>");
+        return txt.replace(/\?\s*/g, "?<br><br>");
     };
 
     const renderDomaine = (label, texte, icone) => {

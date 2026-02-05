@@ -66,7 +66,7 @@ function affichArcane(arcane, retourFonction) {
     
     const formatQuestions = (txt) => {
         if (!txt || txt === "Non renseigné") return "";
-        return txt.replace(/\?\s*/g, "?<br><br>");
+        return txt.replace(/\?\s*/g, "?<br>");
     };
 
     const renderDomaine = (label, texte, icone) => {
@@ -130,7 +130,7 @@ function affichArcane(arcane, retourFonction) {
                 <div class="full-width-block question-container">
                     <div class="fiche-questions">
                         <h3>Réflexion intérieure</h3>
-                        <p>• ${formatQuestions(arcane.Question)}</p>
+                        <p>${formatQuestions(arcane.Question)}</p>
                     </div>
                 </div>
             ` : ''}

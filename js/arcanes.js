@@ -106,7 +106,7 @@ function affichArcane(arcane, retourFonction) {
                     </div>
                 </div>
                 
-                <div class="fiche-significations">              
+                <div class="fiche-significations">
                     <div class="fiche-columns">
                         <div class="fiche-left">
                             <h3>Signification Positive</h3>

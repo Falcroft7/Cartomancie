@@ -108,7 +108,6 @@
 .fiche-right { border-left: 4px solid #e08a9c; }
 
 .fiche-left p, .fiche-right p {
-  line-height: 1.8;
   margin-top: 10px;
 }
 

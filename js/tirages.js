@@ -99,18 +99,29 @@ function affichTirageDetail(tirage, categorie) {
     setTimeout(() => carte.classList.add("visible"), 200 + (i * 300));
   });
 
-  if (tirage.type === "Circulaire") {
+  if (tirage.type === "Circulaire" || tirage.type === "Ovale") {
     setTimeout(() => {
       const centerX = plateau.clientWidth / 2;
       const centerY = plateau.clientHeight / 2;
-      const radius = Math.min(centerX, centerY) * 0.7;
+
+      let radiusX, radiusY;
+
+        if (tirage.type === "Ovale") {
+            radiusX = centerX * 0.85;
+            radiusY = centerY * 0.70;
+        } else {
+            const r = Math.min(centerX, centerY) * 0.7;
+            radiusX = r;
+            radiusY = r;
+        }
+      
       const n = tirage.positions.length;
       const angleStep = 360 / n;
   
       Array.from(plateau.children).forEach((carte, i) => {
         const angleRad = ((-90 + i * angleStep) * Math.PI) / 180;
-        carte.style.left = `${centerX + radius * Math.cos(angleRad)}px`;
-        carte.style.top  = `${centerY + radius * Math.sin(angleRad)}px`;
+        carte.style.left = `${centerX + radiusX * Math.cos(angleRad)}px`;
+        carte.style.top  = `${centerY + radiusY * Math.sin(angleRad)}px`;
       });
     }, 50);
   }

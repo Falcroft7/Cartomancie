@@ -113,7 +113,7 @@
 
 /* --- BLOC DOMAINES --- */
 .fiche-domaines {
-  padding: 0px 10px 15px 20px;
+  padding: 0px 10px 10px 15px;
   border-radius: var(--radius-std);
   background: var(--glass-bg);
   border: var(--glass-border);

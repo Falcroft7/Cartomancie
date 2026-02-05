@@ -158,7 +158,7 @@
 /* --- Style de l'Affirmation --- */
 .arcane-affirmation {
   font-style: italic;
-  font-size: 1.2em;
+  font-size: 1em;
   color: var(--primary);
   text-align: center;
   padding: 10px 10px;
@@ -192,7 +192,7 @@
   text-align: left;
   max-width: 100% ;
   margin: 0 auto;
-  line-height: 1.0;
+  line-height: 0.9;
 }
 
 /* --- Structure de la colonne gauche --- */

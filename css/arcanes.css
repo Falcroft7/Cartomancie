@@ -192,6 +192,7 @@
   text-align: left;
   max-width: 100% ;
   margin: 0 auto;
+  line-height: 1.0;
 }
 
 /* --- Structure de la colonne gauche --- */

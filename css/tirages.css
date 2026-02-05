@@ -17,20 +17,28 @@
   align-items: end;
 }
 
-.tirage-plateau.circulaire {
-  width: min(600px, 85vw);
-  height: min(600px, 85vw);
-}
-
-.tirage-plateau.circulaire .tirage-carte {
+.tirage-plateau.circulaire .tirage-carte,
+.tirage-plateau.ovale .tirage-carte {
   position: absolute;
   transform: translate(-50%, -50%) translateY(-20px) scale(0.9);
   margin: 0;
 }
 
-.tirage-plateau.circulaire .tirage-carte.visible {
+.tirage-plateau.circulaire .tirage-carte.visible,
+.tirage-plateau.ovale .tirage-carte.visible {
   opacity: 1;
   transform: translate(-50%, -50%) translateY(0) scale(1);
+}
+
+.tirage-plateau.circulaire {
+  width: min(600px, 85vw);
+  height: min(600px, 85vw);
+}
+
+.tirage-plateau.ovale {
+  width: 100%;
+  max-width: 950px;
+  height: 500px;
 }
 
 /* =================== CARTES DU TIRAGE =================== */
@@ -39,12 +47,6 @@
   opacity: 0;
   z-index: 2;
   transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-  transform: translateY(-20px) scale(0.9);
-}
-
-.tirage-carte.visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
 }
 
 .tirage-carte p {

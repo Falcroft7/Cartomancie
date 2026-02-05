@@ -186,10 +186,12 @@
   text-align: center;
 }
 
-.fiche-questions p {
+.fiche-questions p {  
   font-style: italic;
-  line-height: 1.6;
-  text-align: center;
+  line-height: 1.8;
+  text-align: left;
+  max-width: 80% ;
+  margin: 0 auto;
 }
 
 /* --- Structure de la colonne gauche --- */

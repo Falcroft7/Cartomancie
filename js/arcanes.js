@@ -46,6 +46,8 @@ function affichArcane(arcane, retourFonction) {
                 ? `${arcane.Numero} - ${arcane.Nom}` 
                 : arcane.Nom;
 
+    const elementCard = (arcane["Elément"] || "").toLowerCase().trim();
+    
     const renderInfoSide = (label, valeur, icone) => {
         if (!valeur || valeur === "Non renseigné" || valeur === "") return "";
         return `
@@ -82,7 +84,7 @@ function affichArcane(arcane, retourFonction) {
     };
 
     const content = `
-        <div class="fiche-arcane">
+        <div class="fiche-arcane element-${elementCard}">
         
             ${arcane.Affirmation ? `
                 <div class="full-width-block affirmation-container">
@@ -92,7 +94,7 @@ function affichArcane(arcane, retourFonction) {
 
             <div class="fiche-header-grid">
                 <div class="fiche-left-column">
-                    <div class="fiche-image">
+                    <div class="fiche-image element-aura">
                         <img src="${img}" alt="${arcane.Nom}" class="fiche-arcane-image" fetchpriority="high">
                     </div>
                     <div class="fiche-correspondances">

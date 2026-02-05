@@ -190,9 +190,8 @@
 
 .fiche-questions p {  
   font-style: italic;
-  line-height: 1.8;
   text-align: left;
-  max-width: 80% ;
+  max-width: 100% ;
   margin: 0 auto;
 }
 

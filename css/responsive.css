@@ -90,11 +90,26 @@
     gap: 15px;
     padding: 10px;
   }
-  
+
+  .tirage-plateau.circulaire, 
+  .tirage-plateau.ovale {
+    margin: 10px auto;
+    display: block;
+  }
+
   .tirage-plateau.circulaire {
     width: min(450px, 90vw);
     height: min(400px, 90vw);
-    margin: 10px auto;
+  }
+
+  .tirage-plateau.ovale {
+    width: 95vw;
+    height: 450px;
+  }
+
+  .tirage-plateau.circulaire .tirage-carte-image,
+  .tirage-plateau.ovale .tirage-carte-image {
+    width: 60px;
   }
 
   .tirage-carte-image {
@@ -151,6 +166,20 @@
     height: min(320px, 95vw);
   }
 
+  .tirage-plateau.ovale {
+    width: 100%;
+    height: 380px;
+  }
+
+  .tirage-plateau.circulaire .tirage-carte-image,
+  .tirage-plateau.ovale .tirage-carte-image {
+    width: 45px; 
+  }
+
+  .tirage-plateau.ovale .tirage-carte p {
+    font-size: 0.6em;
+  }
+  
   .tirage-carte-image {
     width: 50px;
   }

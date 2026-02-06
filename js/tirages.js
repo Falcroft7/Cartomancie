@@ -70,19 +70,20 @@ function affichTirageDetail(tirage, categorie) {
   const plateau = document.querySelector(".tirage-plateau");
   plateau.className = "tirage-plateau " + tirage.type.toLowerCase();
 
+  if (tirage.type === "Grille") {
+    const maxX = Math.max(...tirage.positions.map(p => p.x || 0));
+    const maxY = Math.max(...tirage.positions.map(p => p.y || 0));
+
+    plateau.style.display = "grid";
+    plateau.style.gridTemplateColumns = `repeat(${maxX + 1}, 100px)`;
+    plateau.style.gridTemplateRows = `repeat(${maxY + 1}, auto)`;
+  }
+  
   tirage.positions.forEach((pos, i) => {
     const carte = document.createElement("div");
     carte.className = "tirage-carte";
 
     if (pos.horizontal == "true") carte.classList.add("horizontal");
-    
-    const titleTopHTML = pos.titleTop ? `<div class="tirage-carte-title-top">${pos.titleTop}</div>` : "";
-    
-    carte.innerHTML = `
-      ${titleTopHTML}
-      <img src="Images/Dos_carte.png" class="tirage-carte-image">
-      <p>${pos.label}</p>
-    `;
 
     if (tirage.type === "Grille") {
       carte.style.gridColumn = (pos.x || 0) + 1;
@@ -94,6 +95,14 @@ function affichTirageDetail(tirage, categorie) {
         carte.style.setProperty('--offsetY', `${pos.offsetY || 0}px`);
       }
     }
+    
+    const titleTopHTML = pos.titleTop ? `<div class="tirage-carte-title-top">${pos.titleTop}</div>` : "";
+    
+    carte.innerHTML = `
+      ${titleTopHTML}
+      <img src="Images/Dos_carte.png" class="tirage-carte-image">
+      <p>${pos.label}</p>
+    `;
 
     plateau.appendChild(carte);
     setTimeout(() => carte.classList.add("visible"), 200 + (i * 300));

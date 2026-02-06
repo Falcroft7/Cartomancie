@@ -111,9 +111,9 @@ function affichTirageDetail(tirage, categorie) {
     // B. Calcul du placement
     setTimeout(() => {
       const colonneSens = tirage.sens ? tirage.sens.toLowerCase().trim() : "";
-      const colonneDepart = tirage.depart ? tirage.depart.toUpperCase().trim() : "";
+      const departValeur = parseFloat(tirage.depart);
       const configSens = (colonneSens === "anti") ? "anti" : "horaire";
-      const configDepart = (colonneDepart === "9H") ? 180 : -90;
+      const configDepart = isNaN(departValeur) ? -90 : departValeur;
 
       const centerX = plateau.clientWidth / 2;
       const centerY = plateau.clientHeight / 2;
@@ -139,4 +139,4 @@ function affichTirageDetail(tirage, categorie) {
     conteneur.appendChild(carte);
     setTimeout(() => carte.classList.add("visible"), 200 + (i * 300));
   }
-} 
+}

@@ -109,11 +109,11 @@ function affichArcane(arcane, retourFonction) {
                 <div class="fiche-significations">
                     <div class="fiche-columns">
                         <div class="fiche-left">
-                            <h3>Signification Positive</h3>
+                            <h3>Signification à l'endroit</h3>
                             <p>${formatList(arcane["Signification Positive"])}</p>
                         </div>
                         <div class="fiche-right">
-                            <h3>Signification Négative</h3>
+                            <h3>Signification à l'envers</h3>
                             <p>${formatList(arcane["Signification Négative"])}</p>
                         </div>
                     </div>

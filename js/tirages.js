@@ -138,6 +138,6 @@ function affichTirageDetail(tirage, categorie) {
     const titleTop = pos.titleTop ? `<div class="tirage-carte-title-top">${pos.titleTop}</div>` : "";
     carte.innerHTML = `${titleTop}<img src="Images/Dos_carte.png" class="tirage-carte-image"><p>${pos.label}</p>`;
     conteneur.appendChild(carte);
-    setTimeout(() => carte.classList.add("visible"), 200 + (i * 200));
+    setTimeout(() => carte.classList.add("visible"), 200 + (i * 300));
   }
 } 

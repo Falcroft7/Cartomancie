@@ -79,7 +79,7 @@ function affichTirageDetail(tirage, categorie) {
     const maxX = Math.max(...positionsData.map(p => p.x || 0));
     const maxY = Math.max(...positionsData.map(p => p.y || 0));
     plateau.style.display = "grid";
-    plateau.style.gridTemplateColumns = `repeat(${maxX + 1}, 100px)`;
+    plateau.style.gridTemplateColumns = `repeat(${maxX + 1}, 70px)`;
     plateau.style.gridTemplateRows = `repeat(${maxY + 1}, 130px)`;
 
     // B. Création et placement des cartes

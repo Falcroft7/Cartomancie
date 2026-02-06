@@ -62,8 +62,9 @@ function affichArcane(arcane, retourFonction) {
     };
 
     const formatList = (txt) => {
-        if (!txt || txt === "Non renseigné") return txt;
-        return txt.split(/[,;]/).map(item => item.trim()).join('<br>');
+        if (!txt || txt === "Non renseigné" || txt === "") return "";
+        const items = txt.split(/[,;\n]/).map(item => item.trim()).filter(i => i !== "");
+        return items.join('<br>• ');
     };
     
     const formatQuestions = (txt) => {
@@ -110,11 +111,11 @@ function affichArcane(arcane, retourFonction) {
                     <div class="fiche-columns">
                         <div class="fiche-left">
                             <h3>Signification à l'endroit</h3>
-                            <p>${formatList(arcane["Signification Positive"])}</p>
+                            <p>• ${formatList(arcane["Signification Positive"])}</p>
                         </div>
                         <div class="fiche-right">
                             <h3>Signification à l'envers</h3>
-                            <p>${formatList(arcane["Signification Négative"])}</p>
+                            <p>• ${formatList(arcane["Signification Négative"])}</p>
                         </div>
                     </div>
     

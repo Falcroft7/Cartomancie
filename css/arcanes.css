@@ -120,9 +120,9 @@
 }
 
 .fiche-left h3, .fiche-right h3 {
-    text-align: center;
-    margin-bottom: 5px;
-    font-size: 1em;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 1em;
 }
 
 /* --- BLOC DOMAINES --- */
@@ -135,7 +135,8 @@
 }
 
 .fiche-domaines h3 {
-    text-align: center;
+  text-align: center;
+  font-size: 1.1em;
 }
 
 .domaine-item {

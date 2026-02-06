@@ -112,7 +112,7 @@ function affichTirageDetail(tirage, categorie) {
     // B. Calcul du placement
     setTimeout(() => {
       const colonneSens = tirage.Sens ? tirage.Sens.toLowerCase().trim() : "";
-      const colonneDepart = tirage["Départ"] ? tirage["Départ"].toUpperCase().trim() : "";
+      const colonneDepart = tirage["Depart"] ? tirage["Depart"].toUpperCase().trim() : "";
       const configSens = (colonneSens === "anti") ? "anti" : "horaire";
       const configDepart = (colonneDepart === "9H") ? 180 : -90;
 

@@ -2,9 +2,9 @@
 function affichCategoriesTirages(categoryToOpen = null) {
   const categories = Object.keys(tiragesCategorie);
   const content = `<div id="accordionContainer" class="accordion-container"></div>`;
-  
-  renderPage("Méthodes de tirage", content, affichHome);
 
+  renderPage("Méthodes de tirage", content, affichHome);
+  
   const container = document.getElementById("accordionContainer");
 
   categories.forEach(cat => {
@@ -15,10 +15,10 @@ function affichCategoriesTirages(categoryToOpen = null) {
     const btn = document.createElement("button");
     btn.className = "accordion-header";
     btn.innerHTML = `${cat} <span class="arrow">▼</span>`;
-    
+
     const panel = document.createElement("div");
     panel.className = "accordion-panel";
-    
+
     tirages.forEach(tirage => {
       const tirageBtn = document.createElement("button");
       tirageBtn.className = "tirage-link-btn";
@@ -31,7 +31,7 @@ function affichCategoriesTirages(categoryToOpen = null) {
       panel.style.maxHeight = panel.scrollHeight + "px";
       btn.querySelector(".arrow").style.transform = "rotate(180deg)";
     };
-    
+
     btn.onclick = () => {
       const allPanels = document.querySelectorAll('.accordion-panel');
       const allArrows = document.querySelectorAll('.arrow');
@@ -70,39 +70,30 @@ function affichTirageDetail(tirage, categorie) {
   const plateau = document.querySelector(".tirage-plateau");
   plateau.className = "tirage-plateau " + tirage.type.toLowerCase();
 
-  if (tirage.type === "Grille") {
-    const maxX = Math.max(...tirage.positions.map(p => p.x || 0));
-    const maxY = Math.max(...tirage.positions.map(p => p.y || 0));
-
-    plateau.style.display = "grid";
-    plateau.style.gridTemplateColumns = `repeat(${maxX + 1}, 100px)`;
-    plateau.style.gridTemplateRows = `repeat(${maxY + 1}, auto)`;
-  }
-  
   tirage.positions.forEach((pos, i) => {
     const carte = document.createElement("div");
     carte.className = "tirage-carte";
 
     if (pos.horizontal == "true") carte.classList.add("horizontal");
 
+    const titleTopHTML = pos.titleTop ? `<div class="tirage-carte-title-top">${pos.titleTop}</div>` : "";
+
+    carte.innerHTML = `
+      ${titleTopHTML}
+      <img src="Images/Dos_carte.png" class="tirage-carte-image">
+      <p>${pos.label}</p>
+    `;
+
     if (tirage.type === "Grille") {
       carte.style.gridColumn = (pos.x || 0) + 1;
       carte.style.gridRow = (pos.y || 0) + 1;
-      
+
       if (pos.offsetX || pos.offsetY) {
         carte.classList.add("offset");
         carte.style.setProperty('--offsetX', `${pos.offsetX || 0}px`);
         carte.style.setProperty('--offsetY', `${pos.offsetY || 0}px`);
       }
     }
-    
-    const titleTopHTML = pos.titleTop ? `<div class="tirage-carte-title-top">${pos.titleTop}</div>` : "";
-    
-    carte.innerHTML = `
-      ${titleTopHTML}
-      <img src="Images/Dos_carte.png" class="tirage-carte-image">
-      <p>${pos.label}</p>
-    `;
 
     plateau.appendChild(carte);
     setTimeout(() => carte.classList.add("visible"), 200 + (i * 300));
@@ -123,10 +114,10 @@ function affichTirageDetail(tirage, categorie) {
             radiusX = r;
             radiusY = r;
         }
-      
+
       const n = tirage.positions.length;
       const angleStep = 360 / n;
-  
+
       Array.from(plateau.children).forEach((carte, i) => {
         const angleRad = ((-90 + i * angleStep) * Math.PI) / 180;
         carte.style.left = `${centerX + radiusX * Math.cos(angleRad)}px`;
@@ -134,4 +125,4 @@ function affichTirageDetail(tirage, categorie) {
       });
     }, 50);
   }
-}
+} 

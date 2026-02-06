@@ -51,7 +51,7 @@ async function initApp() {
           explication: r.Explication?.trim() || "",
           positions: positions,
           sens: r.Sens?.trim() || "", 
-          depart: r.Départ?.trim() || ""
+          depart: r.Depart?.trim() || ""
         };
       });
 

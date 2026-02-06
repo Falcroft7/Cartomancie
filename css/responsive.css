@@ -154,6 +154,10 @@
   .fiche-columns {
     grid-template-columns: 1fr;
   }
+
+  .fiche-left p, .fiche-right p {
+    column-count: 1 !important;
+    }
   
   .back-btn {
     width: 100%;

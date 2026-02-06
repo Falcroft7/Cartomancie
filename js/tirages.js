@@ -55,6 +55,7 @@ function affichCategoriesTirages(categoryToOpen = null) {
 
 /* =========== PLATEAU DE TIRAGE =========== */
 function affichTirageDetail(tirage, categorie) {
+  // Préparation commune (Titre, bouton retour, description)
   const formatExplication = (texte) => {
     if (!texte) return "";
     return texte.replace(/^([^:\n]+):/gm, '<strong>$1 :</strong>');
@@ -68,61 +69,75 @@ function affichTirageDetail(tirage, categorie) {
   renderPage(tirage.nom, content, () => affichCategoriesTirages(categorie), tirage.description);
 
   const plateau = document.querySelector(".tirage-plateau");
+  plateau.innerHTML = "";
   plateau.className = "tirage-plateau " + tirage.type.toLowerCase();
+  const positionsData = tirage.positions;
 
-  tirage.positions.forEach((pos, i) => {
-    const carte = document.createElement("div");
-    carte.className = "tirage-carte";
+  // Logique Grille
+  if (tirage.type === "Grille") {
+    // A. Configuration du plateau (Le contenant)
+    const maxX = Math.max(...positionsData.map(p => p.x || 0));
+    const maxY = Math.max(...positionsData.map(p => p.y || 0));
+    plateau.style.display = "grid";
+    plateau.style.gridTemplateColumns = `repeat(${maxX + 1}, 100px)`;
+    plateau.style.gridTemplateRows = `repeat(${maxY + 1}, 130px)`;
 
-    if (pos.horizontal == "true") carte.classList.add("horizontal");
-
-    const titleTopHTML = pos.titleTop ? `<div class="tirage-carte-title-top">${pos.titleTop}</div>` : "";
-
-    carte.innerHTML = `
-      ${titleTopHTML}
-      <img src="Images/Dos_carte.png" class="tirage-carte-image">
-      <p>${pos.label}</p>
-    `;
-
-    if (tirage.type === "Grille") {
+    // B. Création et placement des cartes
+    positionsData.forEach((pos, i) => {
+      const carte = document.createElement("div");
+      carte.className = "tirage-carte";
       carte.style.gridColumn = (pos.x || 0) + 1;
       carte.style.gridRow = (pos.y || 0) + 1;
+      carte.style.zIndex = i + 1;
 
       if (pos.offsetX || pos.offsetY) {
         carte.classList.add("offset");
         carte.style.setProperty('--offsetX', `${pos.offsetX || 0}px`);
         carte.style.setProperty('--offsetY', `${pos.offsetY || 0}px`);
       }
-    }
 
-    plateau.appendChild(carte);
-    setTimeout(() => carte.classList.add("visible"), 200 + (i * 300));
-  });
+      finaliserCarte(carte, pos, i, plateau);
+    });
+  }
 
+  // Logique Circulaire ou Ovale
   if (tirage.type === "Circulaire" || tirage.type === "Ovale") {
+    // A. Création des cartes
+    positionsData.forEach((pos, i) => {
+      const carte = document.createElement("div");
+      carte.className = "tirage-carte";
+      finaliserCarte(carte, pos, i, plateau);
+    });
+
+    // B. Calcul du placement
     setTimeout(() => {
+      const colonneSens = tirage.Sens ? tirage.Sens.toLowerCase().trim() : "";
+      const colonneDepart = tirage["Départ"] ? tirage["Départ"].toUpperCase().trim() : "";
+      const configSens = (colonneSens === "anti") ? "anti" : "horaire";
+      const configDepart = (colonneDepart === "9H") ? 180 : -90;
+
       const centerX = plateau.clientWidth / 2;
       const centerY = plateau.clientHeight / 2;
-
-      let radiusX, radiusY;
-
-        if (tirage.type === "Ovale") {
-            radiusX = centerX * 0.85;
-            radiusY = centerY * 0.70;
-        } else {
-            const r = Math.min(centerX, centerY) * 0.7;
-            radiusX = r;
-            radiusY = r;
-        }
-
-      const n = tirage.positions.length;
+      const n = positionsData.length;
       const angleStep = 360 / n;
+      const direction = configSens === "anti" ? -1 : 1;
+
+      let rx = (tirage.type === "Ovale") ? centerX * 0.85 : Math.min(centerX, centerY) * 0.7;
+      let ry = (tirage.type === "Ovale") ? centerY * 0.7 : rx;
 
       Array.from(plateau.children).forEach((carte, i) => {
-        const angleRad = ((-90 + i * angleStep) * Math.PI) / 180;
-        carte.style.left = `${centerX + radiusX * Math.cos(angleRad)}px`;
-        carte.style.top  = `${centerY + radiusY * Math.sin(angleRad)}px`;
+        const angleRad = ((configDepart + (i * angleStep * direction)) * Math.PI) / 180;
+        carte.style.left = `${centerX + rx * Math.cos(angleRad)}px`;
+        carte.style.top  = `${centerY + ry * Math.sin(angleRad)}px`;
       });
     }, 50);
+  }
+
+  function finaliserCarte(carte, pos, i, conteneur) {
+    if (pos.horizontal === "true") carte.classList.add("horizontal");
+    const titleTop = pos.titleTop ? `<div class="tirage-carte-title-top">${pos.titleTop}</div>` : "";
+    carte.innerHTML = `${titleTop}<img src="Images/Dos_carte.png" class="tirage-carte-image"><p>${pos.label}</p>`;
+    conteneur.appendChild(carte);
+    setTimeout(() => carte.classList.add("visible"), 200 + (i * 200));
   }
 } 

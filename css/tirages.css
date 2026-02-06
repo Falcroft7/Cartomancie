@@ -9,8 +9,6 @@
 
 .tirage-plateau.grille {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 100px);
-  grid-auto-rows: 130px;
   justify-content: center;
   gap: 20px;
   position: relative;
@@ -47,6 +45,10 @@
   opacity: 0;
   z-index: 2;
   transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.tirage-carte.visible {
+  opacity: 1 !important;
 }
 
 .tirage-carte p {

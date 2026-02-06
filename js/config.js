@@ -49,7 +49,9 @@ async function initApp() {
           description: r.Description?.trim() || "",
           type: r.Type.trim(),
           explication: r.Explication?.trim() || "",
-          positions: positions
+          positions: positions,
+          sens: r.Sens?.trim() || "", 
+          depart: r.Départ?.trim() || ""
         };
       });
 

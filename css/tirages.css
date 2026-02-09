@@ -107,6 +107,10 @@
   transition: transform 0.3s ease;
 }
 
+.tirage-carte.inclinee .tirage-carte-image {
+    transform: rotate(var(--angle-inclinaison, 0deg));
+}
+
 /* =============== TEXTES D'EXPLICATION =========== */
 .tirage-explication,
 .tirage-description {

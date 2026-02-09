@@ -107,8 +107,9 @@
   transition: transform 0.3s ease;
 }
 
-.tirage-carte.inclinee .tirage-carte-image {
-    transform: rotate(var(--angle-inclinaison, 0deg));
+.tirage-carte.inclinee {
+    rotate: var(--angle-inclinaison, 0deg);
+    transform-origin: center center;
 }
 
 /* =============== TEXTES D'EXPLICATION =========== */

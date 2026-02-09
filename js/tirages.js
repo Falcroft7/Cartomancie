@@ -135,8 +135,7 @@ function affichTirageDetail(tirage, categorie) {
   function finaliserCarte(carte, pos, i, conteneur) {
     if (pos.horizontal === "true") carte.classList.add("horizontal");
     if (pos.inclinaison) {
-        const angle = pos.inclinaison;
-        carte.style.setProperty('--angle-inclinaison', `${angle}deg`);
+        carte.style.setProperty('--angle-inclinaison', `${pos.inclinaison}deg`);
         carte.classList.add("inclinee");
     }
     

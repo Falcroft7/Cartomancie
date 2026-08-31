@@ -40,7 +40,7 @@ button:focus-visible, .back-btn:focus-visible {
 /* --- 2. BOUTONS DE LA PAGE D'ACCUEIL --- */
 .home-buttons {
     display: flex;
-    gap: 30px;
+    gap: 15px;
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 45px;
@@ -49,7 +49,7 @@ button:focus-visible, .back-btn:focus-visible {
 
 .button-group {
     display: flex;
-    gap: 25px;
+    gap: 15px;
     justify-content: center;
     flex-wrap: wrap;
 }

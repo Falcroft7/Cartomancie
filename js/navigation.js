@@ -89,7 +89,7 @@ function creerOverlayMagique(carte) {
         <div class="scene">
             <div class="card-flipper" id="cardFlipper">
                 <div class="card-face card-back">
-                    <img src="${imageDos}" alt="Dos de la carte">
+                    <img src="${imageDos}" alt="Dos de la carte" fetchpriority="high">
                 </div>
                 
                 <div class="card-face card-front">
@@ -149,12 +149,10 @@ function creerOverlayDeckMagique(deck) {
     overlay.innerHTML = `
         <div class="scene">
             <div class="card-flipper" id="cardFlipper">
-                <!-- Verso (Dos de carte standard) -->
                 <div class="card-face card-back">
-                    <img src="${imageDos}" alt="Dos du deck">
+                    <img src="${imageDos}" alt="Dos du deck" fetchpriority="high">
                 </div>
                 
-                <!-- Recto (Image du deck + infos) -->
                 <div class="card-face card-front deck-front">
                     <img src="${imgDeck}" alt="${nomDeck}">
                     <div class="deck-flash-info">
@@ -206,3 +204,8 @@ function fermerOverlayMagique() {
 function getImagePathDos() {
   return "Images/Dos_carte.png";
 }
+
+(function prechargerDosCarte() {
+    const imgPreload = new Image();
+    imgPreload.src = getImagePathDos();
+})();

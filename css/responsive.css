@@ -49,7 +49,7 @@
   .home-buttons {
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 35px;
   }
   
   .home-buttons button { 

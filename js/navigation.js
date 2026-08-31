@@ -9,10 +9,14 @@ function affichHome() {
         Découvrez la sagesse des cartes, apprenez à les faire parler à travers différents tirages, ou laissez le hasard choisir pour vous.
       </p>
       <div class="home-buttons">
-        <button onclick="affichChoixSignifications()">Signification des cartes</button>
-        <button onclick="affichCategoriesTirages()">Méthodes de tirage</button>
-        <button onclick="afficherCarteDuJour()">Carte du jour</button>
-        <button onclick="afficherDeckDuJour()">Deck du jour</button>
+        <div class="button-group">
+          <button onclick="affichChoixSignifications()">Signification des cartes</button>
+          <button onclick="affichCategoriesTirages()">Méthodes de tirage</button>
+        </div>
+        <div class="button-group">
+          <button onclick="afficherCarteDuJour()">Carte du jour</button>
+          <button onclick="afficherDeckDuJour()">Deck du jour</button>
+        </div>
       </div>
     </div>
   `);

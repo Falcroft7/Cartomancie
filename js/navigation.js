@@ -63,3 +63,20 @@ function creerBlocMenu(arcane, label, action) {
   
   return bloc;
 }
+
+/* ============= CARTE DU JOUR ============= */
+function afficherCarteDuJour() {
+  // Combine les arcanes majeurs et mineurs
+  const toutesLesCartes = [...listeMajors, ...listeMinors];
+  
+  if (toutesLesCartes.length === 0) {
+    alert("Aucune carte disponible.");
+    return;
+  }
+
+  // Sélection aléatoire d'une carte
+  const indexAleatoire = Math.floor(Math.random() * toutesLesCartes.length);
+  const carteChoisie = toutesLesCartes[indexAleatoire];
+
+  affichArcane(carteChoisie, affichHome);
+}

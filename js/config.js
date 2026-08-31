@@ -10,7 +10,7 @@ const csvDecksUrl =
 let listeMajors = [];
 let listeMinors = [];
 let tiragesCategorie = {};
-let tiragesDecks = {};
+let listeDecks = {};
 
 /* =========== CHARGEMENT =========== */
 function fetchCSV(url) {

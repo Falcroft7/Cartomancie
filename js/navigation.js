@@ -11,6 +11,8 @@ function affichHome() {
       <div class="home-buttons">
         <button onclick="affichChoixSignifications()">Signification des cartes</button>
         <button onclick="affichCategoriesTirages()">Méthodes de tirage</button>
+        <button onclick="afficherCarteDuJour()">Carte du jour</button>
+        <button onclick="afficherDeckDuJour()">Deck du jour</button>
       </div>
     </div>
   `);

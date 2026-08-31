@@ -123,6 +123,73 @@ function creerOverlayMagique(carte) {
     overlay.dataset.timerId = timerFlip;
 }
 
+
+/* ============= DECK DU JOUR ============= */
+function afficherDeckDuJour() {
+    if (typeof listeDecks === 'undefined' || listeDecks.length === 0) {
+        alert("La liste des decks n'est pas disponible.");
+        return;
+    }
+
+    const deckChoisi = listeDecks[Math.floor(Math.random() * listeDecks.length)];
+    
+    creerOverlayDeckMagique(deckChoisi);
+}
+
+function creerOverlayDeckMagique(deck) {
+    const overlay = document.createElement('div');
+    overlay.id = 'magicalOverlay';
+    overlay.className = 'magical-overlay';
+
+    const imageDos = getImagePathDos(); 
+    const imgDeck = deck.Image || 'Images/placeholder.png';
+    const nomDeck = deck.Nom || "Deck mystère";
+    const typeDeck = deck.Type || "Oracle / Tarot";
+
+    overlay.innerHTML = `
+        <div class="scene">
+            <div class="card-flipper" id="cardFlipper">
+                <!-- Verso (Dos de carte standard) -->
+                <div class="card-face card-back">
+                    <img src="${imageDos}" alt="Dos du deck">
+                </div>
+                
+                <!-- Recto (Image du deck + infos) -->
+                <div class="card-face card-front deck-front">
+                    <img src="${imgDeck}" alt="${nomDeck}">
+                    <div class="deck-flash-info">
+                        <span class="deck-type-badge">${typeDeck}</span>
+                        <p class="deck-nom-flash">${nomDeck}</p>
+                    </div>
+                </div>
+            </div>
+            <p class="overlay-instruction">Le deck se révèle...</p>
+        </div>
+        <button class="overlay-close-btn" onclick="fermerOverlayMagique()">✕</button>
+    `;
+
+    document.body.appendChild(overlay);
+
+    const flipper = document.getElementById('cardFlipper');
+    void flipper.offsetWidth; 
+
+    const timerFlip = setTimeout(() => {
+        flipper.classList.add('is-flipped');
+        
+        const instr = document.querySelector('.overlay-instruction');
+        instr.textContent = "Voici le deck du jour !";
+        instr.classList.add('clickable');
+
+        flipper.onclick = () => {
+            fermerOverlayMagique();
+        };
+        
+    }, 2500);
+
+    overlay.dataset.timerId = timerFlip;
+}
+
+
 function fermerOverlayMagique() {
     const overlay = document.getElementById('magicalOverlay');
     if (overlay) {

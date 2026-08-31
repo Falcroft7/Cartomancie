@@ -94,7 +94,6 @@ function creerOverlayMagique(carte) {
                 
                 <div class="card-face card-front">
                     <img src="${nomToImagePath(carte)}" alt="${carte.Nom}">
-                    <p class="carte-nom-flash">${carte.Nom}</p>
                 </div>
             </div>
             <p class="overlay-instruction">La carte se révèle...</p>

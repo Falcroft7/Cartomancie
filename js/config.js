@@ -10,7 +10,7 @@ const csvDecksUrl =
 let listeMajors = [];
 let listeMinors = [];
 let tiragesCategorie = {};
-let listeDecks = {};
+let listeDecks = [];
 
 /* =========== CHARGEMENT =========== */
 function fetchCSV(url) {
@@ -27,7 +27,7 @@ function fetchCSV(url) {
 
 async function initApp() {
   try {
-    const [dataArcanes, dataTirages] = await Promise.all([
+    const [dataArcanes, dataTirages, dataDecks] = await Promise.all([
       fetchCSV(csvArcanesUrl),
       fetchCSV(csvTiragesUrl),
       fetchCSV(csvDecksUrl)

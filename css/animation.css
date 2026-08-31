@@ -137,20 +137,6 @@ body:has(.magical-overlay) {
     background: #1a161f;
 }
 
-.carte-nom-flash {
-    position: absolute;
-    bottom: 15px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    color: #fff;
-    font-family: 'Cinzel', serif;
-    font-size: 1.2em;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-    background: rgba(0,0,0,0.5);
-    padding: 5px 0;
-}
-
 .overlay-instruction {
     color: #f1d359;
     font-family: 'Cinzel', serif;

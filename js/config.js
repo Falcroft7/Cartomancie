@@ -28,7 +28,8 @@ async function initApp() {
   try {
     const [dataArcanes, dataTirages] = await Promise.all([
       fetchCSV(csvArcanesUrl),
-      fetchCSV(csvTiragesUrl)
+      fetchCSV(csvTiragesUrl),
+      fetchCSV(csvDecksUrl)
     ]);
 
     const allArcanes = dataArcanes.filter(r => r.Nom && r.Nom.trim());

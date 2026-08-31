@@ -6,7 +6,7 @@ function affichHome() {
       <h1>Explorez la magie des Arcanes</h1>
       <p>
         Le Tarot est un voyage symbolique à travers les mystères de l’existence.<br>
-        Découvrez la sagesse des cartes ou apprenez à les faire parler à travers différents tirages.
+        Découvrez la sagesse des cartes, apprenez à les faire parler à travers différents tirages, ou laissez le hasard choisir pour vous.
       </p>
       <div class="home-buttons">
         <button onclick="affichChoixSignifications()">Signification des cartes</button>

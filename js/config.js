@@ -10,6 +10,7 @@ const csvDecksUrl =
 let listeMajors = [];
 let listeMinors = [];
 let tiragesCategorie = {};
+let tiragesDecks = {};
 
 /* =========== CHARGEMENT =========== */
 function fetchCSV(url) {
@@ -65,6 +66,14 @@ async function initApp() {
       }
       tiragesCategorie[t.categorie].push(t);
     });
+
+    listeDecks = dataDecks
+      .filter(r => r.Nom && r.Nom.trim())
+      .map(r => ({
+        Type: r.Type?.trim() || "Tarot",
+        Nom: r.Nom.trim(),
+        Image: r.Image?.trim() || ""
+      }));
 
     affichHome();
 

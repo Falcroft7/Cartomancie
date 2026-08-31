@@ -40,11 +40,18 @@ button:focus-visible, .back-btn:focus-visible {
 /* --- 2. BOUTONS DE LA PAGE D'ACCUEIL --- */
 .home-buttons {
     display: flex;
-    gap: 35px;
+    gap: 30px;
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 45px;
     padding: 0 20px;
+}
+
+.button-group {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .home-buttons button {

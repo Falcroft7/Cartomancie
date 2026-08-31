@@ -48,7 +48,7 @@
 }
 
 /* =========================================================
-   STYLES POUR L'ANIMATION "CARTE DU JOUR" (Overlay Magique)
+   ANIMATION "CARTE/DECK DU JOUR" (Overlay Magique)
 ========================================================= */
 
 /* Fond semi-transparent sombre au-dessus de la page */
@@ -161,4 +161,43 @@ body:has(.magical-overlay) {
 .overlay-close-btn:hover {
     color: #f1d359;
     transform: scale(1.1);
+}
+
+.deck-front {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.deck-flash-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4), transparent);
+    padding: 20px 15px 15px 15px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.deck-type-badge {
+    display: inline-block;
+    background: var(--primary);
+    color: #1a161f;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75em;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.deck-nom-flash {
+    color: #fff;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1em;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }

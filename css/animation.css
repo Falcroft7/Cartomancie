@@ -87,7 +87,7 @@ body:has(.magical-overlay) {
     height: 460px;
     perspective: 1000px;
     margin-bottom: 30px;
-    cursor: wait;
+    cursor: pointer;
 }
 
 .card-flipper {
@@ -100,10 +100,6 @@ body:has(.magical-overlay) {
 
 .card-flipper.is-flipped {
     transform: rotateY(180deg);
-}
-
-.card-flipper.is-flipped.clickable {
-    cursor: pointer;
 }
 
 .card-face {

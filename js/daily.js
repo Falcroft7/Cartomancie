@@ -83,15 +83,15 @@ function creerOverlayDeckMagique(deck) {
                     <img src="${imageDos}" alt="Dos du deck" fetchpriority="high">
                 </div>
                 
-                <div class="card-face card-front deck-front">
+                <div class="card-face card-front">
                     <img src="${imgDeck}" alt="${nomDeck}">
-                    <div class="deck-flash-info">
-                        <span class="deck-type-badge">${typeDeck}</span>
-                        <p class="deck-nom-flash">${nomDeck}</p>
-                    </div>
                 </div>
             </div>
             <p class="overlay-instruction">Le deck se révèle...</p>
+            <div id="deckInfoContainer" class="deck-info-container" style="display: none; text-align: center; margin-top: 15px;">
+                <span class="deck-type-badge">${typeDeck}</span>
+                <p class="deck-nom-flash" style="margin-top: 5px; font-weight: bold;">${nomDeck}</p>
+            </div>
         </div>
         <button class="overlay-close-btn" onclick="fermerOverlayMagique()">✕</button>
     `;

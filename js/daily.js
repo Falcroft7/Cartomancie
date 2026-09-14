@@ -77,7 +77,7 @@ function creerOverlayDeckMagique(deck) {
     const typeDeck = deck.Type || "Oracle / Tarot";
 
     overlay.innerHTML = `
-        <div class="scene">
+        <div class="scene scene-deck">
             <div class="card-flipper" id="cardFlipper">
                 <div class="card-face card-back">
                     <img src="${imageDos}" alt="Dos du deck" fetchpriority="high">
@@ -88,10 +88,10 @@ function creerOverlayDeckMagique(deck) {
                 </div>
             </div>
             <p class="overlay-instruction">Le deck se révèle...</p>
-        </div>
-        <div id="deckInfoContainer" class="deck-info-container" style="display: none; text-align: center; margin-top: 15px;">
-            <span class="deck-type-badge">${typeDeck}</span>
-            <p class="deck-nom-flash" style="margin-top: 5px; font-weight: bold;">${nomDeck}</p>
+            <div id="deckInfoContainer" class="deck-info-container">
+                <span class="deck-type-badge">${typeDeck}</span>
+                <p class="deck-nom-flash">${nomDeck}</p>
+            </div>
         </div>
         <button class="overlay-close-btn" onclick="fermerOverlayMagique()">✕</button>
     `;

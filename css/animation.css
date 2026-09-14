@@ -162,10 +162,27 @@ body:has(.magical-overlay) {
 }
 
 /* =============== ANIMATION DECK DU JOUR =============== */
+.scene.scene-deck {
+    height: auto;
+    min-height: 460px;
+}
+
 .deck-info-container {
-    margin-top: -15px; /* Ajuste l'espace sous la scène de la carte */
+    margin-top: -15px;
     animation: fadeInInfo 0.5s ease forwards;
     z-index: 5;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.4s ease, max-height 0.4s ease;
+    margin-top: 0;
+    text-align: center;
+}
+
+.deck-info-container.visible {
+    opacity: 1;
+    max-height: 100px;
+    margin-top: 15px;
 }
 
 .deck-type-badge {

@@ -88,10 +88,10 @@ function creerOverlayDeckMagique(deck) {
                 </div>
             </div>
             <p class="overlay-instruction">Le deck se révèle...</p>
-            <div id="deckInfoContainer" class="deck-info-container" style="display: none; text-align: center; margin-top: 15px;">
-                <span class="deck-type-badge">${typeDeck}</span>
-                <p class="deck-nom-flash" style="margin-top: 5px; font-weight: bold;">${nomDeck}</p>
-            </div>
+        </div>
+        <div id="deckInfoContainer" class="deck-info-container" style="display: none; text-align: center; margin-top: 15px;">
+            <span class="deck-type-badge">${typeDeck}</span>
+            <p class="deck-nom-flash" style="margin-top: 5px; font-weight: bold;">${nomDeck}</p>
         </div>
         <button class="overlay-close-btn" onclick="fermerOverlayMagique()">✕</button>
     `;

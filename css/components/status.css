@@ -1,0 +1,18 @@
+.app-status {
+  max-width: 560px;
+  margin: 20vh auto 0;
+  padding: 32px;
+  color: var(--text-main);
+  text-align: center;
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  border-radius: var(--radius-std);
+  box-shadow: var(--shadow-std);
+}
+
+.app-status-error button {
+  margin-top: 16px;
+  padding: 12px 24px;
+  color: #1a161f;
+  background: var(--primary);
+}

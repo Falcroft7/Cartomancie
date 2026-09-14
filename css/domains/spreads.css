@@ -1,13 +1,12 @@
-/* =================== PLATEAU =================== */
-.tirage-plateau {
+.spread-board {
   max-width: 100%;
   min-height: 150px;
-  padding: 30px 0 0 0;
+  padding: 30px 0 0;
   margin: 20px auto;
-  position: relative; 
+  position: relative;
 }
 
-.tirage-plateau.grille {
+.spread-board.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, 100px);
   grid-auto-rows: 130px;
@@ -17,54 +16,55 @@
   align-items: end;
 }
 
-.tirage-plateau.circulaire .tirage-carte,
-.tirage-plateau.ovale .tirage-carte {
+.spread-board.circular .spread-card,
+.spread-board.oval .spread-card {
   position: absolute;
   transform: translate(-50%, -50%) translateY(-20px) scale(0.9);
   margin: 0;
 }
 
-.tirage-plateau.circulaire .tirage-carte.visible,
-.tirage-plateau.ovale .tirage-carte.visible {
+.spread-board.circular .spread-card.visible,
+.spread-board.oval .spread-card.visible {
   opacity: 1;
   transform: translate(-50%, -50%) translateY(0) scale(1);
 }
 
-.tirage-plateau.circulaire {
+.spread-board.circular {
   width: min(600px, 85vw);
   height: min(600px, 85vw);
 }
 
-.tirage-plateau.ovale {
+.spread-board.oval {
   width: 100%;
   max-width: 950px;
   height: 500px;
 }
 
-/* =================== CARTES DU TIRAGE =================== */
-.tirage-carte {
+.spread-card {
+  width: 80px;
+  min-height: 120px;
   text-align: center;
   opacity: 0;
   z-index: 2;
   transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
 
-.tirage-carte.visible {
+.spread-card.visible {
   opacity: 1 !important;
 }
 
-.tirage-carte p {
-  margin: 4px 0 0 0;
+.spread-card p {
+  margin: 4px 0 0;
   font-size: 0.85em;
   line-height: 1.2;
   color: var(--text-muted);
 }
 
-.tirage-carte.horizontal {
+.spread-card.horizontal {
   position: relative;
 }
 
-.tirage-carte.horizontal p {
+.spread-card.horizontal p {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -78,27 +78,27 @@
   pointer-events: none;
 }
 
-.tirage-carte.horizontal .tirage-carte-image {
+.spread-card.horizontal .spread-card-image {
   transform: rotate(90deg);
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
-.tirage-carte-title-top {
+.spread-card-title {
   font-family: 'Cinzel', serif;
   font-size: 1.1em;
   font-weight: bold;
   color: var(--primary);
   margin-bottom: 12px;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   text-transform: uppercase;
   text-shadow: 0 0 10px rgba(188, 167, 255, 0.3);
 }
 
-.tirage-carte.offset {
+.spread-card.offset {
   translate: var(--offsetX, 0px) var(--offsetY, 0px);
 }
 
-.tirage-carte-image {
+.spread-card-image {
   width: 65px;
   display: block;
   margin: 0 auto;
@@ -107,14 +107,13 @@
   transition: transform 0.3s ease;
 }
 
-.tirage-carte.inclinee {
-    rotate: var(--angle-inclinaison, 0deg);
-    transform-origin: center center;
+.spread-card.rotated {
+  rotate: var(--angle-inclinaison, 0deg);
+  transform-origin: center center;
 }
 
-/* =============== TEXTES D'EXPLICATION =========== */
-.tirage-explication,
-.tirage-description {
+.spread-explanation,
+.spread-description {
   color: var(--text-main);
   background: var(--glass-bg);
   padding: 20px;
@@ -126,7 +125,7 @@
   line-height: 1.5;
 }
 
-.tirage-explication strong {
+.spread-explanation strong {
   color: var(--primary);
   font-family: 'Cinzel', serif;
   letter-spacing: 0.5px;

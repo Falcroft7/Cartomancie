@@ -1,0 +1,35 @@
+.card {
+  width: 100%;
+  flex-direction: column;
+  background: var(--glass-bg);
+  padding: 12px;
+  border-radius: var(--radius-std);
+  border: var(--glass-border);
+  color: var(--text-main);
+  text-align: center;
+  transition: transform 0.35s ease, background-color 0.35s ease,
+              border-color 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+}
+
+.card p {
+  margin: 10px 0 0;
+  color: var(--text-main);
+}
+
+.card:hover {
+  border-color: var(--primary);
+  background: var(--secondary);
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 2/3;
+  height: auto;
+  object-fit: contain;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: var(--glow-light);
+}

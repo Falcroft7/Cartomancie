@@ -1,206 +1,46 @@
 @media (max-width: 850px) {
-  /* Pour les tablettes */
-  #app { 
-    padding: 20px; 
-  }
-
-  div.fiche-arcane {
-    display: flex !important;
-    flex-direction: column !important;
-  }
-
-  .grid-container {
-    --card-min: 120px !important;
-    gap: 15px;
-  }
-
-  .fiche-header-grid {
-    display: grid !important;
-    grid-template-columns: 150px 1fr !important;
-    gap: 20px;
-  }
-
-  .fiche-significations {
-    grid-column: 2;
-    width: 100%;
-  }
-
-  .fiche-image {
-    margin: 30px 0 30px 0;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .fiche-arcane-image {
-    max-width: 150px !important;
-    margin-top: 0;
-  }
-
-  .fiche-columns {
-    grid-template-columns: 1fr !important;
-    gap: 0;
-  }
-
-  .mots-cles h3, .fiche-left h3, .fiche-right h3 {
-    margin-top: 0;
-    font-size: 1.1em;
-  }
-
-  .home-buttons {
-    flex-direction: column;
-    align-items: center;
-    gap: 35px;
-  }
-  
-  .home-buttons button { 
-    width: 100%; 
-    min-width: unset;
-    max-width: 320px; 
-  }
-
+  #app { padding: 20px; }
+  div.arcana-detail { display: flex !important; flex-direction: column !important; }
+  .grid-container { --card-min: 120px !important; gap: 15px; }
+  .arcana-detail-grid { display: grid !important; grid-template-columns: 150px 1fr !important; gap: 20px; }
+  .arcana-meanings { grid-column: 2; width: 100%; }
+  .arcana-image { margin: 30px 0; display: flex; justify-content: center; }
+  .arcana-detail-image { max-width: 150px !important; margin-top: 0; }
+  .meaning-columns { grid-template-columns: 1fr !important; gap: 0; }
+  .meaning-positive h3, .meaning-negative h3 { margin-top: 0; font-size: 1.1em; }
+  .home-buttons { flex-direction: column; align-items: center; gap: 35px; }
+  .home-buttons button { width: 100%; min-width: unset; max-width: 320px; }
   h1 { font-size: 1.8em; }
   h2 { font-size: 1.5em; }
-
-  .back-btn {
-    display: flex;
-    margin: 0 auto 20px auto; 
-  }
-
-  #menuSignifications {
-    overflow-x: visible;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    padding-bottom: 0;
-  }
-  
-  .minor-famille-card {
-    min-width: unset;
-    flex: none;
-    width: 100%;
-  }
-
-  .card-major {
-    grid-column: span 2;
-    margin-bottom: 10px;
-  }
-  
-  .tirage-plateau.grille {
-    grid-template-columns: repeat(auto-fit, 70px);
-    gap: 15px;
-    padding: 10px;
-  }
-
-  .tirage-plateau.circulaire, 
-  .tirage-plateau.ovale {
-    margin: 10px auto;
-    display: block;
-  }
-
-  .tirage-plateau.circulaire {
-    width: 100%;
-    max-width: 450px;
-    height: 100%;
-    aspect-ratio: 1/1;
-    margin: 10px auto;
-  }
-
-  .tirage-plateau.ovale {
-    width: 100%;
-    max-width: 100%;
-    height: 420px;
-    margin: 10px auto;
-    display: block;
-    box-sizing: border-box;
-  }
-
-  .tirage-plateau.circulaire .tirage-carte-image,
-  .tirage-plateau.ovale .tirage-carte-image {
-    width: 60px;
-  }
-
-  .tirage-carte-image {
-    width: 65px;
-  }
-
-  .tirage-carte-title-top {
-    font-size: 0.8em;
-    margin-bottom: 5px;
-  }
-
-  .tirage-carte p {
-    font-size: 0.7em;
-  }
+  .back-button { display: flex; margin: 0 auto 20px; }
+  #arcanaMenu { overflow-x: visible; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding-bottom: 0; }
+  .suit-menu-card { min-width: unset; flex: none; width: 100%; }
+  .major-menu-card { grid-column: span 2; margin-bottom: 10px; }
+  .spread-board.grid { grid-template-columns: repeat(auto-fit, 70px); gap: 15px; padding: 10px; }
+  .spread-board.circular, .spread-board.oval { margin: 10px auto; display: block; }
+  .spread-board.circular { width: 100%; max-width: 450px; height: 100%; aspect-ratio: 1 / 1; }
+  .spread-board.oval { width: 100%; max-width: 100%; height: 420px; box-sizing: border-box; }
+  .spread-board.circular .spread-card-image, .spread-board.oval .spread-card-image { width: 60px; }
+  .spread-card-image { width: 65px; }
+  .spread-card-title { font-size: 0.8em; margin-bottom: 5px; }
+  .spread-card p { font-size: 0.7em; }
 }
 
 @media (max-width: 480px) {
-  /* Pour les tout petits écrans */
-  .grid-container { 
-    --card-min: 120px; 
-    gap: 15px; 
-  }
-
-  .fiche-arcane {
-    grid-template-columns: 1fr;
-    justify-items: center;
-  }
-
-  .fiche-header-grid {
-    grid-template-columns: 1fr !important;
-    justify-items: center;
-  }
-
-  .fiche-arcane-image {
-    max-width: 200px;
-  }
-  
-  .fiche-image {
-    margin-top: 0;
-  }
-
-  .fiche-columns {
-    grid-template-columns: 1fr;
-  }
-
-  .fiche-left p, .fiche-right p {
-    column-count: 1 !important;
-    }
-  
-  .back-btn {
-    width: 100%;
-    max-width: 250px;
-    font-size: 0.8em;
-  }
-
-  .tirage-plateau.circulaire {
-    width: min(320px, 95vw);
-    height: min(320px, 95vw);
-  }
-
-  .tirage-plateau.ovale {
-    width: 100%;
-    height: 380px;
-  }
-
-  .tirage-plateau.circulaire .tirage-carte-image,
-  .tirage-plateau.ovale .tirage-carte-image {
-    width: 45px; 
-  }
-
-  .tirage-plateau.ovale .tirage-carte p {
-    font-size: 0.6em;
-  }
-  
-  .tirage-carte-image {
-    width: 50px;
-  }
-
-  #menuSignifications {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  
-  .card-major {
-    max-width: 200px;
-  }
+  .grid-container { --card-min: 120px; gap: 15px; }
+  .arcana-detail { grid-template-columns: 1fr; justify-items: center; }
+  .arcana-detail-grid { grid-template-columns: 1fr !important; justify-items: center; }
+  .arcana-detail-image { max-width: 200px; }
+  .arcana-image { margin-top: 0; }
+  .meaning-columns { grid-template-columns: 1fr; }
+  .arcana-meanings { grid-column: auto; }
+  .meaning-positive p, .meaning-negative p { column-count: 1 !important; }
+  .back-button { width: 100%; max-width: 250px; font-size: 0.8em; }
+  .spread-board.circular { width: min(320px, 95vw); height: min(320px, 95vw); }
+  .spread-board.oval { width: 100%; height: 380px; }
+  .spread-board.circular .spread-card-image, .spread-board.oval .spread-card-image { width: 45px; }
+  .spread-board.oval .spread-card p { font-size: 0.6em; }
+  .spread-card-image { width: 50px; }
+  #arcanaMenu { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .major-menu-card { max-width: 200px; }
 }

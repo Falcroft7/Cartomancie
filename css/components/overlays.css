@@ -1,0 +1,148 @@
+.reveal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.reveal-overlay.fade-out {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+body:has(.reveal-overlay) {
+  overflow: hidden;
+}
+
+.reveal-overlay:not(.fade-out) {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scene {
+  width: 280px;
+  height: 460px;
+  perspective: 1000px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.card-flipper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.card-flipper.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-back {
+  background: #1a161f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #b8860b;
+}
+
+.card-front {
+  transform: rotateY(180deg);
+  background: #1a161f;
+}
+
+.reveal-instruction {
+  color: #f1d359;
+  font-family: 'Cinzel', serif;
+  font-size: 1.1em;
+  text-align: center;
+  margin-top: 20px;
+  opacity: 0.8;
+}
+
+.overlay-close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5em;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 10;
+}
+
+.overlay-close-button:hover {
+  color: #f1d359;
+  transform: scale(1.1);
+}
+
+.scene.scene-deck {
+  height: auto;
+  min-height: 460px;
+}
+
+.deck-info {
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  margin-top: 0;
+  text-align: center;
+  transform: translateY(5px);
+}
+
+.deck-info.visible {
+  opacity: 1;
+  margin-top: 15px;
+  transform: translateY(0);
+}
+
+.deck-type-badge {
+  display: inline-block;
+  background: #f1d359;
+  color: #1a161f;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75em;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.deck-name {
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 1.1em;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}

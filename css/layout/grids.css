@@ -1,0 +1,25 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--card-min, 150px), 1fr));
+  gap: var(--grid-gap);
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.cards {
+  --card-min: 140px;
+}
+
+.categories, .tirages {
+  --card-min: 220px;
+}
+
+#arcanaMenu {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  width: 95%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0;
+}

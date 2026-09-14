@@ -179,7 +179,6 @@ body:has(.magical-overlay) {
 
 .deck-info-container.visible {
     opacity: 1;
-    max-height: 100px;
     margin-top: 15px;
 }
 

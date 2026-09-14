@@ -108,6 +108,11 @@ function creerOverlayDeckMagique(deck) {
         instr.textContent = "Voici le deck du jour !";
         instr.classList.add('clickable');
 
+        const infoContainer = document.getElementById('deckInfoContainer');
+        if (infoContainer) {
+            infoContainer.classList.add('visible');
+        }
+        
         flipper.onclick = () => {
             fermerOverlayMagique();
         };

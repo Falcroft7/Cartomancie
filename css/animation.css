@@ -183,6 +183,7 @@ body:has(.magical-overlay) {
     opacity: 1;
     max-height: 100px;
     margin-top: 15px;
+    overflow: visible;
 }
 
 .deck-type-badge {

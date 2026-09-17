@@ -192,6 +192,32 @@
   backdrop-filter: blur(5px);
 }
 
+.details-button {
+  background: linear-gradient(145deg, var(--primary-glow), var(--primary));
+  color: #1a161f;
+  padding: 8px 14px;
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-std);
+  box-shadow: var(--shadow-std);
+  font-family: 'Cinzel', serif;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+.details-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow-strong);
+  filter: brightness(1.1);
+}
+
+.details-button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
 .correspondence-item {
   display: flex;
   align-items: center;

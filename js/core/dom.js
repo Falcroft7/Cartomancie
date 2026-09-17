@@ -25,7 +25,7 @@ function escapeHTML(value) {
     .replace(/'/g, "&#039;");
 }
 
-function renderPage(title, contentHTML, backAction, description = "") {
+function renderPage(title, contentHTML, backAction, description = "", headerActionHTML = "") {
   const descHTML = description
     ? `<div class="spread-description">${escapeHTML(description)}</div>`
     : "";
@@ -35,7 +35,10 @@ function renderPage(title, contentHTML, backAction, description = "") {
       <a href="#" id="backButton" class="back-button">⬅ Retour</a>
     </div>
     <div class="page-content">
-      <h2>${escapeHTML(title)}</h2>
+      <div class="page-heading">
+        <h2>${escapeHTML(title)}</h2>
+        ${headerActionHTML}
+      </div>
       ${descHTML}
       <div class="page-body">${contentHTML}</div>
     </div>

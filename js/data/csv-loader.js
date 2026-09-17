@@ -36,10 +36,27 @@ function normalizeSpreadType(value) {
   return typeMap[normalizedType] || normalizedType;
 }
 
+function normalizeExternalUrl(value) {
+  const trimmedValue = String(value ?? "").trim();
+  if (!trimmedValue) return "";
+
+  try {
+    const url = new URL(trimmedValue);
+    return ["http:", "https:"].includes(url.protocol) ? url.href : "";
+  } catch (error) {
+    return "";
+  }
+}
+
 function normalizeArcanaRows(rows) {
   return rows
     .filter(row => row.Nom && row.Nom.trim())
-    .map(row => ({ ...row, Nom: row.Nom.trim(), Type: row.Type?.trim() || "" }));
+    .map(row => ({
+      ...row,
+      Nom: row.Nom.trim(),
+      Type: row.Type?.trim() || "",
+      Details: normalizeExternalUrl(row.Details)
+    }));
 }
 
 function normalizeSpreadRows(rows) {

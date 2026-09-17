@@ -48,6 +48,12 @@ function showArcanaDetails(arcana, onBack) {
     `;
   };
 
+  const detailsLink = arcana.Details ? `
+    <a class="details-button" href="${escapeHTML(arcana.Details)}" target="_blank" rel="noopener noreferrer">
+      Details
+    </a>
+  ` : "";
+
   const content = `
     <div class="arcana-detail element-${elementClass}">
       ${arcana.Affirmation ? `
@@ -99,7 +105,7 @@ function showArcanaDetails(arcana, onBack) {
     </div>
   `;
 
-  renderPage(title, content, onBack);
+  renderPage(title, content, onBack, "", detailsLink);
   const image = document.querySelector(".arcana-detail-image");
   if (image) setupImage(image, imagePath, arcana.Nom || "Carte de tarot");
 }

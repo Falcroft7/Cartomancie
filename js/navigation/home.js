@@ -16,6 +16,9 @@ function showHome() {
           <button type="button" id="dailyCardButton">Carte du jour</button>
           <button type="button" id="dailyDeckButton">Deck du jour</button>
         </div>
+        <div class="button-group home-secondary-actions">
+          <button type="button" id="compareButton">Comparer deux cartes</button>
+        </div>
       </div>
     </div>
   `);
@@ -24,4 +27,5 @@ function showHome() {
   document.getElementById("spreadsButton")?.addEventListener("click", showSpreadCategories);
   document.getElementById("dailyCardButton")?.addEventListener("click", showCardOfTheDay);
   document.getElementById("dailyDeckButton")?.addEventListener("click", showDeckOfTheDay);
+  document.getElementById("compareButton")?.addEventListener("click", showArcanaComparison);
 }

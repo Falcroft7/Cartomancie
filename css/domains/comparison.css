@@ -1,0 +1,118 @@
+.comparison-view {
+  margin-top: 30px;
+}
+
+.comparison-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 850px;
+  margin: 0 auto 30px;
+}
+
+.comparison-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--text-muted);
+  font-family: 'Cinzel', serif;
+  font-size: 0.9em;
+}
+
+.comparison-controls select {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: var(--glass-border);
+  border-radius: var(--radius-std);
+  background: var(--glass-bg);
+  color: var(--text-main);
+  font: inherit;
+}
+
+.comparison-controls select:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.comparison-result {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.comparison-card {
+  min-width: 0;
+  padding: 20px;
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  border-radius: var(--radius-std);
+  backdrop-filter: blur(8px);
+}
+
+.comparison-card-image {
+  display: block;
+  width: min(180px, 100%);
+  aspect-ratio: 2 / 3;
+  object-fit: contain;
+  margin: 0 auto 15px;
+  border-radius: 8px;
+  box-shadow: var(--glow-light);
+}
+
+.comparison-card h3 {
+  text-align: center;
+  margin: 10px 0 20px;
+}
+
+.comparison-correspondences {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 20px;
+}
+
+.comparison-correspondences div {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.comparison-correspondences dt {
+  color: var(--primary);
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+
+.comparison-correspondences dd {
+  margin: 0;
+  color: var(--text-main);
+  text-align: right;
+}
+
+.comparison-meaning {
+  margin-top: 15px;
+  padding: 12px 15px;
+  border-radius: var(--radius-std);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.comparison-positive { border-left: 4px solid #6fd6a3; }
+.comparison-negative { border-left: 4px solid #e08a9c; }
+
+.comparison-meaning strong {
+  color: var(--primary);
+}
+
+.comparison-meaning p {
+  margin: 8px 0 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  .comparison-controls,
+  .comparison-result {
+    grid-template-columns: 1fr;
+  }
+}

@@ -30,6 +30,48 @@ body:has(.reveal-overlay) {
   visibility: visible;
 }
 
+.deck-choice-panel {
+  width: min(420px, calc(100vw - 40px));
+  padding: 30px 25px;
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  border-radius: var(--radius-std);
+  box-shadow: var(--shadow-std);
+  text-align: center;
+}
+
+.deck-choice-panel h2 {
+  margin-top: 0;
+}
+
+.deck-choice-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-main);
+}
+
+.deck-choice-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.deck-choice-actions button {
+  padding: 10px 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--text-muted);
+  color: var(--text-main);
+  font-size: 0.85em;
+}
+
+.deck-choice-actions button:hover {
+  border-color: var(--primary);
+  background: var(--secondary);
+  box-shadow: var(--glow-light);
+}
+
 .scene {
   width: 280px;
   height: 460px;

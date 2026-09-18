@@ -6,6 +6,117 @@
   position: relative;
 }
 
+.spread-preference {
+  max-width: 600px;
+  margin: 0 auto 25px;
+  padding: 14px 18px;
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  border-radius: var(--radius-std);
+  color: var(--text-main);
+  text-align: center;
+}
+
+.spread-journal-link {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 0;
+}
+
+.spread-journal-link button {
+  padding: 9px 14px;
+  border: 1px solid var(--text-muted);
+  border-radius: var(--radius-std);
+  background: var(--glass-bg);
+  color: var(--text-main);
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8em;
+}
+
+.spread-journal-link button:hover {
+  border-color: var(--primary);
+  background: var(--secondary);
+  box-shadow: var(--glow-light);
+}
+
+.spread-preference label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.spread-draw-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 25px auto;
+}
+
+.reversed-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-main);
+}
+
+.spread-draw-controls button {
+  padding: 10px 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--text-muted);
+  color: var(--text-main);
+  font-size: 0.85em;
+}
+
+.spread-draw-controls button:hover:not(:disabled) {
+  border-color: var(--primary);
+  background: var(--secondary);
+  box-shadow: var(--glow-light);
+}
+
+.spread-draw-controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.save-confirmation-icon {
+  display: inline-flex;
+  width: 0;
+  margin-left: 0;
+  overflow: hidden;
+  color: #6fd6a3;
+  font-size: 1.2em;
+  opacity: 0;
+  transition: width 0.2s ease, margin-left 0.2s ease, opacity 0.2s ease;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+#saveSpreadButton.is-saved .save-confirmation-icon {
+  width: 1em;
+  margin-left: 8px;
+  opacity: 1;
+}
+
+.spread-draw-status {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--text-muted);
+  text-align: center;
+}
+
 .spread-board.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, 100px);
@@ -70,17 +181,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 0 !important;
-  width: 100%;
+  width: 98px;
   z-index: 5;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.5);
   font-weight: bold;
   pointer-events: none;
-}
-
-.spread-card.horizontal .spread-card-image {
-  transform: rotate(90deg);
-  margin: 0 auto;
 }
 
 .spread-card-title {
@@ -105,6 +211,67 @@
   border-radius: 8px;
   box-shadow: var(--glow-light);
   transition: transform 0.3s ease;
+}
+
+.spread-card-flipper {
+  width: 65px;
+  height: 98px;
+  position: relative;
+  margin: 0 auto;
+  perspective: 800px;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.spread-card.horizontal .spread-card-flipper {
+  width: 98px;
+  height: 65px;
+}
+
+.spread-card.horizontal .spread-card-face img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 65px;
+  height: 98px;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.spread-card.revealed .spread-card-flipper {
+  transform: rotateY(180deg);
+}
+
+.spread-card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--glow-light);
+}
+
+.spread-card-face img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.spread-card-front {
+  transform: rotateY(180deg);
+}
+
+.spread-card.reversed .spread-card-front img {
+  transform: rotate(180deg);
+}
+
+.spread-card.horizontal.reversed .spread-card-front img {
+  transform: translate(-50%, -50%) rotate(270deg);
+}
+
+.spread-card:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 5px;
 }
 
 .spread-card.rotated {

@@ -1,6 +1,26 @@
 function showSpreadCategories(categoryToOpen = null) {
-  renderPage("Méthodes de tirage", `<div id="spreadCategories" class="accordion"></div>`, showHome);
+  const includeReversed = localStorage.getItem("cartomancieIncludeReversed") === "true";
+  renderPage(
+    "Méthodes de tirage",
+    `
+      <div class="spread-journal-link">
+        <button type="button" id="spreadJournalButton">Voir le journal</button>
+      </div>
+      <div class="spread-preference">
+        <label>
+          <input type="checkbox" id="includeReversedPreference" ${includeReversed ? "checked" : ""}>
+          <span>Inclure les cartes renversées dans les tirages</span>
+        </label>
+      </div>
+      <div id="spreadCategories" class="accordion"></div>
+    `,
+    showHome
+  );
   const container = document.getElementById("spreadCategories");
+  document.getElementById("spreadJournalButton")?.addEventListener("click", showSpreadJournal);
+  document.getElementById("includeReversedPreference")?.addEventListener("change", event => {
+    localStorage.setItem("cartomancieIncludeReversed", String(event.target.checked));
+  });
 
   Object.keys(spreadsByCategory).forEach(category => {
     const catBlock = document.createElement("div");
@@ -36,6 +56,7 @@ function showSpreadCategories(categoryToOpen = null) {
     };
 
     button.addEventListener("click", () => {
+      const isOpen = Boolean(panel.style.maxHeight);
       document.querySelectorAll(".accordion-content").forEach(item => {
         item.style.maxHeight = null;
       });
@@ -45,7 +66,7 @@ function showSpreadCategories(categoryToOpen = null) {
       document.querySelectorAll(".accordion-trigger").forEach(item => {
         item.setAttribute("aria-expanded", "false");
       });
-      if (!panel.style.maxHeight) openPanel();
+      if (!isOpen) openPanel();
     });
 
     if (categoryToOpen === category) setTimeout(openPanel, 10);

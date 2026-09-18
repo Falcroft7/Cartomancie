@@ -2,11 +2,17 @@ function showArcanaMenu() {
   const suits = ["Bâtons", "Coupes", "Épées", "Deniers"];
   renderPage(
     "Signification des cartes",
-    `<div class="arcana-menu-grid" id="arcanaMenu"></div>`,
+    `
+      <div class="arcana-menu-actions">
+        <button type="button" id="compareArcanaButton">Comparer deux cartes</button>
+      </div>
+      <div class="arcana-menu-grid" id="arcanaMenu"></div>
+    `,
     showHome
   );
 
   const container = document.getElementById("arcanaMenu");
+  document.getElementById("compareArcanaButton")?.addEventListener("click", showArcanaComparison);
   const featuredMajorArcana = majorArcanaList.find(arcana =>
     arcana.Nom.toLowerCase() === "le monde"
   ) || majorArcanaList[0];

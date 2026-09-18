@@ -6,6 +6,29 @@
   margin: 0 auto;
 }
 
+.arcana-menu-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 0;
+}
+
+.arcana-menu-actions button {
+  padding: 9px 14px;
+  border: 1px solid var(--text-muted);
+  border-radius: var(--radius-std);
+  background: var(--glass-bg);
+  color: var(--text-main);
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8em;
+}
+
+.arcana-menu-actions button:hover {
+  border-color: var(--primary);
+  background: var(--secondary);
+  box-shadow: var(--glow-light);
+}
+
 .major-menu-card {
   justify-self: center;
   width: 100%;

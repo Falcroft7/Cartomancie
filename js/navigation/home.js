@@ -4,8 +4,9 @@ function showHome() {
       <img src="Images/Banner/Tarot_Banner.jpg" class="home-banner" alt="Illustration du tarot">
       <h1>Explorez la magie des Arcanes</h1>
       <p>
-        Le Tarot est un voyage symbolique à travers les mystères de l’existence.<br>
-        Découvrez la sagesse des cartes, apprenez à les faire parler à travers différents tirages, ou laissez le hasard choisir pour vous.
+        Les cartes du Tarot sont autant de miroirs qui invitent à la réflexion.
+        Elles ne donnent pas nécessairement une réponse définitive, mais proposent des images, des symboles et des pistes pour mieux comprendre une question, une émotion ou une situation.
+        Explorez les arcanes, découvrez leurs messages, expérimentez différents tirages et laissez votre intuition donner du sens à chaque carte révélée.
       </p>
       <div class="home-buttons">
         <div class="button-group">
@@ -16,9 +17,6 @@ function showHome() {
           <button type="button" id="dailyCardButton">Carte du jour</button>
           <button type="button" id="dailyDeckButton">Deck du jour</button>
         </div>
-        <div class="button-group home-secondary-actions">
-          <button type="button" id="compareButton">Comparer deux cartes</button>
-        </div>
       </div>
     </div>
   `);
@@ -27,5 +25,4 @@ function showHome() {
   document.getElementById("spreadsButton")?.addEventListener("click", showSpreadCategories);
   document.getElementById("dailyCardButton")?.addEventListener("click", showCardOfTheDay);
   document.getElementById("dailyDeckButton")?.addEventListener("click", showDeckOfTheDay);
-  document.getElementById("compareButton")?.addEventListener("click", showArcanaComparison);
 }

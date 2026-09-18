@@ -5,7 +5,7 @@ function createStars() {
   starsContainer.id = "stars-container";
   document.body.appendChild(starsContainer);
 
-  for (let index = 0; index < 20; index += 1) {
+  for (let index = 0; index < 40; index += 1) {
     const star = document.createElement("div");
     star.className = "star";
     star.style.left = `${Math.random() * 100}%`;
@@ -15,7 +15,7 @@ function createStars() {
     star.style.height = `${size}px`;
     star.style.setProperty("--duration", `${Math.random() * 8 + 7}s`);
     star.style.setProperty("--max-opacity", Math.random() * 0.5 + 0.2);
-    star.style.animationDelay = `${Math.random() * 20}s`;
+    star.style.animationDelay = `${Math.random() * 12}s`;
     starsContainer.appendChild(star);
   }
 }

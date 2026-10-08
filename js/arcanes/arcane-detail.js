@@ -3,6 +3,7 @@ function showArcanaDetails(arcana, onBack) {
   const title = arcana.Numero && arcana.Numero.trim()
     ? `${arcana.Numero} - ${arcana.Nom}`
     : arcana.Nom;
+  const archetype = arcana["Archétype"]?.trim();
   const elementClass = (arcana["Elément"] || "")
     .toLowerCase()
     .trim()
@@ -56,6 +57,9 @@ function showArcanaDetails(arcana, onBack) {
 
   const content = `
     <div class="arcana-detail element-${elementClass}">
+      ${arcana.Type === "Majeure" && archetype && archetype !== APP_CONFIG.emptyValueLabel ? `
+        <p class="arcana-archetype">Archétype = ${escapeHTML(archetype)}</p>
+      ` : ""}
       ${arcana.Affirmation ? `
         <div class="full-width-block affirmation-container">
           <p class="arcana-affirmation">"${escapeHTML(arcana.Affirmation)}"</p>

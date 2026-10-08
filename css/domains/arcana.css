@@ -164,6 +164,21 @@
   margin-right: 5px;
 }
 
+.arcana-archetype {
+  margin: 0;
+  padding: 7px;
+  text-align: center;
+  color: #f0f9ff;
+  background-color: #075985;
+  background-image:
+    radial-gradient(circle at 12px 12px, rgba(224, 242, 254, 0.95) 1px, transparent 1.8px),
+    radial-gradient(circle at 36px 27px, rgba(125, 211, 252, 0.75) 1px, transparent 1.8px),
+    linear-gradient(130deg, #075985, #0c4a6e 55%, #082f49);
+  background-size: 48px 40px, 67px 54px, 100% 100%;
+  border: 1px solid rgba(186, 230, 253, 0.75);
+  border-radius: var(--radius-std);
+}
+
 .arcana-affirmation {
   font-style: italic;
   font-size: 1em;

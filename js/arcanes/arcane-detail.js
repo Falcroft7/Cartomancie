@@ -3,7 +3,11 @@ function showArcanaDetails(arcana, onBack) {
   const title = arcana.Numero && arcana.Numero.trim()
     ? `${arcana.Numero} - ${arcana.Nom}`
     : arcana.Nom;
-  const archetype = arcana["Archétype"]?.trim();
+  const archetype = arcana["Archétype"]
+    ?.split(/\r\n?|\n/)
+    .map(value => value.trim())
+    .filter(Boolean)
+    .join(" / ");
   const elementClass = (arcana["Elément"] || "")
     .toLowerCase()
     .trim()

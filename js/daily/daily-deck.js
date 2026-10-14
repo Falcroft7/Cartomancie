@@ -1,39 +1,5 @@
 function showDeckOfTheDay() {
-  showDeckTypeChoice();
-}
-
-function showDeckTypeChoice() {
-  closeExistingOverlay();
-  const overlay = document.createElement("div");
-  overlay.id = "revealOverlay";
-  overlay.className = "reveal-overlay deck-choice-overlay";
-  overlay.innerHTML = `
-    <div class="deck-choice-panel" role="document">
-      <h2>Deck du jour</h2>
-      <label class="deck-choice-label">
-        <input type="checkbox" id="includeOraclesChoice">
-        <span>Inclure les oracles</span>
-      </label>
-      <div class="deck-choice-actions">
-        <button type="button" id="confirmDeckChoice">Continuer</button>
-        <button type="button" id="cancelDeckChoice">Annuler</button>
-      </div>
-    </div>
-    <button type="button" class="overlay-close-button" aria-label="Fermer">✕</button>
-  `;
-  document.body.appendChild(overlay);
-  setupOverlay(overlay);
-
-  const includeOraclesChoice = overlay.querySelector("#includeOraclesChoice");
-  includeOraclesChoice.checked = localStorage.getItem("cartomancieIncludeOracles") === "true";
-
-  overlay.querySelector("#confirmDeckChoice").addEventListener("click", () => {
-    localStorage.setItem("cartomancieIncludeOracles", String(includeOraclesChoice.checked));
-    closeExistingOverlay();
-    revealDailyDeck();
-  });
-  overlay.querySelector("#cancelDeckChoice").addEventListener("click", closeOverlay);
-  overlay.querySelector(".overlay-close-button").addEventListener("click", closeOverlay);
+  revealDailyDeck();
 }
 
 function revealDailyDeck() {

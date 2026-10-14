@@ -54,13 +54,37 @@ button:focus-visible, .back-button:focus-visible {
   flex-wrap: wrap;
 }
 
+.daily-action-group {
+  align-items: flex-start;
+}
+
+.daily-deck-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 320px;
+  max-width: calc(100vw - 40px);
+  box-sizing: border-box;
+}
+
+.include-oracles-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
 .home-buttons button {
   background: var(--glass-bg);
   border: 1px solid var(--text-muted);
   color: var(--text-main);
   padding: 16px 10px;
   width: 320px;
-  min-width: 320px;
+  max-width: calc(100vw - 40px);
+  min-width: 0;
+  box-sizing: border-box;
   backdrop-filter: blur(4px);
   font-size: 1.1em;
   letter-spacing: 0.5px;

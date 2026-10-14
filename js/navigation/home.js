@@ -13,13 +13,25 @@ function showHome() {
           <button type="button" id="arcanaButton">Signification des cartes</button>
           <button type="button" id="spreadsButton">Méthodes de tirage</button>
         </div>
-        <div class="button-group">
+        <div class="button-group daily-action-group">
           <button type="button" id="dailyCardButton">Carte du jour</button>
-          <button type="button" id="dailyDeckButton">Deck du jour</button>
+          <div class="daily-deck-control">
+            <button type="button" id="dailyDeckButton">Deck du jour</button>
+            <label class="include-oracles-label">
+              <input type="checkbox" id="includeOraclesCheckbox">
+              <span>Inclure les oracles</span>
+            </label>
+          </div>
         </div>
       </div>
     </div>
   `);
+
+  const includeOraclesCheckbox = document.getElementById("includeOraclesCheckbox");
+  includeOraclesCheckbox.checked = localStorage.getItem("cartomancieIncludeOracles") === "true";
+  includeOraclesCheckbox.addEventListener("change", () => {
+    localStorage.setItem("cartomancieIncludeOracles", String(includeOraclesCheckbox.checked));
+  });
 
   document.getElementById("arcanaButton")?.addEventListener("click", showArcanaMenu);
   document.getElementById("spreadsButton")?.addEventListener("click", showSpreadCategories);
